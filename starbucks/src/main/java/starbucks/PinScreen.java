@@ -8,6 +8,9 @@ public class PinScreen extends Screen
    
     public PinScreen()
     {
+    	
     }
-  
+    public String name() {
+        return "" ; 
+    } 
 }

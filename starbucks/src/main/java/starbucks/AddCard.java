@@ -10,4 +10,7 @@ public class AddCard extends Screen
     public AddCard()
     {
     }
+    public String name() {
+        return "Add Card" ; 
+    } 
 }

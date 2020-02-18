@@ -172,7 +172,7 @@ public class Frame implements IFrame
             public void selectD() { menuD.invoke() ; }
 
             /** Select Command E */
-            public void selectE() { /** todo **/ }
+            public void selectE() { menuE.invoke(); }
 
         } ;
 
@@ -311,6 +311,6 @@ public class Frame implements IFrame
     public void selectD() { currentStrategy.selectD() ;  }
 
     /** Select Command E */
-    public void selectE() { /* todo */  }    
+    public void selectE() { currentStrategy.selectE() ; }    
 
 }

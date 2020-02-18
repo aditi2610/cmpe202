@@ -10,6 +10,9 @@ public class Settings extends Screen
     {
        
     }
+    public String name() {
+        return "Settings" ; 
+    } 
 
    
 }

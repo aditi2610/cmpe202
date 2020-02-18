@@ -10,5 +10,9 @@ public class Store extends Screen
     {
 
     }
+    
+    public String name() {
+        return "Find Store" ; 
+    } 
 
 }

@@ -10,5 +10,13 @@ public class Payments extends Screen
     {
 
     }
+    public String name() {
+        return "Payments" ; 
+    }
+    public String display() {
+    	String value = "";
+    	// Screen should show the options “Find Store and Enable Payments”
+    	return value;
+    }
 
 }

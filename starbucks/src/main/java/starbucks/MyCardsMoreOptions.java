@@ -9,5 +9,13 @@ public class MyCardsMoreOptions extends Screen
     public MyCardsMoreOptions()
     {
     }
-
+    public String name() {
+        return "My Cards" ; 
+    }
+    
+    public String display() {
+    	String value = "";
+    	// Screen should show the options “Refresh, Reload or View Recent Transactions”
+    	return value;
+    }
 }

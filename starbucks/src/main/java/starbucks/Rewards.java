@@ -8,7 +8,9 @@ public class Rewards extends Screen
 
     public Rewards()
     {
-
+    	
     }
-
+    public String name() {
+    	return "Rewards";
+    }	
 }
