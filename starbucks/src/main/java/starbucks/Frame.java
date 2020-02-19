@@ -8,8 +8,7 @@ package starbucks ;
 public class Frame implements IFrame
 {
     private IScreen current ;
-    private IMenuInvoker menuA = new MenuOption() ;
-    private IMenuInvoker menuA1 = new MenuOption() ;
+    private IMenuInvoker menuA = new MenuOption() ;  
     private IMenuInvoker menuB = new MenuOption() ;
     private IMenuInvoker menuC = new MenuOption() ;
     private IMenuInvoker menuD = new MenuOption() ;
@@ -17,7 +16,10 @@ public class Frame implements IFrame
     private IOrientationStrategy portraitStrategy ;
     private IOrientationStrategy landscapeStrategy ;
     private IOrientationStrategy currentStrategy ;
-
+    
+    private IMenuInvoker menuA1 = new MenuOption() ;
+    private IMenuInvoker menuCardOptions = new MenuOption();
+    private IMenuInvoker menuCardMoreOptions = new MenuOption();
     /**
      * Return Screen Name
      * @return Screen Name
@@ -251,6 +253,8 @@ public class Frame implements IFrame
     public void setInMenuScreen( String slot, IMenuCommand c )
     {
         if ( "A1".equals(slot) ) { menuA1.setCommand(c) ;  }
+        if("MyCardOptions".equals(slot)) {menuCardOptions.setCommand(c);}
+        if("MyCardMoreOptions".equals(slot)) {menuCardMoreOptions.setCommand(c);}
     }
 
     /** 
@@ -320,5 +324,11 @@ public class Frame implements IFrame
     
     /** Select Command E */
     public void selectA1() { menuA1.invoke();}
+    
+    /** Select Command E */
+    public void selectCardOptions() { menuCardOptions.invoke();}
+    
+    /** Select Command E */
+    public void selectCardMoreOptions() { menuCardMoreOptions.invoke();}
 
 }

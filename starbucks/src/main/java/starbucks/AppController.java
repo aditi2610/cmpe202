@@ -18,16 +18,24 @@ public class AppController implements IApp {
 	private IMenuCommand doStore;
 	private IMenuCommand displaySettings;
 	private IFrame frame;
+	
+	
 	private IScreen myCardsPay;
+	private IScreen myCardsOptions;
+	private IScreen myCardsMoreOptions;
 	
 	private IMenuCommand displayMyCardsPay;
+	private IMenuCommand displayMyCardsOptions;
+	private IMenuCommand displayMyCardMoreOptions;
 
 	public AppController() {
 		mycards = new MyCards();
 		frame = new Frame(mycards);
 
-//		mycards.setFrame(frame);
 		myCardsPay = new MyCardsPay();
+		myCardsOptions = new MyCardsOptions();
+		myCardsMoreOptions = new MyCardsMoreOptions();
+		
 		store = new Store();
 		rewards = new Rewards();
 		payments = new Payments();
@@ -39,7 +47,10 @@ public class AppController implements IApp {
 		displayRewards = new MenuCommand();
 		doStore = new MenuCommand();
 		displaySettings = new MenuCommand();
+		
 		displayMyCardsPay = new MenuCommand();
+		displayMyCardsOptions = new MenuCommand();
+		displayMyCardMoreOptions = new MenuCommand();
 
 		displayMyCards.setReceiver(
 				new IMenuReceiver() {
@@ -91,12 +102,31 @@ public class AppController implements IApp {
 				}
 		);
 
+		displayMyCardsOptions.setReceiver(new IMenuReceiver() {
+			
+			@Override
+			public void doAction() {
+				frame.setCurrentScreen(myCardsOptions);
+				
+			}
+		});
+		displayMyCardMoreOptions.setReceiver(new IMenuReceiver() {
+			
+			@Override
+			public void doAction() {
+				frame.setCurrentScreen(myCardsMoreOptions);
+				
+			}
+		});
 		frame.setMenuItem("A", displayMyCards);
 		frame.setMenuItem("B", displayPayments);
 		frame.setMenuItem("C", displayRewards);
 		frame.setMenuItem("D", doStore);
 		frame.setMenuItem("E", displaySettings);
+		
 		frame.setInMenuScreen("A1", displayMyCardsPay);
+		frame.setInMenuScreen("MyCardOptions", displayMyCardsOptions );
+		frame.setInMenuScreen("MyCardMoreOptions", displayMyCardMoreOptions);
 	}
 
 
@@ -151,6 +181,12 @@ public class AppController implements IApp {
 				break;
 			case "A1":
 				frame.selectA1();
+				break;
+			case "MyCardOptions":
+				frame.selectCardOptions();
+				break;
+			case "MyCardMoreOptions":
+				frame.selectCardMoreOptions();
 				break;
 		}
 	}

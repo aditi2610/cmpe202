@@ -23,7 +23,7 @@ public class MyCards extends Screen {
         	this.app.execute("A1");
         }
         if (x == 2 && y == 4) {
-            //navigate to my card options Screen
+           this.app.execute("MyCardOptions");
         }
     }
 

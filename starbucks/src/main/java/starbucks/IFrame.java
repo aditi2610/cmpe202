@@ -98,6 +98,12 @@ public interface IFrame
      * Select Menu/Command E
      */
     void selectA1() ;
+    /**
+     * Select Menu/Command E
+     */ 
+    void selectCardOptions() ;
+    
+    void selectCardMoreOptions() ;
 
 }
 

@@ -5,10 +5,12 @@ package starbucks;
 /** My Card Options Screen */
 public class MyCardsOptions extends Screen
 {
-   
+   Device d;
+   IApp app;
     public MyCardsOptions()
     {
-       
+       this.d = Device.getInstance();
+       this.app =(IApp)d;
     }
     public String name() {
         return "My Cards" ; 
@@ -16,7 +18,8 @@ public class MyCardsOptions extends Screen
     
     public void touch(int x, int y) {
         if((x ==1 || x==2 || x==3) && y ==7) {
-     	   //navigate to my cards more options screen
+     	  
+        	this.app.execute("MyCardMoreOptions");
         }
         
      }

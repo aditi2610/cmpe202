@@ -5,9 +5,12 @@ package starbucks;
 /** My Card Pay Screen */
 public class MyCardsPay extends Screen
 {
+	Device d;
+	IApp app;
     public MyCardsPay()
     {
-
+    	this.d = Device.getInstance();
+    	this.app = (IApp)d;
     }
     public String name() {
         return "My Cards" ; 
@@ -15,7 +18,7 @@ public class MyCardsPay extends Screen
     
     public void touch(int x, int y) {
         if(x ==3 && y ==3) {
-     	   //navigate to my cards main Screen
+     	  this.app.execute("A");
         }
         
      }
