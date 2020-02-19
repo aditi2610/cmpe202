@@ -56,7 +56,7 @@ public interface IApp
      * Get Screen Contents
      * @return Screen Content
      */
-    String screenContents() ;   
+    String screenContents() ; 
 
 }
 

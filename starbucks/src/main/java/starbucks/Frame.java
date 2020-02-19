@@ -9,6 +9,7 @@ public class Frame implements IFrame
 {
     private IScreen current ;
     private IMenuInvoker menuA = new MenuOption() ;
+    private IMenuInvoker menuA1 = new MenuOption() ;
     private IMenuInvoker menuB = new MenuOption() ;
     private IMenuInvoker menuC = new MenuOption() ;
     private IMenuInvoker menuD = new MenuOption() ;
@@ -218,7 +219,6 @@ public class Frame implements IFrame
 
             /** Don't Respond in Landscaope Mode */
             public void selectE() {  }
-
        } ;     
 
         /* set default layout strategy */
@@ -246,6 +246,11 @@ public class Frame implements IFrame
         if ( "C".equals(slot) ) { menuC.setCommand(c) ; }
         if ( "D".equals(slot) ) { menuD.setCommand(c) ; } 
         if ( "E".equals(slot) ) { menuE.setCommand(c) ; }   
+    }
+
+    public void setInMenuScreen( String slot, IMenuCommand c )
+    {
+        if ( "A1".equals(slot) ) { menuA1.setCommand(c) ;  }
     }
 
     /** 
@@ -311,6 +316,9 @@ public class Frame implements IFrame
     public void selectD() { currentStrategy.selectD() ;  }
 
     /** Select Command E */
-    public void selectE() { currentStrategy.selectE() ; }    
+    public void selectE() { currentStrategy.selectE() ; }
+    
+    /** Select Command E */
+    public void selectA1() { menuA1.invoke();}
 
 }

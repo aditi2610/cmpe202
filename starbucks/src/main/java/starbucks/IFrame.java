@@ -19,6 +19,7 @@ public interface IFrame
      * @param c    Command Object
      */
     void setMenuItem( String slot, IMenuCommand c ) ;
+    void setInMenuScreen( String slot, IMenuCommand c ) ;
 
     /**
      * Send a Touch Event
@@ -92,6 +93,12 @@ public interface IFrame
      * Select Menu/Command E
      */
     void selectE() ;
+
+    /**
+     * Select Menu/Command E
+     */
+    void selectA1() ;
+
 }
 
 
