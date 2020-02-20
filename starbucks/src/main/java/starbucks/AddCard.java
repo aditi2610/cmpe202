@@ -12,14 +12,16 @@ public class AddCard extends Screen
 	IApp app;
 	KeyPad kp;
 	boolean focusCVV = false;
-	StringBuilder cardNumber;
-	StringBuilder cvv;
-    public AddCard()
+	private static StringBuilder cardNumber;
+	private static StringBuilder cvv;
+	private static Double balance = 0.0;
+	
+	public AddCard()
     {
     	this.app = (IApp)Device.getInstance();
     	this.kp= new KeyPad();
-    	this.cardNumber= new StringBuilder(9);
-    	this.cvv = new StringBuilder(3);
+    	cardNumber= new StringBuilder();
+    	cvv = new StringBuilder();
     	
     }
     public String name() {
@@ -33,6 +35,7 @@ public class AddCard extends Screen
     	value += createStringForCard(cvv, 3);
     	value += "\n";
     	value += kp.display();
+    	value += "\n";
     	
     	return value;
     }
@@ -42,11 +45,12 @@ public class AddCard extends Screen
        }
     
     public void next()  {
-    	if(this.cardNumber.length() == 9 && this.cvv.length() == 3) {
-    		//go to next screen
+    	if(cardNumber.length() == 9 && cvv.length() == 3) {
+    		this.app.execute("A");
+    		this.setBalance(20.00);
     	}else {
-    		this.cardNumber = new StringBuilder();
-    		this.cvv= new StringBuilder();
+    		cardNumber = new StringBuilder();
+    		cvv= new StringBuilder();
     	}
         
      }
@@ -66,7 +70,7 @@ public class AddCard extends Screen
     		if(this.focusCVV) {
     			setCvv(x, y);
     		}
-    		else if(this.cardNumber.length() <9) {
+    		else if(cardNumber.length() <9) {
     			setCard(x, y);
     		}
     	}
@@ -83,18 +87,18 @@ public class AddCard extends Screen
     	String s = this.kp.getKey(x, y);
     	switch (s) {
     	case "X":
-    		if (this.cvv.length() == 0) {
+    		if (cvv.length() == 0) {
     			break;
     		}
-    		this.cvv.deleteCharAt(this.cvv.length() - 1);
+    		cvv.deleteCharAt(cvv.length() - 1);
     		break;
     	case " ":
     		break;
     	default:
-    		if (this.cvv.length() == 3) {
+    		if (cvv.length() == 3) {
     			break;
     		}
-    		this.cvv.append(s);
+    		cvv.append(s);
     	}
     }
     
@@ -102,18 +106,36 @@ public class AddCard extends Screen
     	String s = this.kp.getKey(x, y);
     	switch (s) {
     	case "X":
-    		if (this.cardNumber.length() == 0) {
+    		if (cardNumber.length() == 0) {
     			break;
     		}
-    		this.cardNumber.deleteCharAt(this.cardNumber.length() - 1);
+    		cardNumber.deleteCharAt(cardNumber.length() - 1);
     		break;
     	case " ":
     		break;
     	default:
-    		if (this.cardNumber.length() == 9) {
+    		if (cardNumber.length() == 9) {
     			break;
     		}
-    		this.cardNumber.append(s);
+    		cardNumber.append(s);
     	}
     }
+    public String getCardNumber() {
+    	if(cardNumber.length() ==0)
+    		return "000000000";
+    	else
+		return cardNumber.toString();
+	}
+	public String getCvv() {
+		if(cvv.length() ==0)
+    		return "000";
+    	else
+    		return cvv.toString();
+	}
+	public String getBalance() {
+		return String.format("%.2f", balance);
+	}
+	public void setBalance(Double balance) {
+		this.balance = balance;
+	}
 }

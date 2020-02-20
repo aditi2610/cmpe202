@@ -40,7 +40,7 @@ public class Frame implements IFrame
 
     /** Nav to Next Screen */
     public void nextScreen() {
-        // add code here
+        current.next();
     }
 
 

@@ -2,15 +2,14 @@
 
 package starbucks ;
 
-import java.util.ArrayList;
-
 /** Pin Screen */
 public class PinScreen extends Screen
 {
     
- 
+	Device d;
     public PinScreen()
     {
+    	d= Device.getInstance();
     }
     public String name() {
         return "" ; 
@@ -18,7 +17,6 @@ public class PinScreen extends Screen
     
     public String display() { 
         String value = super.display() ;
-        
         return value ; 
     }
 }
