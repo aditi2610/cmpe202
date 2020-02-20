@@ -35,7 +35,7 @@ public class Frame implements IFrame
 
     /** Nav to Previous Screen */
     public void previousScreen() {
-        // add code here
+        current.prev();
     }
 
     /** Nav to Next Screen */

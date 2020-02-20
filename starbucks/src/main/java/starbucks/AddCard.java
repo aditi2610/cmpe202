@@ -7,8 +7,10 @@ package starbucks;
  */
 public class AddCard extends Screen
 {
+	IApp app;
     public AddCard()
     {
+    	app = (IApp)Device.getInstance();
     }
     public String name() {
         return "Add Card" ; 
@@ -21,4 +23,8 @@ public class AddCard extends Screen
     	value +="[123456789]\n[123]";
     	return value;
     }
+    
+    public void prev()  {
+       app.execute("E");   
+       }
 }

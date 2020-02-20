@@ -26,8 +26,9 @@ public class MyCardsPay extends Screen
     public String display() {
     	String value = super.display();
     	//TODO this needs to be fetched from somewhere else.
-    	value += "[123456789]";
-    	value += "\n\n";
+    	value += "[000000000]\n";
+    	value += "\n";
+    	value += "\n";
     	value += "Scan Now";
     	
     	return value;

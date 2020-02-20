@@ -10,7 +10,7 @@ public class MyCardsMoreOptions extends Screen
     {
     }
     public String name() {
-        return "My Cards MOptions" ; 
+        return "My Cards" ; 
     }
     
     public String display() {

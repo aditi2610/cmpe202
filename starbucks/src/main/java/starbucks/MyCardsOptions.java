@@ -25,7 +25,10 @@ public class MyCardsOptions extends Screen
      }
     public String display() { 
         String value = super.display() ;
-        value +="Reload\nRefresh\nMore Options\nCancel";       
+        value +="\nReload\n";
+        value+="Refresh\n";
+        value+="More Options\n";
+        value +="Cancel";       
         //Screen should show the options “Reload, Refresh Balance, or More Options”.
         return value ; 
     }

@@ -15,7 +15,9 @@ public class Rewards extends Screen
     }	
     public String display() {
     	String value = super.display();
-    	value +="Make Every/nVisit Count";
+    	value += "Make Every";
+    	value +="\n";
+    	value+= "Visit Count";
     	return value;
     }
 }
