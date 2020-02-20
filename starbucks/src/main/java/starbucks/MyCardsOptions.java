@@ -17,14 +17,15 @@ public class MyCardsOptions extends Screen
     }
     
     public void touch(int x, int y) {
-        if((x ==1 || x==2 || x==3) && y ==7) {
+        if((x ==1 || x==2 || x==3) && y==7) {
      	  
         	this.app.execute("MyCardMoreOptions");
         }
         
      }
     public String display() { 
-        String value = "" ;
+        String value = super.display() ;
+        value +="Reload\nRefresh\nMore Options\nCancel";       
         //Screen should show the options “Reload, Refresh Balance, or More Options”.
         return value ; 
     }

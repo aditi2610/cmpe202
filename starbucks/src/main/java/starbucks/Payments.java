@@ -14,8 +14,8 @@ public class Payments extends Screen
         return "Payments" ; 
     }
     public String display() {
-    	String value = "";
-    	// Screen should show the options “Find Store and Enable Payments”
+    	String value = super.display();
+    	value = "Find Store\n Enable Payments";
     	return value;
     }
 

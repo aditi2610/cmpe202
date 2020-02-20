@@ -20,6 +20,7 @@ public class Frame implements IFrame
     private IMenuInvoker menuA1 = new MenuOption() ;
     private IMenuInvoker menuCardOptions = new MenuOption();
     private IMenuInvoker menuCardMoreOptions = new MenuOption();
+    private IMenuInvoker menuAddCard = new MenuOption();
     /**
      * Return Screen Name
      * @return Screen Name
@@ -255,6 +256,7 @@ public class Frame implements IFrame
         if ( "A1".equals(slot) ) { menuA1.setCommand(c) ;  }
         if("MyCardOptions".equals(slot)) {menuCardOptions.setCommand(c);}
         if("MyCardMoreOptions".equals(slot)) {menuCardMoreOptions.setCommand(c);}
+        if("AddCard".equals(slot)) {menuAddCard.setCommand(c);}
     }
 
     /** 
@@ -330,5 +332,7 @@ public class Frame implements IFrame
     
     /** Select Command E */
     public void selectCardMoreOptions() { menuCardMoreOptions.invoke();}
+    
+    public void selectAddCard() { menuAddCard.invoke();}
 
 }

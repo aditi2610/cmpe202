@@ -31,7 +31,8 @@ public class Screen implements IScreen, IDisplayComponent
      * @param y Touch Y Coord.
      */
     public void touch(int x, int y) {
-        chain.touch(x, y) ;
+    	if(chain != null)
+    		chain.touch(x, y) ;
     }
     
     /** Next Screen - Not Used */

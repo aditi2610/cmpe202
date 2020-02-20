@@ -23,11 +23,16 @@ public class MyCardsPay extends Screen
         
      }
     
-    public String display() { 
-        String value = "" ;
-        //SHOULD PRINT SCAN NOW, along with card id of active card
-        return value ; 
+    public String display() {
+    	String value = super.display();
+    	//TODO this needs to be fetched from somewhere else.
+    	value += "[123456789]";
+    	value += "\n\n";
+    	value += "Scan Now";
+    	
+    	return value;
     }
+    
 
 }
 

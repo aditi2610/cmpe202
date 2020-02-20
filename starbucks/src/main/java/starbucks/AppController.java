@@ -12,6 +12,7 @@ public class AppController implements IApp {
 	private IScreen rewards;
 	private IScreen payments;
 	private IScreen settings;
+	
 	private IMenuCommand displayMyCards;
 	private IMenuCommand displayPayments;
 	private IMenuCommand displayRewards;
@@ -23,10 +24,12 @@ public class AppController implements IApp {
 	private IScreen myCardsPay;
 	private IScreen myCardsOptions;
 	private IScreen myCardsMoreOptions;
+	private IScreen addCard;
 	
 	private IMenuCommand displayMyCardsPay;
 	private IMenuCommand displayMyCardsOptions;
 	private IMenuCommand displayMyCardMoreOptions;
+	private IMenuCommand displayAddCard;
 
 	public AppController() {
 		mycards = new MyCards();
@@ -35,6 +38,7 @@ public class AppController implements IApp {
 		myCardsPay = new MyCardsPay();
 		myCardsOptions = new MyCardsOptions();
 		myCardsMoreOptions = new MyCardsMoreOptions();
+		addCard = new AddCard();
 		
 		store = new Store();
 		rewards = new Rewards();
@@ -51,7 +55,8 @@ public class AppController implements IApp {
 		displayMyCardsPay = new MenuCommand();
 		displayMyCardsOptions = new MenuCommand();
 		displayMyCardMoreOptions = new MenuCommand();
-
+		displayAddCard = new MenuCommand();
+		
 		displayMyCards.setReceiver(
 				new IMenuReceiver() {
 					/** Command Action */
@@ -118,6 +123,15 @@ public class AppController implements IApp {
 				
 			}
 		});
+		
+		displayAddCard.setReceiver(new IMenuReceiver() {
+			
+			@Override
+			public void doAction() {
+				frame.setCurrentScreen(addCard);
+				
+			}
+		});
 		frame.setMenuItem("A", displayMyCards);
 		frame.setMenuItem("B", displayPayments);
 		frame.setMenuItem("C", displayRewards);
@@ -127,6 +141,7 @@ public class AppController implements IApp {
 		frame.setInMenuScreen("A1", displayMyCardsPay);
 		frame.setInMenuScreen("MyCardOptions", displayMyCardsOptions );
 		frame.setInMenuScreen("MyCardMoreOptions", displayMyCardMoreOptions);
+		frame.setInMenuScreen("AddCard", displayAddCard);
 	}
 
 
@@ -187,6 +202,9 @@ public class AppController implements IApp {
 				break;
 			case "MyCardMoreOptions":
 				frame.selectCardMoreOptions();
+				break;
+			case "AddCard":
+				frame.selectAddCard();
 				break;
 		}
 	}

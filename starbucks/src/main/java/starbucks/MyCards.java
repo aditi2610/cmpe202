@@ -13,7 +13,7 @@ public class MyCards extends Screen {
     	this.d = Device.getInstance();
     	this.app = (IApp) d;
     }
-
+ 
     public String name() {
         return "My Cards";
     }
@@ -27,9 +27,10 @@ public class MyCards extends Screen {
         }
     }
 
-    public String display() {
-        String value = "";
-        //SHOW BALANCE OF ACTIVE CARD!
-        return value;
+    public String display() { 
+        String value = super.display() ;
+        value += "    $0.00";
+        //SHOULD PRINT SCAN NOW, along with card id of active card
+        return value ; 
     }
 }
