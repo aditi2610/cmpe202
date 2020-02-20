@@ -10,6 +10,7 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
     ITouchEventHandler nextHandler ;
     private ArrayList<IKeyPadObserver> observers ;
     int countPinDigits = 0 ;
+    int countCardDigits =0;
     String lastKey = "" ;
 
     public KeyPad()
@@ -30,11 +31,13 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
             if ( x==3 && y==8   )
             {
                 countPinDigits-- ;
+                
             }
             else if ( y < 8 || (x==2 && y==8))
             {
                 countPinDigits++ ;
-            }
+              
+            }   
             notifyObservers() ;            
         }
         else
@@ -59,7 +62,7 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
      * @param  y [description]
      * @return   [description]
      */
-    private String getKey( int x, int y )
+    public String getKey( int x, int y )
     {
         int kx = 0, ky = 0 ;
         kx = x;
