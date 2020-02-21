@@ -2,7 +2,6 @@
 
 package starbucks;
 
-import java.util.Arrays;
 
 /**
  * Add New Card Screen
@@ -30,9 +29,9 @@ public class AddCard extends Screen
     
     public String display() {
     	String value = super.display();
-    	value += createStringForCard(cardNumber, 9);
+    	value += "["+cardNumber+ "]";
     	value += "\n";
-    	value += createStringForCard(cvv, 3);
+    	value += "["+cvv+"]";
     	value += "\n";
     	value += kp.display();
     	value += "\n";
@@ -77,12 +76,11 @@ public class AddCard extends Screen
     	
     }
     
-    private String createStringForCard(StringBuilder s, int reqLength) {
-    	char[] spaces = new char[reqLength - s.length()];
-    	Arrays.fill(spaces, ' ');
-    	return "["+s.toString() + new String(spaces)+"]";
-    }
-    
+	/*
+	 * private String createStringForCard(StringBuilder s, int reqLength) { char[]
+	 * spaces = new char[reqLength - s.length()]; Arrays.fill(spaces, ' '); return
+	 * "["+s.toString() + new String(spaces)+"]"; }
+	 */
     private void setCvv(int x, int y) {
     	String s = this.kp.getKey(x, y);
     	switch (s) {

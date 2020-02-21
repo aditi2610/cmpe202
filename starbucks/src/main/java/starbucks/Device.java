@@ -149,7 +149,6 @@ public class Device implements IApp, IPinAuthObserver {
 
     public synchronized static Device getNewInstance( String pin ) {
         theDevice = new Device() ;
-        // theDevice.setBalance(0.0);
         theDevice.setPin( pin ) ;
         theDevice.startUp() ;
         debug() ;
@@ -285,7 +284,7 @@ public class Device implements IApp, IPinAuthObserver {
 	@Override
 	public String getBalance() {
 	
-		return app.getBalance();
+		return this.app.getBalance();
 	}
 
 	@Override
