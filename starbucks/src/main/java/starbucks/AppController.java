@@ -30,11 +30,13 @@ public class AppController implements IApp {
 	private IMenuCommand displayMyCardsOptions;
 	private IMenuCommand displayMyCardMoreOptions;
 	private IMenuCommand displayAddCard;
+	
+    private Double balance;
 
 	public AppController() {
 		mycards = new MyCards();
 		frame = new Frame(mycards);
-
+		
 		myCardsPay = new MyCardsPay();
 		myCardsOptions = new MyCardsOptions();
 		myCardsMoreOptions = new MyCardsMoreOptions();
@@ -56,6 +58,9 @@ public class AppController implements IApp {
 		displayMyCardsOptions = new MenuCommand();
 		displayMyCardMoreOptions = new MenuCommand();
 		displayAddCard = new MenuCommand();
+		
+		balance =0.0;
+		
 		
 		displayMyCards.setReceiver(
 				new IMenuReceiver() {
@@ -244,4 +249,16 @@ public class AppController implements IApp {
 	public IFrame getFrame() {
 		return frame;
 	}
+	@Override
+	public String getBalance() {
+		return String.format("%.2f", this.balance);
+	}
+
+	@Override
+	public void setBalance(Double d) {
+		this.balance = d;
+		
+	}
+
+
 }

@@ -11,7 +11,7 @@ public class Spacer implements IDisplayComponent, ITouchEventHandler {
      * @return [description]
      */
     public String display() {
-        return "" ;
+    	return "";
     }
 
     /**

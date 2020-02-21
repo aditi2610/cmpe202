@@ -57,6 +57,9 @@ public interface IApp
      * @return Screen Content
      */
     String screenContents() ; 
+    
+    String getBalance();
+     void setBalance(Double d);
 
 }
 

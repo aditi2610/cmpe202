@@ -16,6 +16,7 @@ public class Device implements IApp, IPinAuthObserver {
     private KeyPad kp ;
     private Passcode pc ;
     private PinScreen ps ;
+
     private Spacer sp ;
     private boolean authenticated = false ;
     private PinEntryMachine pm ;
@@ -148,6 +149,7 @@ public class Device implements IApp, IPinAuthObserver {
 
     public synchronized static Device getNewInstance( String pin ) {
         theDevice = new Device() ;
+        // theDevice.setBalance(0.0);
         theDevice.setPin( pin ) ;
         theDevice.startUp() ;
         debug() ;
@@ -280,6 +282,19 @@ public class Device implements IApp, IPinAuthObserver {
         this.authenticated = true ;
     }
 
+	@Override
+	public String getBalance() {
+	
+		return app.getBalance();
+	}
+
+	@Override
+	public void setBalance(Double d) {
+		app.setBalance(d);
+		
+	}
+
+    
 
 
 }

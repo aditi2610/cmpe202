@@ -1,4 +1,7 @@
 # random files
+starbucks/.idea/
+starbucks/src/main/main.iml
+starbucks/src/test/test.iml
 .DS_Store
 .classpath
 .project

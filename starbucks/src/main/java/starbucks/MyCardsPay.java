@@ -24,9 +24,9 @@ public class MyCardsPay extends Screen
      	  this.app.execute("A");
         }
         if( y==2 && (x==2 || x==3)) {
-        	double balance = Double.parseDouble(addCard.getBalance());
+        	double balance = Double.parseDouble(app.getBalance());
         	if(balance > coffeeCharge) {
-        		addCard.setBalance((balance- coffeeCharge));
+        		app.setBalance((balance- coffeeCharge));
         	}
         }
         

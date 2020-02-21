@@ -14,7 +14,7 @@ public class AddCard extends Screen
 	boolean focusCVV = false;
 	private static StringBuilder cardNumber;
 	private static StringBuilder cvv;
-	private static Double balance = 0.0;
+	
 	
 	public AddCard()
     {
@@ -47,7 +47,7 @@ public class AddCard extends Screen
     public void next()  {
     	if(cardNumber.length() == 9 && cvv.length() == 3) {
     		this.app.execute("A");
-    		this.setBalance(20.00);
+    		app.setBalance(20.00);
     	}else {
     		cardNumber = new StringBuilder();
     		cvv= new StringBuilder();
@@ -132,10 +132,5 @@ public class AddCard extends Screen
     	else
     		return cvv.toString();
 	}
-	public String getBalance() {
-		return String.format("%.2f", balance);
-	}
-	public void setBalance(Double balance) {
-		this.balance = balance;
-	}
+	
 }
