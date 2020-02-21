@@ -30,7 +30,7 @@ public class MyCards extends Screen {
 
     public String display() { 
         String value = super.display() ;
-        value += "$" +app.getBalance();
+        value += "     $" +app.getBalance();
         return value ; 
     }
 }

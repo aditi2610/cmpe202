@@ -28,7 +28,7 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
         {
             System.err.println( "KeyPad Touched at (" + x + ", " + y + ")" ) ; 
             this.lastKey = getKey( x, y ) ;
-            if ( x==3 && y==8   )
+            if ( x==3 && y==8  && countPinDigits > 0 )
             {
                 countPinDigits-- ;
                 

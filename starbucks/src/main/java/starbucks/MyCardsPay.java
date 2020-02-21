@@ -34,12 +34,12 @@ public class MyCardsPay extends Screen
     public String display() {
     	String value = super.display();
     	if(app.getCardNumber().length() ==0)
-    		value += "[000000000]\n";
+    		value += "  [000000000]\n";
     	else
     		value += "[" +app.getCardNumber()+ "]"+"\n";
     	value += "\n";
     	value += "\n";
-    	value += "Scan Now";
+    	value += "    Scan Now";
     	
     	return value;
     }

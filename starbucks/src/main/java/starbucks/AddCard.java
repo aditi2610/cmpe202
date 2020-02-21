@@ -24,9 +24,9 @@ public class AddCard extends Screen
 
 	public String display() {
 		String value = super.display();
-		value += "["+app.getCardNumber()+ "]";
+		value += "  ["+app.getCardNumber()+ "]";
 		value += "\n";
-		value += "["+app.getCvv()+"]";
+		value += "     ["+app.getCvv()+"]";
 		value += "\n";
 		value += kp.display();
 		value += "\n";

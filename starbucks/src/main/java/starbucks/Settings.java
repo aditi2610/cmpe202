@@ -2,8 +2,6 @@
 
 package starbucks;
 
-import java.util.ArrayList;
-
 /** Settings Screen */
 public class Settings extends Screen
 {
@@ -25,7 +23,12 @@ public class Settings extends Screen
     
     public String display() { 
         String value = super.display() ;
-        value = "Add Card\nDeleteCard\nBilling\nPasscode\n\nAbout|Terms\nHelp";
+        value = "    Add Card\n";
+        value +="  DeleteCard\n";
+        value +="    Billing\n";
+        value +="    Passcode\n\n";
+        value +="  About|Terms\n";
+        value +="      Help";
         return value ; 
     }
 
