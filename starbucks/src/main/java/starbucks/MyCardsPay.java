@@ -7,13 +7,12 @@ public class MyCardsPay extends Screen
 {
 	Device d;
 	IApp app;
-	AddCard addCard;
+	
 	private final double coffeeCharge = 1.50;
     public MyCardsPay()
     {
     	this.d = Device.getInstance();
     	this.app = (IApp)d;
-    	this.addCard= new AddCard();
     }
     public String name() {
         return "My Cards" ; 
@@ -34,7 +33,10 @@ public class MyCardsPay extends Screen
     
     public String display() {
     	String value = super.display();
-    	value += "[" +this.addCard.getCardNumber()+ "]"+"\n";
+    	if(app.getCardNumber().length() ==0)
+    		value += "[000000000]\n";
+    	else
+    		value += "[" +app.getCardNumber()+ "]"+"\n";
     	value += "\n";
     	value += "\n";
     	value += "Scan Now";

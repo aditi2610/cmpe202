@@ -32,6 +32,9 @@ public class AppController implements IApp {
 	private IMenuCommand displayAddCard;
 	
     private Double balance;
+	private  StringBuilder cardNumber;
+	private  StringBuilder cvv;
+	
 
 	public AppController() {
 		mycards = new MyCards();
@@ -59,9 +62,10 @@ public class AppController implements IApp {
 		displayMyCardMoreOptions = new MenuCommand();
 		displayAddCard = new MenuCommand();
 		
-		balance =0.0;
-		
-		
+		balance = 0.0;
+		cardNumber = new StringBuilder();
+		cvv= new StringBuilder();
+
 		displayMyCards.setReceiver(
 				new IMenuReceiver() {
 					/** Command Action */
@@ -227,6 +231,7 @@ public class AppController implements IApp {
 	public void next() {
 		frame.nextScreen();
 	}
+	
 
 	/**
 	 * Get Current Screen Name
@@ -259,6 +264,25 @@ public class AppController implements IApp {
 		this.balance = d;
 		
 	}
+	
+	@Override
+	public void setCardNumber(String s) {
+		this.cardNumber = new StringBuilder(s);
+	}
 
-
+	@Override
+	public void setCvv(String s) {
+		this.cvv = new StringBuilder(s);
+		
+	}
+	
+	@Override
+	public String getCardNumber() {
+		return this.cardNumber.toString();
+	}
+	@Override
+	public String getCvv() {
+    	return this.cvv.toString();
+	}
+	
 }

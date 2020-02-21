@@ -31,7 +31,6 @@ public class MyCards extends Screen {
     public String display() { 
         String value = super.display() ;
         value += "$" +app.getBalance();
-        //SHOULD PRINT SCAN NOW, along with card id of active card
         return value ; 
     }
 }

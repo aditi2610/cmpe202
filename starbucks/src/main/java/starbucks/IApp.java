@@ -60,6 +60,12 @@ public interface IApp
     
     String getBalance();
      void setBalance(Double d);
+     
+     String getCardNumber();
+     void setCardNumber(String s);
+ 	
+     String getCvv();
+ 	void setCvv(String s);
 
 }
 

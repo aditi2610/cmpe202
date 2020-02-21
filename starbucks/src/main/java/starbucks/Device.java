@@ -289,7 +289,29 @@ public class Device implements IApp, IPinAuthObserver {
 
 	@Override
 	public void setBalance(Double d) {
-		app.setBalance(d);
+		this.app.setBalance(d);
+		
+	}
+
+	@Override
+	public String getCardNumber() {
+		return this.app.getCardNumber();
+	}
+
+	@Override
+	public void setCardNumber(String s) {
+		this.app.setCardNumber(s);
+		
+	}
+
+	@Override
+	public String getCvv() {	
+		return this.app.getCvv();
+	}
+
+	@Override
+	public void setCvv(String s) {
+		this.app.setCvv(s);
 		
 	}
 
