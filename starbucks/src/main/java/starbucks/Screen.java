@@ -110,7 +110,7 @@ public class Screen implements IScreen, IDisplayComponent
 	//centered Layout
 	public String formatSpacing(String str){
 		String value= "";
-		int width =15;
+		int width =14;
 		if (str == null || str.isEmpty()) {
 			return "";
 		}
@@ -120,8 +120,8 @@ public class Screen implements IScreen, IDisplayComponent
 				value += "\n";
 			else {
 				int w = line.length();
-				int space = (width-w)/2;
-				value += padSpaces(space);
+				int space =(width-w)/2;
+				value += padSpaces(space+1);
 				value += line;
 				value += "\n";
 			}
@@ -131,9 +131,9 @@ public class Screen implements IScreen, IDisplayComponent
 	
 	public String formatSpacingLandscapeSupported(String str){
 		String value= "";
-		int width =15;
+		int width =14;
 		if(d.getDeviceOrientation() == ORIENTATION_MODE.LANDSCAPE)
-		 width = 32;
+		 width = 31;
 		if (str == null || str.isEmpty()) {
 			return "";
 		}
@@ -144,7 +144,7 @@ public class Screen implements IScreen, IDisplayComponent
 			else {
 				int w = line.length();
 				int space = (width-w)/2;
-				value += padSpaces(space);
+				value += padSpaces(space+1);
 				value += line;
 				value += "\n";
 			}

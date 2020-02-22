@@ -25,7 +25,7 @@ public class Settings extends Screen
         String out = super.display() ;
         String value = "";
         value = "Add Card\n";
-        value +="DeleteCard\n";
+        value +="Delete Card\n";
         value +="Billing\n";
         value +="Passcode\n\n";
         value +="About|Terms\n";
