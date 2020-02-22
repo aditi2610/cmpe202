@@ -219,6 +219,7 @@ public class Device implements IApp, IPinAuthObserver {
      * @param y Y Coordinate
      */
     public void touch(int x, int y) {
+    	System.err.println( "Device touched at    = " + x +  " " +y ) ;
         if ( authenticated )
             app.touch(x, y) ;
         else
