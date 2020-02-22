@@ -17,6 +17,9 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
 
     // Pin Domain Object
 	private String pin;
+	private boolean authenticated = false ;
+	private int pinCount=0 ;
+	private IPinAuthObserver auth ; // single observer 
 
     // pin machine states
     private NoPinDigits pin0 ;
