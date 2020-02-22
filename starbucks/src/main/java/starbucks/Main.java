@@ -45,7 +45,7 @@ final class Main {
 
 			/* process commands */
 			msg = cmd;
-			System.err.println( "Input Command: " + msg) ;
+			System.err.println(String.format("Input Command: %s", cmd)) ;
 			if (cmd.startsWith("touch")) {
 				String parms = cmd.replaceFirst("touch", "");
 				parms = parms.substring(1);
