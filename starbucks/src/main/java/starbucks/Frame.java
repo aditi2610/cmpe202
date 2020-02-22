@@ -13,14 +13,17 @@ public class Frame implements IFrame
     private IMenuInvoker menuC = new MenuOption() ;
     private IMenuInvoker menuD = new MenuOption() ;
     private IMenuInvoker menuE = new MenuOption() ;
+    
     private IOrientationStrategy portraitStrategy ;
     private IOrientationStrategy landscapeStrategy ;
     private IOrientationStrategy currentStrategy ;
     
+    private IMenuInvoker menuMyCard = new MenuOption();
     private IMenuInvoker menuA1 = new MenuOption() ;
     private IMenuInvoker menuCardOptions = new MenuOption();
     private IMenuInvoker menuCardMoreOptions = new MenuOption();
     private IMenuInvoker menuAddCard = new MenuOption();
+
     /**
      * Return Screen Name
      * @return Screen Name
@@ -142,7 +145,8 @@ public class Frame implements IFrame
                 }
                 out += s.name() + "\n" ;
                 out += "===============\n" ;
-                String screen = s.display() + "\n" ;
+                //String screen = s.display() + "\n" ;
+                String screen = s.display();
                 int cnt1 = countLines( screen ) ;
                 int pad1 = (10 - cnt1) / 2;
                 //System.err.println( "cnt1: " + cnt1 ) ;                
@@ -198,14 +202,37 @@ public class Frame implements IFrame
              */
             public String contents(IScreen s) 
             { 
-                String out = "" ;
+				/*
+				 * String out = "" ; out += "================================\n" ; out += "  " +
+				 * s.name() + "  \n" ; out += "================================\n" ; out +=
+				 * s.display() + "\n" ; out += "================================\n" ; dumpLines(
+				 * out ) ; return out ;
+				 */
+            	String out = "" ; 
+            	out += "================================\n" ;
+            	int nameLen = s.name().length() ;
+                if (nameLen < 31  ) {
+                    int pad = (31 - nameLen) / 2 ;
+                    out += padSpaces( pad ) ;
+                }
+                out += s.name() + "\n" ;
                 out += "================================\n" ;
-                out += "  " + s.name() + "  \n" ;
-                out += "================================\n" ;
-                out += s.display() + "\n"  ;
-                out += "================================\n" ;
+                String screen = s.display() ;
+                int cnt1 = countLines( screen ) ;
+                int pad1 = (6 - cnt1) / 2;
+                out += padLines( pad1 ) ;
+                out += screen  ;
+                //dumpLines( out ) ;                
+                int cnt2 = countLines( out ) ;
+                int pad2 = 8 - cnt2 ;
+                //System.err.println( "cnt2: " + cnt2 ) ;                
+                //System.err.println( "pad2: " + pad2 ) ;
+                //dumpLines( out ) ;
+                String padlines = padLines( pad2 ) ;
+                out += padlines ;
+                out +=  "================================\n" ;
                 dumpLines( out ) ;
-                return out ;
+                return out;
             }
 
              /** Don't Respond in Landscaope Mode */
@@ -224,8 +251,8 @@ public class Frame implements IFrame
             public void selectE() {  }
        } ;     
 
-        /* set default layout strategy */
-        currentStrategy = portraitStrategy ;
+       if(currentStrategy == null)
+       		currentStrategy = portraitStrategy;
     }
 
     /**
@@ -253,6 +280,7 @@ public class Frame implements IFrame
 
     public void setInMenuScreen( String slot, IMenuCommand c )
     {
+    	if("MyCard".equals(slot)) {menuMyCard.setCommand(c);}
         if ( "A1".equals(slot) ) { menuA1.setCommand(c) ;  }
         if("MyCardOptions".equals(slot)) {menuCardOptions.setCommand(c);}
         if("MyCardMoreOptions".equals(slot)) {menuCardMoreOptions.setCommand(c);}
@@ -334,5 +362,7 @@ public class Frame implements IFrame
     public void selectCardMoreOptions() { menuCardMoreOptions.invoke();}
     
     public void selectAddCard() { menuAddCard.invoke();}
+    
+    public void selectMyCard() { menuMyCard.invoke();}
 
 }

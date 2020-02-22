@@ -146,7 +146,7 @@ public class AppController implements IApp {
 		frame.setMenuItem("C", displayRewards);
 		frame.setMenuItem("D", doStore);
 		frame.setMenuItem("E", displaySettings);
-		
+		frame.setInMenuScreen("MyCard", displayMyCards);
 		frame.setInMenuScreen("A1", displayMyCardsPay);
 		frame.setInMenuScreen("MyCardOptions", displayMyCardsOptions );
 		frame.setInMenuScreen("MyCardMoreOptions", displayMyCardMoreOptions);
@@ -203,6 +203,10 @@ public class AppController implements IApp {
 			case "E":
 				frame.cmd(c);
 				break;
+			
+			case "MyCard":
+				frame.selectMyCard();
+				break;
 			case "A1":
 				frame.selectA1();
 				break;
@@ -214,6 +218,8 @@ public class AppController implements IApp {
 				break;
 			case "AddCard":
 				frame.selectAddCard();
+				break;
+			default:
 				break;
 		}
 	}

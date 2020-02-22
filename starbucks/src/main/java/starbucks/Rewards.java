@@ -10,14 +10,17 @@ public class Rewards extends Screen
     {
     	
     }
-    public String name() {
+    public String name() 
+    {
     	return "Rewards";
     }	
-    public String display() {
+    public String display() 
+    {
     	String value = super.display();
     	value += "Make Every";
     	value +="\n";
     	value+= "Visit Count";
+    	value += "\n";
     	return value;
     }
 }

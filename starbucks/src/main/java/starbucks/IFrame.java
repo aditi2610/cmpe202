@@ -106,6 +106,8 @@ public interface IFrame
     void selectCardMoreOptions() ;
 
     void selectAddCard() ;
+    
+    void selectMyCard();
 }
 
 

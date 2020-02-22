@@ -16,6 +16,7 @@ public class Payments extends Screen
     public String display() {
     	String value = super.display();
     	value = "Find Store\n Enable Payments";
+    	value += "\n";
     	return value;
     }
 

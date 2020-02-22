@@ -22,14 +22,17 @@ public class Settings extends Screen
    
     
     public String display() { 
-        String value = super.display() ;
-        value = "    Add Card\n";
-        value +="  DeleteCard\n";
-        value +="    Billing\n";
-        value +="    Passcode\n\n";
-        value +="  About|Terms\n";
-        value +="      Help";
-        return value ; 
+        String out = super.display() ;
+        String value = "";
+        value = "Add Card\n";
+        value +="DeleteCard\n";
+        value +="Billing\n";
+        value +="Passcode\n\n";
+        value +="About|Terms\n";
+        value +="Help";
+        out +=super.formatSpacing(value);
+ 
+        return out ; 
     }
 
    

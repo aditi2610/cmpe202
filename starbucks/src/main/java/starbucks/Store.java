@@ -11,40 +11,41 @@ public class Store extends Screen
 
     }
     
-    public String name() {
+    public String name(){
         return "Find Store" ; 
     }
     
-    public String display() {
+    public String display(){
     	String value = super.display();
     	for(int i =0; i<9; i++) {
-    		value+= " ";
+    		value += " ";
     	}
     	value += "X\n";
     	for(int i=0; i<3; i++) {
-    		value += " ";
+    		value+=" ";
     	}
     	value +="X\n";
     	for(int i=0;i<7; i++) {
-    		value +=" ";
+    		value+=" ";
     	}
     	value += "X\n";
     	for(int i=0;i<6; i++) {
-    		value +=" ";
+    		value+=" ";
     	}
     	value += "X\n";
     	for(int i=0;i<2; i++) {
-    		value +=" ";
+    		value+=" ";
     	}
     	value += "X\n";
     	for(int i=0;i<11; i++) {
-    		value +=" ";
+    		value+=" ";
     	}
     	value += "X\n";
     	for(int i=0;i<2; i++) {
-    		value +=" ";
+    		value+=" ";
     	}
-    	value += "X"; 	
+    	value += "X"; 
+    	value += "\n";
     	return value;
     }
 

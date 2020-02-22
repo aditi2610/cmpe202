@@ -14,8 +14,10 @@ public class MyCardsMoreOptions extends Screen
     }
     
     public String display() {
+    
     	String value = super.display();
-    	 value +="Refresh\nReload\nAuto Reload\nTransactions";       
+    	 value +="Refresh\nReload\nAuto Reload\nTransactions";  
+    	 value += "\n";
     	return value;
     }
     

@@ -2,12 +2,12 @@
 
 package starbucks;
 
-
 /**
  * Add New Card Screen
  */
 public class AddCard extends Screen
 {
+	Device d;
 	IApp app;
 	KeyPad kp;
 	boolean focusCVV = false;
@@ -15,7 +15,8 @@ public class AddCard extends Screen
 
 	public AddCard()
 	{
-		this.app = (IApp)Device.getInstance();
+		d = Device.getInstance();
+		app = (IApp)d;
 		this.kp= new KeyPad();
 	}
 	public String name() {
@@ -23,18 +24,20 @@ public class AddCard extends Screen
 	} 
 
 	public String display() {
-		String value = super.display();
-		value += "  ["+app.getCardNumber()+ "]";
-		value += "\n";
-		value += "     ["+app.getCvv()+"]";
-		value += "\n";
-		value += kp.display();
-		value += "\n";
-		return value;
+		String out = super.display();
+		String value = "";
+		value += "["+app.getCardNumber()+ "]\n";
+		value += "["+app.getCvv()+"]\n";
+		//value += kp.display();
+		out += super.formatSpacing(value);
+		out += "\n";
+		out += kp.display();
+		out+= "\n";
+		return out;
 	}
 
 	public void prev()  {
-		this.app.execute("E");   
+		app.execute("E");   
 	}
 
 	public void next()  {
@@ -71,7 +74,7 @@ public class AddCard extends Screen
 	}
 
 	private void setCvv(int x, int y) {
-		String s = this.kp.getKey(x, y);
+		String s = kp.getKey(x, y);
 		StringBuilder cvv = new StringBuilder(app.getCvv());
 		switch (s) {
 		case "X":
