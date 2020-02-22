@@ -16,10 +16,7 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
     }
 
     // Pin Domain Object
-    private String pin = "1234" ;
-    private boolean authenticated = false ;
-    private int pinCount=0 ;
-    private IPinAuthObserver auth ; // single observer 
+	private String pin;
 
     // pin machine states
     private NoPinDigits pin0 ;
@@ -44,6 +41,9 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
      */
     public PinEntryMachine( )
     {
+		// MadeChange
+		this.pin = Device.getInstance().getPin();
+
         pin0 = new NoPinDigits( this ) ;
         pin1 = new OnePinDigit( this ) ;
         pin2 = new TwoPinDigits( this ) ;

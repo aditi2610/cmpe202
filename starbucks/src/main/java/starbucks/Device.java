@@ -31,7 +31,7 @@ public class Device implements IApp, IPinAuthObserver {
         PORTRAIT, LANDSCAPE
     }
 
-    private ORIENTATION_MODE device_orientation_state ;
+    private ORIENTATION_MODE device_orientation_state = null;
     private ORIENTATION_MODE previous_device_orientation_state ;
 
     public ORIENTATION_MODE getDeviceOrientation() {
@@ -188,7 +188,9 @@ public class Device implements IApp, IPinAuthObserver {
         app = new AppController() ;        
 
         // startup in portrait
-        this.device_orientation_state = ORIENTATION_MODE.PORTRAIT ;
+        if (this.device_orientation_state == null) {
+            this.device_orientation_state = ORIENTATION_MODE.PORTRAIT ;
+        }
     }
 
     /**
