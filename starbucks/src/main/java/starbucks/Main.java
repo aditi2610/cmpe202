@@ -30,8 +30,8 @@ final class Main {
 		System.err.println("Args: " + args);
 		Device d = Device.getInstance();
 		IApp app = (IApp) d;
-		// Console c = System.console();
-		BufferedReader c = new BufferedReader(new InputStreamReader(System.in));
+		Console c = System.console();
+//		BufferedReader c = new BufferedReader(new InputStreamReader(System.in));
 		String msg = "";
 		for (;;) {
 			System.out.print("\033[H\033[2J"); // clear the screen
@@ -45,6 +45,7 @@ final class Main {
 
 			/* process commands */
 			msg = cmd;
+			System.err.println( "Input Command: " + msg) ;
 			if (cmd.startsWith("touch")) {
 				String parms = cmd.replaceFirst("touch", "");
 				parms = parms.substring(1);

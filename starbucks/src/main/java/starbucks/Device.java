@@ -32,16 +32,19 @@ public class Device implements IApp, IPinAuthObserver {
     }
 
     private ORIENTATION_MODE device_orientation_state ;
+    private ORIENTATION_MODE previous_device_orientation_state ;
 
     public ORIENTATION_MODE getDeviceOrientation() {
         return this.device_orientation_state ;
     }
 
     public void setPortraitOrientation() {
+    	System.err.println( "Setting Orientation to Portrait") ;
         this.device_orientation_state = ORIENTATION_MODE.PORTRAIT ;
     }
 
     public void setLandscapeOrientation() {
+    	System.err.println( "Setting Orientation to Landscape") ;
         this.device_orientation_state = ORIENTATION_MODE.LANDSCAPE ;
     }
 
@@ -104,7 +107,8 @@ public class Device implements IApp, IPinAuthObserver {
         switch ( len ) {
             case 0:
                 fourPin = false ;
-                sixPin = false ;              
+                sixPin = false ; 
+                break;
             case 4:
                 fourPin = true ;
                 sixPin = false ;
@@ -116,6 +120,7 @@ public class Device implements IApp, IPinAuthObserver {
             default:
                 fourPin = false ;
                 sixPin = false ;
+                break;
         }
     }
 
@@ -134,6 +139,7 @@ public class Device implements IApp, IPinAuthObserver {
     public synchronized static Device getInstance() {
         if (theDevice == null) {
             return getNewInstance( "1234" ) ;
+        	//return getNewInstance( "123456" ) ;
         }
         else
             return theDevice;
@@ -145,6 +151,7 @@ public class Device implements IApp, IPinAuthObserver {
      */
     public synchronized static Device getNewInstance() {
         return getNewInstance( "1234" ) ;
+    	//return getNewInstance("123456");
     }
 
     public synchronized static Device getNewInstance( String pin ) {
@@ -188,16 +195,20 @@ public class Device implements IApp, IPinAuthObserver {
     * Switch to Landscape View
     */
     public void landscape() {
-        if ( authenticated )
+        if ( authenticated ) {
             app.landscape() ;
+            setLandscapeOrientation();
+        }
     }
 
     /**
      * Switch to Portait View
      */
     public void portrait() {
-        if ( authenticated )
+        if ( authenticated ) {
             app.portrait() ;
+            setPortraitOrientation();
+        }
     }
 
     /**
