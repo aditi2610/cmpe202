@@ -225,7 +225,7 @@ public class Frame implements IFrame
                 out += screen  ;
                 //dumpLines( out ) ;                
                 int cnt2 = countLines( out ) ;
-                int pad2 = 8 - cnt2 ;
+                int pad2 = 9 - cnt2 ;
                 //System.err.println( "cnt2: " + cnt2 ) ;                
                 //System.err.println( "pad2: " + pad2 ) ;
                 //dumpLines( out ) ;
