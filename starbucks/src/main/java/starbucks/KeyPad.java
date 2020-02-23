@@ -119,7 +119,7 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
         String output =  "  [1] [2] [3]\n" ;
                output += "  [4] [5] [6]\n" ;
                output += "  [7] [8] [9]\n" ;
-               output += "  [_] [0] [x]" ;
+               output += "  [_] [0] [X]" ;
 
         return output ;
     }
