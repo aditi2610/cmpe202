@@ -183,14 +183,14 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
 		if(this.pin.length() == 4) {
 			debug() ;
 
-			System.err.println( "Authenticating..." ) ; 
+			//System.err.println( "Authenticating..." ) ; 
 			if ( pin.equals( d1+d2+d3+d4 ) )
 			{ 
-				System.err.println( "Successful Login!" ) ; 
+				//System.err.println( "Successful Login!" ) ; 
 				this.authenticated = true ;
 				notifyObserver() ; }
 			else 
-			{ System.err.println( "Login Failed!" ) ;
+			{ //System.err.println( "Login Failed!" ) ;
 			setStateNoPinDigits() ;
 			}
 
@@ -223,16 +223,16 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
 		{
 			this.d6 = digit ;
 			debug() ;
-			System.err.println( "Authenticating..." ) ;
+			//System.err.println( "Authenticating..." ) ;
 			if ( pin.equals( d1+d2+d3+d4+d5+d6 ) )
 			{
-				System.err.println( "Successful Login!" ) ;
+				//System.err.println( "Successful Login!" ) ;
 				this.authenticated = true ;
 				notifyObserver() ;
 			}
 			else
 			{
-				System.err.println( "Login Failed!" ) ;
+				//System.err.println( "Login Failed!" ) ;
 				setStateNoPinDigits() ;
 			}
 		}
@@ -247,7 +247,7 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
 	 */
 	public void keyEventUpdate( int c, String key ) 
 	{
-		System.err.println( "Key: " + key + " Count: " + c ) ;
+		//System.err.println( "Key: " + key + " Count: " + c ) ;
 		if ( key.equals(" ") )
 			/* nothing */ ;
 		else if ( key.equals("X") )
@@ -286,14 +286,14 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
 	/** Debug Dump to Stderr State Machine Changes */
 	private void debug()
 	{
-		System.err.println( "Current State: " + state.getClass().getName() ) ;
-		System.err.println( "D1 = " + d1 ) ;
-		System.err.println( "D2 = " + d2 ) ;
-		System.err.println( "D3 = " + d3 ) ;
-		System.err.println( "D4 = " + d4 ) ;
+		//System.err.println( "Current State: " + state.getClass().getName() ) ;
+		//System.err.println( "D1 = " + d1 ) ;
+		//System.err.println( "D2 = " + d2 ) ;
+		//System.err.println( "D3 = " + d3 ) ;
+		//System.err.println( "D4 = " + d4 ) ;
 		if(this.pin.length() == 6) {
-			System.err.println( "D5 = " + d5 ) ;
-			System.err.println( "D6 = " + d6 ) ;
+			//System.err.println( "D5 = " + d5 ) ;
+			//System.err.println( "D6 = " + d6 ) ;
 		}
 	}
 

@@ -17,7 +17,7 @@ public class Passcode implements ITouchEventHandler, IDisplayComponent, IKeyPadO
     {
         if ( y==2 )
         {
-            System.err.println( "Passcode Touched at (" + x + ", " + y + ")" ) ; 
+            //System.err.println( "Passcode Touched at (" + x + ", " + y + ")" ) ; 
         }
         else
         {
@@ -80,7 +80,7 @@ public class Passcode implements ITouchEventHandler, IDisplayComponent, IKeyPadO
      */
     public void keyEventUpdate( int c, String key ) 
     {
-        System.err.println( "Key: " + key ) ;
+        //System.err.println( "Key: " + key ) ;
         count = c ;
     }
 }

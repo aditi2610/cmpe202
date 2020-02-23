@@ -56,7 +56,7 @@ public class Frame implements IFrame
     private void dumpLines(String str) {
           String[] lines = str.split("\r\n|\r|\n");
           for ( int i = 0; i<lines.length; i++ ) {
-            System.err.println( i + ": " + lines[i] ) ;
+            //System.err.println( i + ": " + lines[i] ) ;
           }
     }
 
@@ -98,7 +98,7 @@ public class Frame implements IFrame
             System.err.print(".") ;
             lines += "\n" ;
         }
-        System.err.println("") ;
+        //System.err.println("") ;
         return lines ;
     }
     
@@ -150,15 +150,17 @@ public class Frame implements IFrame
                 String screen = s.display();
                 int cnt1 = countLines( screen ) ;
                 int pad1 = (10 - cnt1) / 2;
-                //System.err.println( "cnt1: " + cnt1 ) ;                
-                //System.err.println( "pad1: " + pad1 ) ;
+
+
+                ////System.err.println( "cnt1: " + cnt1 ) ;                
+                ////System.err.println( "pad1: " + pad1 ) ;
                 out += padLines( pad1 ) ;
                 out += screen  ;
                 //dumpLines( out ) ;                
                 int cnt2 = countLines( out ) ;
                 int pad2 = 13 - cnt2 ;
-                //System.err.println( "cnt2: " + cnt2 ) ;                
-                //System.err.println( "pad2: " + pad2 ) ;
+                ////System.err.println( "cnt2: " + cnt2 ) ;                
+                ////System.err.println( "pad2: " + pad2 ) ;
                 //dumpLines( out ) ;
                 String padlines = padLines( pad2 ) ;
                 out += padlines ;
@@ -226,8 +228,8 @@ public class Frame implements IFrame
                 //dumpLines( out ) ;                
                 int cnt2 = countLines( out ) ;
                 int pad2 = 9 - cnt2 ;
-                //System.err.println( "cnt2: " + cnt2 ) ;                
-                //System.err.println( "pad2: " + pad2 ) ;
+                ////System.err.println( "cnt2: " + cnt2 ) ;                
+                ////System.err.println( "pad2: " + pad2 ) ;
                 //dumpLines( out ) ;
                 String padlines = padLines( pad2 ) ;
                 out += padlines ;

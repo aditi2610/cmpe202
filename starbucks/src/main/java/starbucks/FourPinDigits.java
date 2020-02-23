@@ -31,7 +31,7 @@ public class FourPinDigits implements IPinState
      */
     public void number( String digit ) {
     	if(d.getPin().length() == 4) {
-        	System.err.println( "Digit: " + digit ) ;
+        	//System.err.println( "Digit: " + digit ) ;
         	return;
     	}
     	else if(d.getPin().length() ==6)

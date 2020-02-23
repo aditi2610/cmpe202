@@ -93,7 +93,7 @@ public class Screen implements IScreen, IDisplayComponent
 		String value = "" ;
 		for (IDisplayComponent c : components )
 		{
-			System.err.println( "Screen: " + c.getClass().getName() ) ;
+			//System.err.println( "Screen: " + c.getClass().getName() ) ;
 			value = value + c.display();
 			value += "\n";
 		}

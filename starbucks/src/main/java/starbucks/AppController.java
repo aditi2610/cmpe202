@@ -182,7 +182,7 @@ public class AppController implements IApp {
 	 * Display Current Screen
 	 */
 	public void display() {
-		System.err.println("" + screen());
+		//System.err.println("" + screen());
 		frame.display();
 //        should contain a “display()” method to display the current Screen Name
 //        as well as well as call the “display()” method of the current Screen
