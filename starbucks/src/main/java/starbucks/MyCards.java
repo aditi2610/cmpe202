@@ -28,10 +28,11 @@ public class MyCards extends Screen {
 	}
 
 	public void touch(int x, int y) {
-		if (x == 3 && y == 3) {
-			this.app.execute("A1");        	
-		}
 		if(d.getDeviceOrientation() == ORIENTATION_MODE.PORTRAIT) {
+			if (x == 3 && y == 3) {
+				this.app.execute("A1");        	
+			}
+
 			if (x == 2 && y == 4) {
 				this.app.execute("MyCardOptions");
 			}

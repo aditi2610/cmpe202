@@ -21,10 +21,11 @@ public class MyCardsPay extends Screen
 	}
 
 	public void touch(int x, int y) {
-		if(x ==3 && y ==3) {
-			this.app.execute("MyCard");
-		}
 		if(d.getDeviceOrientation() == ORIENTATION_MODE.PORTRAIT) {
+			if(x ==3 && y ==3) {
+				this.app.execute("MyCard");
+			}
+
 			if( y==2 && (x==2 || x==3)) {
 				double balance = Double.parseDouble(app.getBalance());
 				if(balance > coffeeCharge) {
