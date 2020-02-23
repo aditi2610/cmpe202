@@ -284,12 +284,20 @@ public class Device implements IApp, IPinAuthObserver {
         if ( authenticated ) {
             return app.screenContents() ;
         } else {
+        	String psDisplay = ps.display();
+        	boolean invalid = psDisplay.contains("Invalid");
+
             String out = "" ;
             out = "----------------\n" ;
             out += "   " + ps.name() + "  \n" ;
-            out += "----------------\n\n\n" ;
-            out += ps.display() ;
-            out += "\n\n\n----------------\n" ;
+            if (invalid) {
+            	out += "----------------\n" ;
+            }
+            else {
+                out += "----------------\n\n\n" ;            	
+            }
+            out += psDisplay;
+            out += "\n\n\n----------------\n" ;	
             return out ;
         }
     }

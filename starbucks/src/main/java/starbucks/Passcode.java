@@ -56,9 +56,9 @@ public class Passcode implements ITouchEventHandler, IDisplayComponent, IKeyPadO
             		break ;
             	}
             	else {
-            			value += "\n  Invalid Pin\n";
-            			value += "  [_][_][_][_]" ;			
-            			break;
+            		value += "  Invalid Pin\n\n";
+            		value += "  [_][_][_][_]" ;
+            		break;
             	}
         }
          return value  ;

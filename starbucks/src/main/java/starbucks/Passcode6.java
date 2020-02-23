@@ -56,8 +56,8 @@ public class Passcode6 implements ITouchEventHandler, IDisplayComponent, IKeyPad
             		break ;
             	}
             	else {
-            			value+= "\n  Invalid Pin\n";
-            			value += "  	_ _ _ _ _ _" ;			
+            			value += "  Invalid Pin\n\n";
+            			value += "  _ _ _ _ _ _" ;			
             			break;
             	}
         }
