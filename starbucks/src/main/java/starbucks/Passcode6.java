@@ -35,7 +35,7 @@ public class Passcode6 implements ITouchEventHandler, IDisplayComponent, IKeyPad
     
     
     /**
-     * Display "Echo Feedback" on Pins enterred so far
+     * Display "Echo Feedback" on Pins entered so far
      * @return Passcode String for Display
      */
     public String display() 
@@ -56,18 +56,10 @@ public class Passcode6 implements ITouchEventHandler, IDisplayComponent, IKeyPad
             		break ;
             	}
             	else {
-            			value+= "\n  Invalid Pin";
-            			value = "  	_ _ _ _ _ _" ;			
+            			value+= "\n  Invalid Pin\n";
+            			value += "  	_ _ _ _ _ _" ;			
             			break;
             	}
-			//MadeChange
-			/*
-			 * case 5: value = "  [*][*][*][*][_]" ; break ; case 6:
-			 * if(d.isAuthenticated().equals("true")) { value = "  [*][*][*][*][*][*]" ;
-			 * break ; } else { value+= "\n  Invalid Pin"; value = "  [_][_][_][_][_][_]" ;
-			 * break; }
-			 */
-			 
         }
          return value  ;
     }
