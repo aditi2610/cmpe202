@@ -15,6 +15,7 @@ public class Device implements IApp, IPinAuthObserver {
     private IApp app ;
     private KeyPad kp ;
     private Passcode pc ;
+    private Passcode6 pc6;
     private PinScreen ps ;
 
     private Spacer sp ;
@@ -26,13 +27,14 @@ public class Device implements IApp, IPinAuthObserver {
     public static final int portrait_screen_length = 10 ;
     public static final int landscape_screen_width = 32 ;
     public static final int landscape_screen_length = 6 ;
+    
 
     public enum ORIENTATION_MODE {
         PORTRAIT, LANDSCAPE
     }
 
     private ORIENTATION_MODE device_orientation_state = null;
-    private ORIENTATION_MODE previous_device_orientation_state ;
+    //private ORIENTATION_MODE previous_device_orientation_state ;
 
     public ORIENTATION_MODE getDeviceOrientation() {
         return this.device_orientation_state ;
@@ -137,7 +139,7 @@ public class Device implements IApp, IPinAuthObserver {
      * @return Reference to Current Device Config (Create if none exists)
      */
     public synchronized static Device getInstance() {
-        if (theDevice == null) {
+        if (theDevice == null ) {
             return getNewInstance( "1234" ) ;
         	//return getNewInstance( "123456" ) ;
         }
@@ -157,7 +159,10 @@ public class Device implements IApp, IPinAuthObserver {
     public synchronized static Device getNewInstance( String pin ) {
         theDevice = new Device() ;
         theDevice.setPin( pin ) ;
-        theDevice.startUp() ;
+        if(pin.length() == 4)
+        	theDevice.startUp4Pin() ;
+        else
+        	theDevice.startUp6Pin();
         debug() ;
         return theDevice ;
     }
@@ -166,7 +171,7 @@ public class Device implements IApp, IPinAuthObserver {
      * Device Starup Process.  
      * Starts Up with Default 4-Pin Option
      */
-    public void startUp()
+    public void startUp4Pin()
     {
         kp = new KeyPad() ;
         pc = new Passcode() ;
@@ -181,6 +186,33 @@ public class Device implements IApp, IPinAuthObserver {
 
         // setup the observer pattern
         ((IKeyPadSubject)kp).attach( pc ) ;
+        ((IKeyPadSubject)kp).attach( pm ) ;
+        ((IPinAuthSubject)pm).registerObserver(this) ;
+
+        // get app controller reference
+        app = new AppController() ;        
+
+        // startup in portrait
+        if (this.device_orientation_state == null) {
+            this.device_orientation_state = ORIENTATION_MODE.PORTRAIT ;
+        }
+    }
+    
+    public void startUp6Pin()
+    {
+        kp = new KeyPad() ;
+        pc6 = new Passcode6() ;
+        sp = new Spacer() ;
+        ps = new PinScreen() ;
+        pm = new PinEntryMachine() ;
+
+        // setup the composite pattern
+        ps.addSubComponent( pc6 ) ;
+        ps.addSubComponent( sp ) ;
+        ps.addSubComponent( kp ) ;
+
+        // setup the observer pattern
+        ((IKeyPadSubject)kp).attach( pc6 ) ;
         ((IKeyPadSubject)kp).attach( pm ) ;
         ((IPinAuthSubject)pm).registerObserver(this) ;
 
@@ -268,6 +300,7 @@ public class Device implements IApp, IPinAuthObserver {
      * @param c Menu Option (A, B, C, E, or E)
      */
     public void execute( String c ) {
+    	System.err.println( "Device executed at    = " + c) ;
         if ( authenticated )
             app.execute( c ) ;
     }

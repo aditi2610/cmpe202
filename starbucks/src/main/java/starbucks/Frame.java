@@ -215,7 +215,7 @@ public class Frame implements IFrame
                     int pad = (31 - nameLen) / 2 ;
                     out += padSpaces( pad ) ;
                 }
-                out +=  "  " +s.name() + "\n" ;
+                out +=  " " +s.name() + "\n" ;
                 out += "================================\n" ;
                 String screen = s.display() ;
                 int cnt1 = countLines( screen ) ;

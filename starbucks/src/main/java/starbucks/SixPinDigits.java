@@ -1,20 +1,15 @@
-/* (c) Copyright 2018 Paul Nguyen. All Rights Reserved */
+package starbucks;
 
-package starbucks ;
+public class SixPinDigits  implements IPinState {
 
-/** For Pin Digits State */
-public class FourPinDigits implements IPinState
-{
     IPinStateMachine machine ;
-    Device d;
 
     /**
      * Constructor
      * @param  m Reference to State Machine
      */
-    public FourPinDigits( IPinStateMachine m )
+    public SixPinDigits( IPinStateMachine m )
     {
-    	d = Device.getInstance();
         this.machine = m ;
     }
 
@@ -22,7 +17,7 @@ public class FourPinDigits implements IPinState
      * Backspace Event
      */
     public void backspace() {
-        machine.setStateThreePinDigits(null) ;
+        machine.setStateFivePinDigits(null) ;
     }
 
     /**
@@ -30,12 +25,8 @@ public class FourPinDigits implements IPinState
      * @param digit Digit Value
      */
     public void number( String digit ) {
-    	if(d.getPin().length() == 4) {
-        	System.err.println( "Digit: " + digit ) ;
-        	return;
-    	}
-    	else if(d.getPin().length() ==6)
-    		machine.setStateFivePinDigits(digit);
+        System.err.println( "Digit: " + digit ) ;
+        return ;
     }
 
     /**
