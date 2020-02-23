@@ -31,7 +31,8 @@ public class Frame implements IFrame
     public String screen() { return current.name() ; }
 
     /** Switch to Landscape Strategy */
-    public void landscape() { currentStrategy = landscapeStrategy ; }
+    public void landscape() { 
+    	currentStrategy = landscapeStrategy ; }
 
     /** Switch to Portrait Strategy */
     public void portrait()  { currentStrategy = portraitStrategy ; }  
@@ -307,6 +308,9 @@ public class Frame implements IFrame
     { 
         if ( current != null )
         {
+        	if(!(current.getClass().equals(MyCards.class) || (current.getClass().equals(MyCardsPay.class)))) {
+        		currentStrategy = portraitStrategy;
+        	}
             return currentStrategy.contents( current ) ; 
         } 
         else 
