@@ -309,6 +309,7 @@ public class Device implements IApp, IPinAuthObserver {
      * Navigate to Previous Screen
      */
     public void prev() {
+    	System.err.println( "Device executed at prev") ;
         if ( authenticated )
             app.prev() ;
     }
@@ -317,6 +318,7 @@ public class Device implements IApp, IPinAuthObserver {
      * Navigate to Next Screen
      */
     public void next() {
+    	System.err.println( "Device executed at next") ;
         if ( authenticated )
             app.next() ;
     }
