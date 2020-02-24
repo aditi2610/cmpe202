@@ -21,10 +21,9 @@ final class Main {
 	/**
 	 * Main App Entry Point.
 	 * @param args No args expected.
-	 * @throws IOException exception is throws in case of no Input
-	 * @exception IO exception is thrown in no input
+	*
 	 */
-	public static void main(final String[] args) throws IOException {
+	public static void main(final String[] args) {
 		for(String v : args) {
 			System.err.print("Args: " + v + " ");
 		}
@@ -32,7 +31,6 @@ final class Main {
 		Device d = Device.getInstance();
 		IApp app = (IApp) d;
 		Console c = System.console();
-		//BufferedReader c = new BufferedReader(new InputStreamReader(System.in));
 		String msg = "";
 		for (;;) {
 			flushAndPrintScreenContents(app, msg);
@@ -58,6 +56,7 @@ final class Main {
 		System.out.println(app.screenContents());
 		System.out.println(msg);
 		System.out.print("=> ");
+	
 	}
 
 	/**
