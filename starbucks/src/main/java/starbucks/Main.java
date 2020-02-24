@@ -2,10 +2,8 @@
 
 package starbucks;
 
-import java.io.BufferedReader;
 import java.io.Console;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 /**
  * Main Entry Point.
@@ -24,6 +22,7 @@ final class Main {
 	 * Main App Entry Point.
 	 * @param args No args expected.
 	 * @throws IOException exception is throws in case of no Input
+	 * @exception IO exception is thrown in no input
 	 */
 	public static void main(final String[] args) throws IOException {
 		for(String v : args) {
@@ -32,8 +31,8 @@ final class Main {
 		System.err.println();
 		Device d = Device.getInstance();
 		IApp app = (IApp) d;
-		//		Console c = System.console();
-		BufferedReader c = new BufferedReader(new InputStreamReader(System.in));
+		Console c = System.console();
+		//BufferedReader c = new BufferedReader(new InputStreamReader(System.in));
 		String msg = "";
 		for (;;) {
 			flushAndPrintScreenContents(app, msg);
@@ -75,7 +74,6 @@ final class Main {
 			String selection = cmd.toUpperCase();
 			msg = "selected: " + selection;
 			app.execute(selection);
-
 		} else if (cmd.startsWith("prev")) {
 			msg = "cmd: previous";
 			app.prev();

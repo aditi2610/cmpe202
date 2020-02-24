@@ -19,12 +19,12 @@ public class Settings extends Screen
     public String name() {
         return "Settings" ; 
     } 
-    
+     
     /**
-     * touch Implementation
-     *  @param x X coord
-     *  @param y Y coord
-     */
+	 * Send Touch Events to the Chain
+	 * @param x Touch X Coord.
+	 * @param y Touch Y Coord.
+	 */
     public void touch(int x, int y) {
     	if(y ==1 && (x ==1 || x==2 || x==3)) {
     		this.app.execute("AddCard");

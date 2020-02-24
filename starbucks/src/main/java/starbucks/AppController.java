@@ -242,7 +242,11 @@ public class AppController implements IApp {
 			
 		}
 	}
-
+	
+	/**
+	 * Invokes the different screens
+	 * @param c screen 
+	 */
 	private void switchScreens(String c) {
 		switch(c) {
 			case "MyCard":
