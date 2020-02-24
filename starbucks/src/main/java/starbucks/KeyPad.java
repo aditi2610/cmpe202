@@ -10,7 +10,6 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
     ITouchEventHandler nextHandler ;
     private ArrayList<IKeyPadObserver> observers ;
     int countPinDigits = 0 ;
-    int countCardDigits =0;
     String lastKey = "" ;
     Device d;
 
@@ -64,9 +63,9 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
 
     /**
      * Get Key Number from (X,Y) Touch Coord's
-     * @param  x [description]
-     * @param  y [description]
-     * @return   [description]
+     * @param  x [X is mapped to keys on keypad]
+     * @param  y [Y mapped to keys on keypad]
+     * @return   [Maps the XY coord on keyboard]
      */
     public String getKey( int x, int y )
     {

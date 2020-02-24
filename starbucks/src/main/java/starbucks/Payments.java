@@ -12,13 +12,13 @@ public class Payments extends Screen
     }
     
     /** 
-     * returns the name of the screen
+     * @return the name of the screen
      */
     public String name() {
         return "Payments" ; 
     }
     /**
-	 * Displays the content of the screen.
+	 * @return Displays the content of the screen.
 	 */
     public String display() {
     	StringBuffer value = new StringBuffer(super.display());

@@ -27,10 +27,13 @@ final class Main {
 	 * @throws IOException
 	 */
 	public static void main(final String[] args) throws IOException {
-		System.err.println("Args: " + args);
+		for(String v : args) {
+			System.err.print("Args: " + v + " ");
+		}
+		System.err.println();
 		Device d = Device.getInstance();
 		IApp app = (IApp) d;
-//		Console c = System.console();
+		//		Console c = System.console();
 		BufferedReader c = new BufferedReader(new InputStreamReader(System.in));
 		String msg = "";
 		for (;;) {
@@ -85,7 +88,10 @@ final class Main {
 		parms = parms.substring(1);
 		parms = parms.substring(0, parms.length() - 1);
 		String[] values = parms.split(",");
-		System.err.println("Value: " + values);
+		for(String s: values) {
+			System.err.print("Value: " + s + " ");
+		}
+		System.err.println("");
 		String x = values[0];
 		String y = values[1];
 		msg = "touch: x=" + x + " y=" + y;

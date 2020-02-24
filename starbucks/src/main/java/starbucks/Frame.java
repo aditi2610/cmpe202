@@ -93,13 +93,13 @@ public class Frame implements IFrame
      * @return     Padded Lines
      */
     private String padLines(int num) {
-        String lines = "" ;
+        StringBuffer lines = new StringBuffer() ;
         for ( int i = 0; i<num; i++ ) {
             System.err.print(".") ;
-            lines += "\n" ;
+            lines .append( "\n") ;
         }
         System.err.println("") ;
-        return lines ;
+        return lines.toString() ;
     }
     
     /**
@@ -108,10 +108,10 @@ public class Frame implements IFrame
      * @return     Padded Line
      */
     private String padSpaces(int num) {
-        String spaces = "" ;
+        StringBuffer spaces = new StringBuffer() ;
         for ( int i = 0; i<num; i++ )
-            spaces += " " ;           
-        return spaces ;     
+            spaces .append( " " );           
+        return spaces.toString() ;     
     }            
 
     /** Constructor */

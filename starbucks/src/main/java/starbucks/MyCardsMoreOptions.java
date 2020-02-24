@@ -11,12 +11,14 @@ public class MyCardsMoreOptions extends Screen
     }
     /**
 	 * gives the name to the screen
+	 * @return name of the screen
 	 */
     public String name() {
         return "My Cards" ; 
     }
     /**
 	 * Displays the content of the screen.
+	 * @return content of the screen
 	 */
     public String display() {
     

@@ -6,22 +6,22 @@ package starbucks ;
 public class PinScreen extends Screen
 {
     
-	Device d;
+	
 	/**
 	 * Default constructor for the class
 	 */
     public PinScreen()
     {
-    	d= Device.getInstance();
+    	
     }
     /**
-     * returns the name of the screen
+     * @return the name of the screen
      */
     public String name() {
         return "" ; 
     } 
     /**
-	 * Displays the content of the screen.
+	 * @return Displays the content of the screen.
 	 */
     public String display() { 
        return  super.display() ;

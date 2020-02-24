@@ -20,13 +20,16 @@ public class MyCardsPay extends Screen
 		this.app = (IApp)d;
 	}
 	/**
-	 * Gives the name to the screen
+	 * 
+	 * @return name to the screen
 	 */
 	public String name() {
 		return "My Cards" ; 
 	}
 	/**
      * Define what happens when you touch this screen at given coordinates
+     * @param x X Coord on screen
+     * @param y Y coord on screen
      */
 	public void touch(int x, int y) {
 		if(d.getDeviceOrientation() == ORIENTATION_MODE.PORTRAIT) {
@@ -45,6 +48,7 @@ public class MyCardsPay extends Screen
 	}
 	/**
 	 * Displays the content of the screen.
+	 * @return content of the screen
 	 */
 	public String display() {
 		StringBuffer out = new StringBuffer(super.display());

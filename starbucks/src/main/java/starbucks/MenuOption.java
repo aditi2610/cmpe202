@@ -9,7 +9,7 @@ public class MenuOption implements IMenuInvoker
 
     /**
      * Set Command for Menu Option
-     * @param c [description]
+     * @param c [Executes the passed menu command]
      */
     public void setCommand( IMenuCommand c ) {
         cmd = c ;

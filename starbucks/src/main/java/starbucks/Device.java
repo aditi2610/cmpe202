@@ -135,14 +135,6 @@ public class Device implements IApp, IPinAuthObserver {
                 break;
         }
     }
-// this could be a potential problem
-//    /**
-//     * Device Reset Pin  
-//     */
-//    private void clearPin()
-//    {
-//        this.pin = "" ;
-//    }
 
     /**
      * Get Singleton Instance

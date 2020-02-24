@@ -22,13 +22,14 @@ public class AddCard extends Screen
 		this.kp= new KeyPad();
 	}
 	/**
-	 * returns the name of the Screen
+	 * @return the name of the Screen
 	 */
 	public String name() {
 		return "Add Card" ; 
 	} 
 	/**
 	 * Displays the content of the screen.
+	 * @return screen content
 	 */
 	public String display() {
 		StringBuffer out = new StringBuffer(super.display());
@@ -57,6 +58,11 @@ public class AddCard extends Screen
 
 	}
 
+	/**
+	 * implements the touch event
+	 * @param x X Coord
+	 * @param y Y Coord
+	 */
 	public void touch(int x, int y) {
 		if(y == 2 && (x == 1 || x==2 || x==3)) {
 			this.focusCVV = false;
@@ -79,6 +85,11 @@ public class AddCard extends Screen
 
 	}
 
+	/**
+	 * Sets the Cvv for the card
+	 * @param x X Coord
+	 * @param y Y Coord
+	 */
 	private void setCvv(int x, int y) {
 		String s = kp.getKey(x, y);
 		StringBuilder cvv = new StringBuilder(app.getCvv());
@@ -100,6 +111,11 @@ public class AddCard extends Screen
 		app.setCvv(cvv.toString());
 	}
 
+	/** 
+	 * Set the card Number
+	 * @param x X coord
+	 * @param y Y coord
+	 */
 	private void setCard(int x, int y) {
 		String s = this.kp.getKey(x, y);
 		StringBuilder cardNumber = new StringBuilder(app.getCardNumber());

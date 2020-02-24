@@ -11,7 +11,7 @@ public class Rewards extends Screen
     	
     }
     /**
-     * returns the name of the screen
+     * @return the name of the screen
      */
     public String name() 
     {
@@ -19,7 +19,7 @@ public class Rewards extends Screen
     }	
     
     /**
-     * returns the contents of the screen
+     * @return the contents of the screen
      */
     public String display() 
     {

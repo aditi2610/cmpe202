@@ -282,24 +282,35 @@ public class AppController implements IApp {
 	}
 	
 	/**
-	 * returns the balance
+	 * @return the balance
 	 */
 	@Override
 	public String getBalance() {
 		return String.format("%.2f", this.balance);
 	}
 
+	/**
+	 * sets balance 
+	 * @param d d is the balance to be set
+	 * 
+	 */
 	@Override
 	public void setBalance(Double d) {
 		this.balance = d;
 		
 	}
 	
+	/** 
+	 * @param s sets the cardNumber
+	 */
 	@Override
 	public void setCardNumber(String s) {
 		this.cardNumber = new StringBuilder(s);
 	}
 
+	/** 
+	 * @param s Sets the Cvv
+	 */
 	@Override
 	public void setCvv(String s) {
 		this.cvv = new StringBuilder(s);
@@ -307,7 +318,7 @@ public class AppController implements IApp {
 	}
 	
 	/**
-	 * returns the card number
+	 * @return the card number
 	 */
 	@Override
 	public String getCardNumber() {
@@ -315,7 +326,7 @@ public class AppController implements IApp {
 	}
 	
 	/**
-	 * returns the Cvv
+	 * @return the Cvv
 	 */
 	@Override
 	public String getCvv() {

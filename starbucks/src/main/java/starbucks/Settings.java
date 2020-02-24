@@ -14,7 +14,7 @@ public class Settings extends Screen
      this.app = (IApp)Device.getInstance() ; 
     }
     /**
-     * Gives the name of the screen
+     * @return Gives the name of the screen
      */
     public String name() {
         return "Settings" ; 
@@ -23,6 +23,8 @@ public class Settings extends Screen
      * touch function specifies what happens 
      * when you touch at a specific coordinate
      *  on a screen
+     *  @param x X coord
+     *  @param y Y coord
      */
     public void touch(int x, int y) {
     	if(y ==1 && (x ==1 || x==2 || x==3)) {
@@ -31,7 +33,7 @@ public class Settings extends Screen
     }
    
     /**
-     * Displays the contents of the screen
+     * @return Displays the contents of the screen
      */
     public String display() { 
         StringBuffer out = new StringBuffer(super.display()) ;

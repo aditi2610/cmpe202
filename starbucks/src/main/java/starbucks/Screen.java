@@ -106,9 +106,9 @@ public class Screen implements IScreen, IDisplayComponent
 		return (this.getClass().getName()).split("\\.")[1] ; 
 	}
 	/**
-	 * 
+	 * formats the String for display in portrait mode
 	 * @param Takes the string input.. the contents of the screen
-	 * @retuns a String for classes which supports Portrait view
+	 * @return a String for classes which supports Portrait view
 	 */
 	public String formatSpacing(String str){
 		StringBuffer value= new StringBuffer("");
@@ -133,7 +133,7 @@ public class Screen implements IScreen, IDisplayComponent
 	/**
 	 * 
 	 * @param Takes the string input.. the contents of the screen
-	 * @retuns a String for classes which supports landscape view
+	 * @return a String for classes which supports landscape view
 	 */
 	public String formatSpacingLandscapeSupported(String str){
 		StringBuffer value= new StringBuffer();

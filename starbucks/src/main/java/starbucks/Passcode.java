@@ -60,6 +60,7 @@ public class Passcode implements ITouchEventHandler, IDisplayComponent, IKeyPadO
     /**
      * 
      * authenticates the  value and appends the string
+     * @param value to be authenticated
      * @return String
      */
 	private String authenticatPin(String value) {

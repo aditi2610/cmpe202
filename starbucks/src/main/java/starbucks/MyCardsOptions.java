@@ -15,14 +15,16 @@ public class MyCardsOptions extends Screen
        this.app =(IApp)d;
     }
     /**
-	 * gives the name to the screen
+	 * @return name to the screen
 	 */
     public String name() {
         return "My Cards" ; 
     }
-    /**
-     * Define what happens when you touch this screen at given coordinates
-     */
+  /**
+   * executes the touch event
+   * @param x X Coord
+   * @param y Y Coord
+   */
     public void touch(int x, int y) {
         if((x ==1 || x==2 || x==3) && y==7) {	  
         	this.app.execute("MyCardMoreOptions");
@@ -31,6 +33,7 @@ public class MyCardsOptions extends Screen
      }
     /**
 	 * Displays the content of the screen.
+	 * @return displays the content of the screen
 	 */
     public String display() { 
     	if(d.getDeviceOrientation() == ORIENTATION_MODE.LANDSCAPE)
@@ -43,7 +46,6 @@ public class MyCardsOptions extends Screen
         value .append("More Options\n");
         value .append("Cancel");  
         value .append("\n");
-        //Screen should show the options “Reload, Refresh Balance, or More Options”.
         return value.toString() ; 
     }
 }
