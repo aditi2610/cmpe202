@@ -105,6 +105,7 @@ public class Screen implements IScreen, IDisplayComponent
 	public String name() {
 		return (this.getClass().getName()).split("\\.")[1] ; 
 	}
+	
 	/**
 	 * formats the String for display in portrait mode
 	 * @param Takes the string input.. the contents of the screen
@@ -130,6 +131,7 @@ public class Screen implements IScreen, IDisplayComponent
 		}
 		return value.toString() ;
 	}
+	
 	/**
 	 * 
 	 * @param Takes the string input.. the contents of the screen

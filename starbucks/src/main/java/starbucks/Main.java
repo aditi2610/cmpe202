@@ -22,9 +22,8 @@ final class Main {
 
 	/**
 	 * Main App Entry Point.
-	 * 
 	 * @param args No args expected.
-	 * @throws IOException
+	 * @throws IOException exception is throws in case of no Input
 	 */
 	public static void main(final String[] args) throws IOException {
 		for(String v : args) {
@@ -53,6 +52,13 @@ final class Main {
 		}
 	}
 
+	/**
+	 * executes whenver any command is executed
+	 * @param app instance of IApp
+	 * @param msg cmd passed through args
+	 * @param cmd cmd passed
+	 * @return String contents
+	 */
 	private static String executeCmd(IApp app, String msg, String cmd) {
 		if (cmd.startsWith("touch")) {
 			msg = executeTouch(app, cmd);
@@ -81,7 +87,13 @@ final class Main {
 		}
 		return msg;
 	}
-
+	
+	/**
+	 * this would execute whenever the command starts with touch
+	 * @param app instance of Iapp
+	 * @param cmd entered by the user
+	 * @return String to be displayed
+	 */
 	private static String executeTouch(IApp app, String cmd) {
 		String msg;
 		String parms = cmd.replaceFirst("touch", "");

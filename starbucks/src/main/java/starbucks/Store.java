@@ -34,8 +34,8 @@ public class Store extends Screen
     /** 
      * 
      * @param space is the number of spaces for a line
-     * @param 
-     * @return value is the current String
+     * @param value needs to be altered
+     * @return line with right space of X
      */
 	private void createLine(int space, StringBuffer value) {
 		for(int i =0; i<space; i++) {

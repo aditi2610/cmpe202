@@ -61,7 +61,7 @@ public class Passcode6 implements ITouchEventHandler, IDisplayComponent, IKeyPad
 
     /**
      * authenticates the  value and appends the string
-     * @return String
+     * @return String for the passcode
      */
 	private String authenticatePin(String value) {
 		if  (d.isAuthenticated().equals("true")) {

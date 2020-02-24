@@ -73,25 +73,25 @@ public interface IApp
      
      /**
       * 
-      * @returns the Card Number
+      * @return the Card Number
       */
      String getCardNumber();
      
      /**
       * Sets the card number to String s
-      * @param s
+      * @param s sets card
       */
      void setCardNumber(String s);
  	
      /**
       * 
-      * @returns CVV
+      * @return CVV 
       */
      String getCvv();
      
      /**
       * Sets s as the current Cvv
-      * @param s
+      * @param s Sets Cvv
       */
  	void setCvv(String s);
 

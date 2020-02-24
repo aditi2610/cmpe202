@@ -157,7 +157,11 @@ public class Device implements IApp, IPinAuthObserver {
         return getNewInstance( "1234" ) ;
     	//return getNewInstance("123456");
     }
-
+    /**
+     * 
+     * @param pin the default pin
+     * @return instance of device
+     */
     public synchronized static Device getNewInstance( String pin ) {
         theDevice = new Device() ;
         theDevice.setPin( pin ) ;
@@ -344,7 +348,7 @@ public class Device implements IApp, IPinAuthObserver {
         this.authenticated = true ;
     }
     /**
-	 * Returns the Balance
+	 * @return the Balance
 	 */
 	@Override
 	public String getBalance() {
@@ -352,7 +356,7 @@ public class Device implements IApp, IPinAuthObserver {
 		return this.app.getBalance();
 	}
 	/**
-	 * Sets the balance of a card
+	 * @param d Sets the balance of a card
 	 */
 	@Override
 	public void setBalance(Double d) {
@@ -360,14 +364,14 @@ public class Device implements IApp, IPinAuthObserver {
 		
 	}
 	/**
-	 * Returns the Card Number
+	 * @return the Card Number
 	 */
 	@Override
 	public String getCardNumber() {
 		return this.app.getCardNumber();
 	}
 	/**
-	 * Sets the CardNumber 
+	 * @param s Sets the CardNumber 
 	 */
 	@Override
 	public void setCardNumber(String s) {
@@ -375,14 +379,14 @@ public class Device implements IApp, IPinAuthObserver {
 		
 	}
 	/**
-	 * returns the Cvv 
+	 * @return the Cvv 
 	 */
 	@Override
 	public String getCvv() {	
 		return this.app.getCvv();
 	}
 	/**
-	 * Sets the Cvv 
+	 * @param s Sets the Cvv 
 	 */
 	@Override
 	public void setCvv(String s) {

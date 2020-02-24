@@ -48,17 +48,17 @@ public class Frame implements IFrame
     }
 
 
-
-   /**
-     * Helper Debug Dump to STDERR
-     * @param str Lines to print
-     */
-    private void dumpLines(String str) {
-          String[] lines = str.split("\r\n|\r|\n");
-          for ( int i = 0; i<lines.length; i++ ) {
-            System.err.println( i + ": " + lines[i] ) ;
-          }
-    }
+//
+//   /**
+//     * Helper Debug Dump to STDERR
+//     * @param str Lines to print
+//     */
+//    private void dumpLines(String str) {
+//          String[] lines = str.split("\r\n|\r|\n");
+//          for ( int i = 0; i<lines.length; i++ ) {
+//            System.err.println( i + ": " + lines[i] ) ;
+//          }
+//    }
 
     /**
      * Helper:  Count lines in a String 

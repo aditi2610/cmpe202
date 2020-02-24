@@ -19,6 +19,12 @@ public interface IFrame
      * @param c    Command Object
      */
     void setMenuItem( String slot, IMenuCommand c ) ;
+    
+    /**
+     * 
+     * @param slot Slot object
+     * @param c MenuCommand
+     */
     void setInMenuScreen( String slot, IMenuCommand c ) ;
 
     /**
@@ -99,14 +105,13 @@ public interface IFrame
      */
     void selectA1() ;
     /**
-     * Select MyCardOptions Screeen
+     * Select MyCardOptions Screen
      */ 
     void selectCardOptions() ;
     
     /**
-     * Select MyCardMoreOptions Screeen
+     * Select MyCardMoreOptions Screen
      */ 
-    
     void selectCardMoreOptions() ;
 
     /**

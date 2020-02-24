@@ -19,6 +19,7 @@ public class Settings extends Screen
     public String name() {
         return "Settings" ; 
     } 
+    
     /**
      * touch function specifies what happens 
      * when you touch at a specific coordinate

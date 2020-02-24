@@ -50,8 +50,7 @@ public interface IPinStateMachine
     /** 
      * Set Next State to Five Pin state
      * @param digit Pin So Far
-     */   
-    
+     */      
     void setStateFivePinDigits( String digit ) ;
     
     /** 

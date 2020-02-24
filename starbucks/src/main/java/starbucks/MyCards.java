@@ -13,7 +13,7 @@ public class MyCards extends Screen {
 	Device d;
 	IApp app;
 	MyCardsPay myPay;
-	// boolean flagSupportLandscape =false;
+
 	/**
 	 * Default Constructor for the class
 	 */
@@ -21,9 +21,8 @@ public class MyCards extends Screen {
 		this.d = Device.getInstance();
 		this.app = (IApp) d;
 		myPay= new MyCardsPay();
-		// if(d.getDeviceOrientation()== ORIENTATION_MODE.LANDSCAPE)
-		// 	flagSupportLandscape = true;
 	}
+	
 	/**
 	 * gives the name to the screen
 	 * @return name of the screen
@@ -35,8 +34,8 @@ public class MyCards extends Screen {
 	/**
 	 * Touch method specifies what happens when you touch on this screen
 	 * at given coordinates
-	 * @param x
-	 * @param y
+	 * @param x X coord
+	 * @param y Y Coord
 	 */
 	public void touch(int x, int y) {
 		if(d.getDeviceOrientation() == ORIENTATION_MODE.PORTRAIT) {

@@ -40,6 +40,20 @@ public class AppController implements IApp {
 		mycards = new MyCards();
 		frame = new Frame(mycards);
 		
+		instantiateClasses();
+		
+		balance = 0.0;
+		cardNumber = new StringBuilder();
+		cvv= new StringBuilder();
+
+		setReceivers();
+		setMenus();		
+	}
+
+	/**
+	 * Instantiates all the classes required by the class
+	 */
+	private void instantiateClasses() {
 		myCardsPay = new MyCardsPay();
 		myCardsOptions = new MyCardsOptions();
 		myCardsMoreOptions = new MyCardsMoreOptions();
@@ -61,14 +75,6 @@ public class AppController implements IApp {
 		displayMyCardsOptions = new MenuCommand();
 		displayMyCardMoreOptions = new MenuCommand();
 		displayAddCard = new MenuCommand();
-		
-		balance = 0.0;
-		cardNumber = new StringBuilder();
-		cvv= new StringBuilder();
-
-		setReceivers();
-		setMenus();
-		
 	}
 
 
@@ -76,47 +82,16 @@ public class AppController implements IApp {
 	 * 
 	 */
 	private void setReceivers() {
-		displayMyCards.setReceiver(
-				new IMenuReceiver() {
-					/** Command Action */
-					public void doAction() {
-						frame.setCurrentScreen(mycards);
-					}
-				}
-		);
-		displayPayments.setReceiver(
-				new IMenuReceiver() {
-					/** Command Action */
-					public void doAction() {
-						frame.setCurrentScreen(payments);
-					}
-				}
-		);
-		displayRewards.setReceiver(
-				new IMenuReceiver() {
-					/** Command Action */
-					public void doAction() {
-						frame.setCurrentScreen(rewards);
-					}
-				}
-		);
-		doStore.setReceiver(
-				new IMenuReceiver() {
-					/** Command Action */
-					public void doAction() {
-						frame.setCurrentScreen(store);
-					}
-				}
-		);
-		displaySettings.setReceiver(
-				new IMenuReceiver() {
-					/** Command Action */
-					public void doAction() {
-						frame.setCurrentScreen(settings);
-					}
-				}
-		);
+		
+		setReceiversForMenuItems();
 
+		setReceiversForScreens();
+	}
+
+	/**
+	 * Set Receivers for Screens 
+	 */
+	private void setReceiversForScreens() {
 		displayMyCardsPay.setReceiver(
 				new IMenuReceiver() {
 					/** Command Action */
@@ -157,6 +132,52 @@ public class AppController implements IApp {
 				
 			}
 		});
+	}
+
+	/**
+	 * Set Receivers for Menu Items
+	 */
+	private void setReceiversForMenuItems() {
+		displayMyCards.setReceiver(
+				new IMenuReceiver() {
+					/** Command Action */
+					public void doAction() {
+						frame.setCurrentScreen(mycards);
+					}
+				}
+		);
+		displayPayments.setReceiver(
+				new IMenuReceiver() {
+					/** Command Action */
+					public void doAction() {
+						frame.setCurrentScreen(payments);
+					}
+				}
+		);
+		displayRewards.setReceiver(
+				new IMenuReceiver() {
+					/** Command Action */
+					public void doAction() {
+						frame.setCurrentScreen(rewards);
+					}
+				}
+		);
+		doStore.setReceiver(
+				new IMenuReceiver() {
+					/** Command Action */
+					public void doAction() {
+						frame.setCurrentScreen(store);
+					}
+				}
+		);
+		displaySettings.setReceiver(
+				new IMenuReceiver() {
+					/** Command Action */
+					public void doAction() {
+						frame.setCurrentScreen(settings);
+					}
+				}
+		);
 	}
 	/**
 	 * Set Menus for the screen

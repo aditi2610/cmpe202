@@ -42,11 +42,16 @@ public class AddCard extends Screen
 		out.append("\n");
 		return out.toString();
 	}
-
+	/**
+	 * prev method executes the Settings screen
+	 */
 	public void prev()  {
 		app.execute("E");   
 	}
-
+	/**
+	 * Clicking on next of Add card should
+	 * go to My cards Page if card is successfully added.
+	 */
 	public void next()  {
 		if(app.getCardNumber().length() == 9 && app.getCvv().length() == 3) {
 			this.app.execute("A");
