@@ -26,13 +26,17 @@ public class MyCards extends Screen {
 	}
 	/**
 	 * gives the name to the screen
+	 * @return name of the screen
 	 */
 	public String name() {
 		return "My Cards";
 	}
+	
 	/**
 	 * Touch method specifies what happens when you touch on this screen
-	 * at given coordinates.
+	 * at given coordinates
+	 * @param x
+	 * @param y
 	 */
 	public void touch(int x, int y) {
 		if(d.getDeviceOrientation() == ORIENTATION_MODE.PORTRAIT) {
@@ -48,6 +52,7 @@ public class MyCards extends Screen {
 	}
 	/**
 	 * Displays the content of the screen.
+	 * @return contents of the screen
 	 */
 	public String display() { 
 		StringBuffer value = new StringBuffer(super.display()) ;
