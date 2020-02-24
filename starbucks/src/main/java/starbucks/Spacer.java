@@ -19,7 +19,7 @@ public class Spacer implements IDisplayComponent, ITouchEventHandler {
      * @param c Component.
      */
     public void addSubComponent( IDisplayComponent c ) {
-        //System.err.println( "Add Sub Component: " + c ) ;
+        System.err.println( "Add Sub Component: " + c ) ;
     }
 
     /**

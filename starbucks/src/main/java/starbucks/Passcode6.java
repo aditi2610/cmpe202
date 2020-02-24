@@ -15,7 +15,7 @@ public class Passcode6 implements ITouchEventHandler, IDisplayComponent, IKeyPad
     {
         if ( y==2 )
         {
-            //System.err.println( "Passcode Touched at 6Passcode: (" + x + ", " + y + ")" ) ; 
+            System.err.println( "Passcode Touched at 6Passcode: (" + x + ", " + y + ")" ) ; 
         }
         else
         {
@@ -80,7 +80,7 @@ public class Passcode6 implements ITouchEventHandler, IDisplayComponent, IKeyPad
      */
     public void keyEventUpdate( int c, String key ) 
     {
-        //System.err.println( "Key: " + key ) ;
+        System.err.println( "Key: " + key ) ;
         count = c ;
     }
 
