@@ -28,7 +28,11 @@ public class Device implements IApp, IPinAuthObserver {
     public static final int landscape_screen_width = 32 ;
     public static final int landscape_screen_length = 6 ;
     
-
+    /**
+     * 
+     * @return Enum as Portrait or Landscape
+     *
+     */
     public enum ORIENTATION_MODE {
         PORTRAIT, LANDSCAPE
     }
@@ -36,8 +40,8 @@ public class Device implements IApp, IPinAuthObserver {
     private ORIENTATION_MODE device_orientation_state = null;
    
     /**
-    * Return the current Orientation of the Device
-    * @return
+    * 
+    * @return Return the current Orientation of the Device
     */
     public ORIENTATION_MODE getDeviceOrientation() {
         return this.device_orientation_state ;

@@ -6,7 +6,7 @@ package starbucks ;
 public class Passcode implements ITouchEventHandler, IDisplayComponent, IKeyPadObserver
 {
     ITouchEventHandler nextHandler ;
-    Device d;
+
     private int count = 0;
     /**
      * Touch Event Ignored by Passcode
@@ -42,7 +42,6 @@ public class Passcode implements ITouchEventHandler, IDisplayComponent, IKeyPadO
      */
     public String display() 
     {
-    	d = Device.getInstance();
         String value = "" ;
         switch ( count )
         {
@@ -64,7 +63,7 @@ public class Passcode implements ITouchEventHandler, IDisplayComponent, IKeyPadO
      * @return String
      */
 	private String authenticatPin(String value) {
-		if  (d.isAuthenticated().equals("true")) {
+		if  (Device.getInstance().isAuthenticated().equals("true")) {
 			value = "  [*][*][*][*]" ; 
 		
 		}

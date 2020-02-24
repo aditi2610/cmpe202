@@ -21,9 +21,7 @@ public class Settings extends Screen
     } 
     
     /**
-     * touch function specifies what happens 
-     * when you touch at a specific coordinate
-     *  on a screen
+     * touch Implementation
      *  @param x X coord
      *  @param y Y coord
      */

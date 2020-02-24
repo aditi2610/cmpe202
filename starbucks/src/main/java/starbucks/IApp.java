@@ -67,7 +67,7 @@ public interface IApp
     
     /**
      * 
-     * @param takes in d and sets it as the balance
+     * @param d takes in d and sets it as the balance
      */
      void setBalance(Double d);
      

@@ -5,7 +5,7 @@ public class Passcode6 implements ITouchEventHandler, IDisplayComponent, IKeyPad
 
 
     ITouchEventHandler nextHandler ;
-    Device d;
+
     private int count = 0;
     /**
      * Touch Event Ignored by Passcode
@@ -41,7 +41,6 @@ public class Passcode6 implements ITouchEventHandler, IDisplayComponent, IKeyPad
      */
     public String display() 
     {
-    	d = Device.getInstance();
         String value = "" ;
         switch ( count )
         {
@@ -60,11 +59,11 @@ public class Passcode6 implements ITouchEventHandler, IDisplayComponent, IKeyPad
     }
 
     /**
-     * authenticates the  value and appends the string
+     * @param value authenticates the  value and appends the string
      * @return String for the passcode
      */
 	private String authenticatePin(String value) {
-		if  (d.isAuthenticated().equals("true")) {
+		if  (Device.getInstance().isAuthenticated().equals("true")) {
 			value = "  	* * * * * *" ; 
 		}
 		else {

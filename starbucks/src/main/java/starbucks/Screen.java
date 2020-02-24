@@ -108,7 +108,7 @@ public class Screen implements IScreen, IDisplayComponent
 	
 	/**
 	 * formats the String for display in portrait mode
-	 * @param Takes the string input.. the contents of the screen
+	 * @param str Takes the string input.. the contents of the screen
 	 * @return a String for classes which supports Portrait view
 	 */
 	public String formatSpacing(String str){
@@ -134,7 +134,7 @@ public class Screen implements IScreen, IDisplayComponent
 	
 	/**
 	 * 
-	 * @param Takes the string input.. the contents of the screen
+	 * @param str Takes the string input.. the contents of the screen
 	 * @return a String for classes which supports landscape view
 	 */
 	public String formatSpacingLandscapeSupported(String str){

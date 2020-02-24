@@ -114,7 +114,10 @@ public class Frame implements IFrame
         return spaces.toString() ;     
     }            
 
-    /** Constructor */
+    /**
+     * 
+     * @param initial Sets default screen for a frame
+     */
     public Frame(IScreen initial)
     {
         current = initial ;

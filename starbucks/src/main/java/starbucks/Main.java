@@ -36,11 +36,7 @@ final class Main {
 		BufferedReader c = new BufferedReader(new InputStreamReader(System.in));
 		String msg = "";
 		for (;;) {
-			System.out.print("\033[H\033[2J"); // clear the screen
-			System.out.flush();
-			System.out.println(app.screenContents());
-			System.out.println(msg);
-			System.out.print("=> ");
+			flushAndPrintScreenContents(app, msg);
 			String ch = c.readLine(); // get user command
 			String cmd = ch.toLowerCase(); // convert to lower case
 			cmd = cmd.replaceAll("\\s", ""); // remove all whitespaces
@@ -51,9 +47,22 @@ final class Main {
 			msg = executeCmd(app, msg, cmd);
 		}
 	}
+	
+	/**
+	 * 
+	 * @param app instance of IApp
+	 * @param msg prints the msg
+	 */
+	private static void flushAndPrintScreenContents(IApp app, String msg) {
+		System.out.print("\033[H\033[2J"); // clear the screen
+		System.out.flush();
+		System.out.println(app.screenContents());
+		System.out.println(msg);
+		System.out.print("=> ");
+	}
 
 	/**
-	 * executes whenver any command is executed
+	 * executes whenever any command is executed
 	 * @param app instance of IApp
 	 * @param msg cmd passed through args
 	 * @param cmd cmd passed

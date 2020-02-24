@@ -11,12 +11,12 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
     private ArrayList<IKeyPadObserver> observers ;
     int countPinDigits = 0 ;
     String lastKey = "" ;
-    Device d;
+   
 
     public KeyPad()
     {
         observers = new ArrayList<IKeyPadObserver>() ;
-        this.d = Device.getInstance();
+        
     }
 
     /**
@@ -25,7 +25,7 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
      * @param y Y Coord
      */
     public void touch(int x, int y) {
-    	if (countPinDigits >= d.getPinOption()) {
+    	if (countPinDigits >= Device.getInstance().getPinOption()) {
     		countPinDigits = 0;
     	}
     	

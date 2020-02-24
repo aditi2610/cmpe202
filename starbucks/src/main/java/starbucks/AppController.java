@@ -138,40 +138,35 @@ public class AppController implements IApp {
 	 * Set Receivers for Menu Items
 	 */
 	private void setReceiversForMenuItems() {
-		displayMyCards.setReceiver(
-				new IMenuReceiver() {
+		displayMyCards.setReceiver( new IMenuReceiver() {
 					/** Command Action */
 					public void doAction() {
 						frame.setCurrentScreen(mycards);
 					}
 				}
 		);
-		displayPayments.setReceiver(
-				new IMenuReceiver() {
+		displayPayments.setReceiver( new IMenuReceiver() {
 					/** Command Action */
 					public void doAction() {
 						frame.setCurrentScreen(payments);
 					}
 				}
 		);
-		displayRewards.setReceiver(
-				new IMenuReceiver() {
+		displayRewards.setReceiver( new IMenuReceiver() {
 					/** Command Action */
 					public void doAction() {
 						frame.setCurrentScreen(rewards);
 					}
 				}
 		);
-		doStore.setReceiver(
-				new IMenuReceiver() {
+		doStore.setReceiver( new IMenuReceiver() {
 					/** Command Action */
 					public void doAction() {
 						frame.setCurrentScreen(store);
 					}
 				}
 		);
-		displaySettings.setReceiver(
-				new IMenuReceiver() {
+		displaySettings.setReceiver( new IMenuReceiver() {
 					/** Command Action */
 					public void doAction() {
 						frame.setCurrentScreen(settings);
@@ -225,9 +220,6 @@ public class AppController implements IApp {
 	public void display() {
 		System.err.println("" + screen());
 		frame.display();
-//        should contain a “display()” method to display the current Screen Name
-//        as well as well as call the “display()” method of the current Screen
-//        each time the Screen changes
 	}
 
 	/**
@@ -244,7 +236,15 @@ public class AppController implements IApp {
 			case "E":
 				frame.cmd(c);
 				break;
+			default:
+				switchScreens(c);
+				break;
 			
+		}
+	}
+
+	private void switchScreens(String c) {
+		switch(c) {
 			case "MyCard":
 				frame.selectMyCard();
 				break;
