@@ -34,17 +34,27 @@ public class Device implements IApp, IPinAuthObserver {
     }
 
     private ORIENTATION_MODE device_orientation_state = null;
-    //private ORIENTATION_MODE previous_device_orientation_state ;
-
+   
+    /**
+    * Return the current Orientation of the Device
+    * @return
+    */
     public ORIENTATION_MODE getDeviceOrientation() {
         return this.device_orientation_state ;
     }
+    
+    /**
+     * Sets Device to portraitOrientation
+     */
 
     public void setPortraitOrientation() {
     	// System.err.println( "Setting Orientation to Portrait") ;
         this.device_orientation_state = ORIENTATION_MODE.PORTRAIT ;
     }
-
+    
+    /**
+     * Sets Landscape to portraitOrientation
+     */
     public void setLandscapeOrientation() {
     	// System.err.println( "Setting Orientation to Landscape") ;
         this.device_orientation_state = ORIENTATION_MODE.LANDSCAPE ;
@@ -125,14 +135,14 @@ public class Device implements IApp, IPinAuthObserver {
                 break;
         }
     }
-
-    /**
-     * Device Reset Pin  
-     */
-    private void clearPin()
-    {
-        this.pin = "" ;
-    }
+// this could be a potential problem
+//    /**
+//     * Device Reset Pin  
+//     */
+//    private void clearPin()
+//    {
+//        this.pin = "" ;
+//    }
 
     /**
      * Get Singleton Instance
@@ -198,6 +208,10 @@ public class Device implements IApp, IPinAuthObserver {
         }
     }
     
+    /**
+     * Device Starup Process.  
+     * Starts Up with Default 6-Pin Option
+     */
     public void startUp6Pin()
     {
         kp = new KeyPad() ;
@@ -337,35 +351,47 @@ public class Device implements IApp, IPinAuthObserver {
     public void authEvent() {
         this.authenticated = true ;
     }
-
+    /**
+	 * Returns the Balance
+	 */
 	@Override
 	public String getBalance() {
 	
 		return this.app.getBalance();
 	}
-
+	/**
+	 * Sets the balance of a card
+	 */
 	@Override
 	public void setBalance(Double d) {
 		this.app.setBalance(d);
 		
 	}
-
+	/**
+	 * Returns the Card Number
+	 */
 	@Override
 	public String getCardNumber() {
 		return this.app.getCardNumber();
 	}
-
+	/**
+	 * Sets the CardNumber 
+	 */
 	@Override
 	public void setCardNumber(String s) {
 		this.app.setCardNumber(s);
 		
 	}
-
+	/**
+	 * returns the Cvv 
+	 */
 	@Override
 	public String getCvv() {	
 		return this.app.getCvv();
 	}
-
+	/**
+	 * Sets the Cvv 
+	 */
 	@Override
 	public void setCvv(String s) {
 		this.app.setCvv(s);

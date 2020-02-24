@@ -9,16 +9,21 @@ public class MyCardsMoreOptions extends Screen
     public MyCardsMoreOptions()
     {
     }
+    /**
+	 * gives the name to the screen
+	 */
     public String name() {
         return "My Cards" ; 
     }
-    
+    /**
+	 * Displays the content of the screen.
+	 */
     public String display() {
     
-    	String value = super.display();
-    	 value +="Refresh\nReload\nAuto Reload\nTransactions";  
-    	 value += "\n";
-    	return value;
+    	StringBuffer value = new StringBuffer(super.display());
+    	 value .append("Refresh\nReload\nAuto Reload\nTransactions");  
+    	 value.append("\n");
+    	return value.toString();
     }
     
 }

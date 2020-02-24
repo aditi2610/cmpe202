@@ -50,19 +50,30 @@ public class Passcode implements ITouchEventHandler, IDisplayComponent, IKeyPadO
             case 1: value = "  [*][_][_][_]" ; break ;
             case 2: value = "  [*][*][_][_]" ; break ;
             case 3: value = "  [*][*][*][_]" ; break ;
-            case 4: 
-            	if  (d.isAuthenticated().equals("true")) {
-            		value = "  [*][*][*][*]" ; 
-            		break ;
-            	}
-            	else {
-            		value += "  Invalid Pin\n\n";
-            		value += "  [_][_][_][_]" ;
-            		break;
-            	}
+            case 4: value = authenticatPin(value);
+            	break ;
+            default :
+            	break;
         }
          return value  ;
     }
+    /**
+     * 
+     * authenticates the  value and appends the string
+     * @return String
+     */
+	private String authenticatPin(String value) {
+		if  (d.isAuthenticated().equals("true")) {
+			value = "  [*][*][*][*]" ; 
+		
+		}
+		else {
+			value += "  Invalid Pin\n\n";
+			value += "  [_][_][_][_]" ;
+		
+		}
+		return value;
+	}
     
     /**
      * Add Sub Component (Not used)

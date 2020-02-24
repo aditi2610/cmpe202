@@ -95,18 +95,29 @@ public interface IFrame
     void selectE() ;
 
     /**
-     * Select Menu/Command E
+     * Select MyCard Pay
      */
     void selectA1() ;
     /**
-     * Select Menu/Command E
+     * Select MyCardOptions Screeen
      */ 
     void selectCardOptions() ;
     
+    /**
+     * Select MyCardMoreOptions Screeen
+     */ 
+    
     void selectCardMoreOptions() ;
 
+    /**
+     * Select Addcards Screeen
+     */ 
     void selectAddCard() ;
     
+    
+    /**
+     * Selects My Card
+     */
     void selectMyCard();
 }
 

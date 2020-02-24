@@ -7,16 +7,23 @@ public class PinScreen extends Screen
 {
     
 	Device d;
+	/**
+	 * Default constructor for the class
+	 */
     public PinScreen()
     {
     	d= Device.getInstance();
     }
+    /**
+     * returns the name of the screen
+     */
     public String name() {
         return "" ; 
     } 
-    
+    /**
+	 * Displays the content of the screen.
+	 */
     public String display() { 
-        String value = super.display() ;
-        return value ; 
+       return  super.display() ;
     }
 }

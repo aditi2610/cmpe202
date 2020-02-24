@@ -10,14 +10,21 @@ public class Payments extends Screen
     {
 
     }
+    
+    /** 
+     * returns the name of the screen
+     */
     public String name() {
         return "Payments" ; 
     }
+    /**
+	 * Displays the content of the screen.
+	 */
     public String display() {
-    	String value = super.display();
-    	value = "Find Store\nEnable Payments";
-    	value += "\n";
-    	return value;
+    	StringBuffer value = new StringBuffer(super.display());
+    	value .append("Find Store\nEnable Payments");
+    	value.append("\n");
+    	return value.toString();
     }
 
 }

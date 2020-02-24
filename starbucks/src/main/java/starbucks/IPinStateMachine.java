@@ -47,8 +47,17 @@ public interface IPinStateMachine
      */    
     void setStateFourPinDigits( String digit ) ;
     
+    /** 
+     * Set Next State to Five Pin state
+     * @param digit Pin So Far
+     */   
+    
     void setStateFivePinDigits( String digit ) ;
     
+    /** 
+     * Set Next State to Six Pin state
+     * @param digit Pin So Far
+     */   
     void setStateSixPinDigits( String digit ) ;
 }
 

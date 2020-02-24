@@ -14,7 +14,9 @@ public class MyCards extends Screen {
 	IApp app;
 	MyCardsPay myPay;
 	// boolean flagSupportLandscape =false;
-
+	/**
+	 * Default Constructor for the class
+	 */
 	public MyCards() {
 		this.d = Device.getInstance();
 		this.app = (IApp) d;
@@ -22,11 +24,16 @@ public class MyCards extends Screen {
 		// if(d.getDeviceOrientation()== ORIENTATION_MODE.LANDSCAPE)
 		// 	flagSupportLandscape = true;
 	}
-
+	/**
+	 * gives the name to the screen
+	 */
 	public String name() {
 		return "My Cards";
 	}
-
+	/**
+	 * Touch method specifies what happens when you touch on this screen
+	 * at given coordinates.
+	 */
 	public void touch(int x, int y) {
 		if(d.getDeviceOrientation() == ORIENTATION_MODE.PORTRAIT) {
 			if (x == 3 && y == 3) {
@@ -39,12 +46,14 @@ public class MyCards extends Screen {
 		}
 
 	}
-
+	/**
+	 * Displays the content of the screen.
+	 */
 	public String display() { 
-		String value = super.display() ;
-		String out = "$" +app.getBalance();
+		StringBuffer value = new StringBuffer(super.display()) ;
+		StringBuffer out = new StringBuffer("$" +app.getBalance());
 		//centered Layout
-		value += super.formatSpacingLandscapeSupported(out);
-		return value ; 
+		value.append(super.formatSpacingLandscapeSupported(out.toString()));
+		return value.toString() ; 
 	}
 }

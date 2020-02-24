@@ -202,7 +202,10 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
 		debug() ;
 
 	}
-
+	/**
+	 * Change the State to Five Pin State
+	 * @param digit Digit/Number Enterred
+	 */
 	@Override
 	public void setStateFivePinDigits(String digit) {
 		this.pinCount = 5 ;
@@ -215,6 +218,11 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
 		debug() ;
 
 	}
+	
+	/**
+	 * Change the State to Six Pin State
+	 * @param digit Digit/Number Enterred
+	 */
 	@Override
 	public void setStateSixPinDigits(String digit) {
 		this.pinCount = 6 ;

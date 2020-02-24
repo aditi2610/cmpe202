@@ -40,13 +40,11 @@ public class Screen implements IScreen, IDisplayComponent
 	}
 
 	/** Next Screen - Not Used */
-	public void next() {
-		// add code here
+	public void next() {	
 	}
 
 	/** Previous Screen - Not Used */
 	public void prev()  {
-		// add code here
 	}
 
 	/**
@@ -90,14 +88,14 @@ public class Screen implements IScreen, IDisplayComponent
 	 * @return Display Contents
 	 */
 	public String display() { 
-		String value = "" ;
+		StringBuffer value = new StringBuffer("") ;
 		for (IDisplayComponent c : components )
 		{
 			System.err.println( "Screen: " + c.getClass().getName() ) ;
-			value = value + c.display();
-			value += "\n";
+			value.append(c.display());
+			value .append("\n");
 		}
-		return value ; 
+		return value.toString() ; 
 	}
 
 	/**
@@ -107,30 +105,38 @@ public class Screen implements IScreen, IDisplayComponent
 	public String name() {
 		return (this.getClass().getName()).split("\\.")[1] ; 
 	}
-	//centered Layout
+	/**
+	 * 
+	 * @param Takes the string input.. the contents of the screen
+	 * @retuns a String for classes which supports Portrait view
+	 */
 	public String formatSpacing(String str){
-		String value= "";
+		StringBuffer value= new StringBuffer("");
 		int width =14;
-		if (str == null || str.isEmpty()) {
+		if (str == null || str.length()==0) {
 			return "";
 		}
 		String lines[] = str.split("\\r?\\n");
 		for(String line: lines) {
 			if (line == "\n")
-				value += "\n";
+				value.append("\n");
 			else {
 				int w = line.length();
 				int space =(width-w)/2;
-				value += padSpaces(space+1);
-				value += line;
-				value += "\n";
+				value.append(padSpaces(space+1));
+				value.append(line);
+				value.append("\n");
 			}
 		}
-		return value ;
+		return value.toString() ;
 	}
-	
+	/**
+	 * 
+	 * @param Takes the string input.. the contents of the screen
+	 * @retuns a String for classes which supports landscape view
+	 */
 	public String formatSpacingLandscapeSupported(String str){
-		String value= "";
+		StringBuffer value= new StringBuffer();
 		int width =14;
 		if(d.getDeviceOrientation() == ORIENTATION_MODE.LANDSCAPE)
 		 width = 31;
@@ -140,23 +146,27 @@ public class Screen implements IScreen, IDisplayComponent
 		String lines[] = str.split("\\r?\\n");
 		for(String line: lines) {
 			if (line == "\n")
-				value += "\n";
+				value.append("\n");
 			else {
 				int w = line.length();
 				int space = (width-w)/2;
-				value += padSpaces(space+1);
-				value += line;
-				value += "\n";
+				value.append(padSpaces(space+1));
+				value.append(line);
+				value.append("\n");
 			}
 		}
-		return value ;
+		return value.toString() ;
 	}
-
+	/**
+	 * 
+	 * @param num , takes the number of spaces to be padded to the string
+	 * @return a string with spaces added
+	 */
 	private String padSpaces(int num) {
-		String spaces = "" ;
+		StringBuffer spaces = new StringBuffer("") ;
 		for ( int i = 0; i<num; i++ )
-			spaces += " " ;           
-		return spaces ;     
+			spaces .append(" ") ;           
+		return spaces.toString() ;     
 	} 
 
 }

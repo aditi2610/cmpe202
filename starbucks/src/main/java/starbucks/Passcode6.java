@@ -1,5 +1,6 @@
 package starbucks;
 
+/** Passcode6 Screen Component */
 public class Passcode6 implements ITouchEventHandler, IDisplayComponent, IKeyPadObserver{
 
 
@@ -50,19 +51,28 @@ public class Passcode6 implements ITouchEventHandler, IDisplayComponent, IKeyPad
             case 3: value = "  * * * _ _ _" ; break ;
             case 4: value = "  * * * * _ _" ; break ;
             case 5: value = "  * * * * * _" ; break ;
-            case 6: 
-            	if  (d.isAuthenticated().equals("true")) {
-            		value = "  	* * * * * *" ; 
-            		break ;
-            	}
-            	else {
-            			value += "  Invalid Pin\n\n";
-            			value += "  _ _ _ _ _ _" ;			
-            			break;
-            	}
+            case 6: value = authenticatePin(value);
+            		break;
+            default: 
+            	break;
         }
          return value  ;
     }
+
+    /**
+     * authenticates the  value and appends the string
+     * @return String
+     */
+	private String authenticatePin(String value) {
+		if  (d.isAuthenticated().equals("true")) {
+			value = "  	* * * * * *" ; 
+		}
+		else {
+				value += "  Invalid Pin\n\n";
+				value += "  _ _ _ _ _ _" ;			
+		}
+		return value;
+	}
     
     /**
      * Add Sub Component (Not used)

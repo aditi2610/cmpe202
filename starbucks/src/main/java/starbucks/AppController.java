@@ -66,6 +66,16 @@ public class AppController implements IApp {
 		cardNumber = new StringBuilder();
 		cvv= new StringBuilder();
 
+		setReceivers();
+		setMenus();
+		
+	}
+
+
+	/** Sets receivers 
+	 * 
+	 */
+	private void setReceivers() {
 		displayMyCards.setReceiver(
 				new IMenuReceiver() {
 					/** Command Action */
@@ -117,7 +127,9 @@ public class AppController implements IApp {
 		);
 
 		displayMyCardsOptions.setReceiver(new IMenuReceiver() {
-			
+			/**
+			 * sets the current screen to params
+			 */
 			@Override
 			public void doAction() {
 				frame.setCurrentScreen(myCardsOptions);
@@ -125,7 +137,9 @@ public class AppController implements IApp {
 			}
 		});
 		displayMyCardMoreOptions.setReceiver(new IMenuReceiver() {
-			
+			/**
+			 * sets the current screen to params
+			 */
 			@Override
 			public void doAction() {
 				frame.setCurrentScreen(myCardsMoreOptions);
@@ -134,26 +148,32 @@ public class AppController implements IApp {
 		});
 		
 		displayAddCard.setReceiver(new IMenuReceiver() {
-			
+			/**
+			 * sets the current screen to params
+			 */
 			@Override
 			public void doAction() {
 				frame.setCurrentScreen(addCard);
 				
 			}
 		});
+	}
+	/**
+	 * Set Menus for the screen
+	 */
+	private void setMenus(){
 		frame.setMenuItem("A", displayMyCards);
 		frame.setMenuItem("B", displayPayments);
 		frame.setMenuItem("C", displayRewards);
 		frame.setMenuItem("D", doStore);
 		frame.setMenuItem("E", displaySettings);
+		
 		frame.setInMenuScreen("MyCard", displayMyCards);
 		frame.setInMenuScreen("A1", displayMyCardsPay);
 		frame.setInMenuScreen("MyCardOptions", displayMyCardsOptions );
 		frame.setInMenuScreen("MyCardMoreOptions", displayMyCardMoreOptions);
 		frame.setInMenuScreen("AddCard", displayAddCard);
 	}
-
-
 	/**
 	 * Switch to Landscape Mode
 	 */
@@ -260,6 +280,10 @@ public class AppController implements IApp {
 	public IFrame getFrame() {
 		return frame;
 	}
+	
+	/**
+	 * returns the balance
+	 */
 	@Override
 	public String getBalance() {
 		return String.format("%.2f", this.balance);
@@ -282,10 +306,17 @@ public class AppController implements IApp {
 		
 	}
 	
+	/**
+	 * returns the card number
+	 */
 	@Override
 	public String getCardNumber() {
 		return this.cardNumber.toString();
 	}
+	
+	/**
+	 * returns the Cvv
+	 */
 	@Override
 	public String getCvv() {
     	return this.cvv.toString();

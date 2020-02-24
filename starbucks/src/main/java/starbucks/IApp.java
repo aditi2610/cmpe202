@@ -58,13 +58,41 @@ public interface IApp
      */
     String screenContents() ; 
     
+    
+    /**
+     * 
+     * @return Balance of the card
+     */
     String getBalance();
+    
+    /**
+     * 
+     * @param takes in d and sets it as the balance
+     */
      void setBalance(Double d);
      
+     /**
+      * 
+      * @returns the Card Number
+      */
      String getCardNumber();
+     
+     /**
+      * Sets the card number to String s
+      * @param s
+      */
      void setCardNumber(String s);
  	
+     /**
+      * 
+      * @returns CVV
+      */
      String getCvv();
+     
+     /**
+      * Sets s as the current Cvv
+      * @param s
+      */
  	void setCvv(String s);
 
 }

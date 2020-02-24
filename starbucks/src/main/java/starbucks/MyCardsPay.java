@@ -11,15 +11,23 @@ public class MyCardsPay extends Screen
 	IApp app;
 
 	private static final double coffeeCharge = 1.50;
+	/**
+	 * Default constructor for the class
+	 */
 	public MyCardsPay()
 	{
 		this.d = Device.getInstance();
 		this.app = (IApp)d;
 	}
+	/**
+	 * Gives the name to the screen
+	 */
 	public String name() {
 		return "My Cards" ; 
 	}
-
+	/**
+     * Define what happens when you touch this screen at given coordinates
+     */
 	public void touch(int x, int y) {
 		if(d.getDeviceOrientation() == ORIENTATION_MODE.PORTRAIT) {
 			if(x ==3 && y ==3) {
@@ -35,19 +43,21 @@ public class MyCardsPay extends Screen
 		}
 
 	}
-
+	/**
+	 * Displays the content of the screen.
+	 */
 	public String display() {
-		String out = super.display();
-		String value = "";
+		StringBuffer out = new StringBuffer(super.display());
+		StringBuffer value = new StringBuffer("");
 		if(app.getCardNumber().length() ==0)
-			value += "[000000000]\n";
+			value .append("[000000000]\n");
 		else
-			value += "[" +app.getCardNumber()+ "]\n";
-		value += "\n";
-		value += "\n";
-		value += "Scan Now";
-		out+= super.formatSpacingLandscapeSupported(value);
-		return out;
+			value.append("[" +app.getCardNumber()+ "]\n");
+		value .append("\n");
+		value .append("\n");
+		value.append("Scan Now");
+		out.append(super.formatSpacingLandscapeSupported(value.toString()));
+		return out.toString();
 	}
 
 

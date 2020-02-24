@@ -12,28 +12,34 @@ public class AddCard extends Screen
 	KeyPad kp;
 	boolean focusCVV = false;
 
-
+	/**
+	 * Dafault constructor
+	 */
 	public AddCard()
 	{
 		d = Device.getInstance();
 		app = (IApp)d;
 		this.kp= new KeyPad();
 	}
+	/**
+	 * returns the name of the Screen
+	 */
 	public String name() {
 		return "Add Card" ; 
 	} 
-
+	/**
+	 * Displays the content of the screen.
+	 */
 	public String display() {
-		String out = super.display();
-		String value = "";
-		value += "["+app.getCardNumber()+ "]\n";
-		value += "["+app.getCvv()+"]\n";
-		//value += kp.display();
-		out += super.formatSpacing(value);
-		out += "\n";
-		out += kp.display();
-		out+= "\n";
-		return out;
+		StringBuffer out = new StringBuffer(super.display());
+		StringBuffer value = new StringBuffer();
+		value.append("["+app.getCardNumber()+ "]\n");
+		value.append("["+app.getCvv()+"]\n");
+		out.append(super.formatSpacing(value.toString()));
+		out .append("\n");
+		out.append(kp.display());
+		out.append("\n");
+		return out.toString();
 	}
 
 	public void prev()  {

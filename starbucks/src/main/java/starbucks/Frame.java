@@ -146,25 +146,18 @@ public class Frame implements IFrame
                 }
                 out += " " +s.name() + "\n" ;
                 out += "===============\n" ;
-                //String screen = s.display() + "\n" ;
                 String screen = s.display();
                 int cnt1 = countLines( screen ) ;
                 int pad1 = (10 - cnt1) / 2;
-                //System.err.println( "cnt1: " + cnt1 ) ;                
-                //System.err.println( "pad1: " + pad1 ) ;
                 out += padLines( pad1 ) ;
                 out += screen  ;
-                //dumpLines( out ) ;                
                 int cnt2 = countLines( out ) ;
                 int pad2 = 13 - cnt2 ;
-                //System.err.println( "cnt2: " + cnt2 ) ;                
-                //System.err.println( "pad2: " + pad2 ) ;
-                //dumpLines( out ) ;
                 String padlines = padLines( pad2 ) ;
                 out += padlines ;
                 out +=  "===============\n" ;
                 out +=  "[A][B][C][D][E]\n" ;
-                dumpLines( out ) ;
+                //dumpLines( out ) ;
                 return out ;             
             }
 
@@ -203,12 +196,7 @@ public class Frame implements IFrame
              */
             public String contents(IScreen s) 
             { 
-				/*
-				 * String out = "" ; out += "================================\n" ; out += "  " +
-				 * s.name() + "  \n" ; out += "================================\n" ; out +=
-				 * s.display() + "\n" ; out += "================================\n" ; dumpLines(
-				 * out ) ; return out ;
-				 */
+			
             	String out = "" ; 
             	out += "================================\n" ;
             	int nameLen = s.name().length() ;
@@ -223,16 +211,12 @@ public class Frame implements IFrame
                 int pad1 = (6 - cnt1) / 2;
                 out += padLines( pad1 ) ;
                 out += screen  ;
-                //dumpLines( out ) ;                
                 int cnt2 = countLines( out ) ;
                 int pad2 = 9 - cnt2 ;
-                //System.err.println( "cnt2: " + cnt2 ) ;                
-                //System.err.println( "pad2: " + pad2 ) ;
-                //dumpLines( out ) ;
                 String padlines = padLines( pad2 ) ;
                 out += padlines ;
                 out +=  "================================\n" ;
-                dumpLines( out ) ;
+                //dumpLines( out ) ;
                 return out;
             }
 
@@ -278,7 +262,11 @@ public class Frame implements IFrame
         if ( "D".equals(slot) ) { menuD.setCommand(c) ; } 
         if ( "E".equals(slot) ) { menuE.setCommand(c) ; }   
     }
-
+    /**
+     * Configure Screens which can be navigated from one to another screen
+     * @param slot Mycard, A1, ... AddCard
+     * @param c    Command Object
+     */
     public void setInMenuScreen( String slot, IMenuCommand c )
     {
     	if("MyCard".equals(slot)) {menuMyCard.setCommand(c);}
@@ -356,17 +344,19 @@ public class Frame implements IFrame
     /** Select Command E */
     public void selectE() { currentStrategy.selectE() ; }
     
-    /** Select Command E */
+    /** Invoke MyCards Pay screen */
     public void selectA1() { menuA1.invoke();}
     
-    /** Select Command E */
+    /** Invoke My card Menu options  */
     public void selectCardOptions() { menuCardOptions.invoke();}
     
-    /** Select Command E */
+    /** Invoke My card more Menu options  */
     public void selectCardMoreOptions() { menuCardMoreOptions.invoke();}
     
+    /** Invoke Add Card */
     public void selectAddCard() { menuAddCard.invoke();}
     
+    /** Invoke My Card */
     public void selectMyCard() { menuMyCard.invoke();}
 
 }

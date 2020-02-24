@@ -1,5 +1,6 @@
 package starbucks;
 
+/** For Pin Digits State */
 public class FivePinDigits implements IPinState {
 
     IPinStateMachine machine ;

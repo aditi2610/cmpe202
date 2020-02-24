@@ -10,17 +10,24 @@ public class Rewards extends Screen
     {
     	
     }
+    /**
+     * returns the name of the screen
+     */
     public String name() 
     {
     	return "Rewards";
     }	
+    
+    /**
+     * returns the contents of the screen
+     */
     public String display() 
     {
-    	String value = super.display();
-    	value += "Make Every";
-    	value +="\n";
-    	value+= "Visit Count";
-    	value += "\n";
-    	return value;
+    	StringBuffer value = new StringBuffer(super.display());
+    	value .append( "Make Every");
+    	value .append("\n");
+    	value.append("Visit Count");
+    	value .append( "\n");
+    	return value.toString();
     }
 }

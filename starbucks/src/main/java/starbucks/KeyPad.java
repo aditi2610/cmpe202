@@ -116,12 +116,12 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
     {
         //return " [1] [2] [3]\n [4] [5] [6]\n [7] [8] [9]\n [_] [0] [X]"  ;
         
-        String output =  "  [1] [2] [3]\n" ;
-               output += "  [4] [5] [6]\n" ;
-               output += "  [7] [8] [9]\n" ;
-               output += "  [_] [0] [X]" ;
+        StringBuffer output =  new StringBuffer("  [1] [2] [3]\n") ;
+               output.append("  [4] [5] [6]\n") ;
+               output.append("  [7] [8] [9]\n") ;
+               output.append("  [_] [0] [X]") ;
 
-        return output ;
+        return output.toString() ;
     }
 
     /**
