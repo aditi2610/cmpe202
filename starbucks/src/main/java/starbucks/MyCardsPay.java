@@ -60,7 +60,7 @@ public class MyCardsPay extends Screen
 		value .append("\n");
 		value .append("\n");
 		value.append("Scan Now");
-		out.append(super.formatSpacingLandscapeSupported(value.toString()));
+		out.append(super.formatSpacingLandscapeSupported(name(),value.toString()));
 		return out.toString();
 	}
 

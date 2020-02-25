@@ -47,18 +47,9 @@ public class MyCards extends Screen {
 			case "2,4":
 				this.app.execute("MyCardOptions");
 				break;
-//			case "2,2":
-//				double balance = Double.parseDouble(app.getBalance());
-//				if(balance > Device.coffeeCharge) {
-//					app.setBalance((balance- Device.coffeeCharge));
-//				}
-//				break;
 			default:
 				break;
 			}
-			
-				
-
 		}
 
 	}
@@ -70,7 +61,7 @@ public class MyCards extends Screen {
 		StringBuffer value = new StringBuffer(super.display()) ;
 		StringBuffer out = new StringBuffer("$" +app.getBalance());
 		//centered Layout
-		value.append(super.formatSpacingLandscapeSupported(out.toString()));
+		value.append(super.formatSpacingLandscapeSupported(name(),out.toString()));
 		return value.toString() ; 
 	}
 }

@@ -56,7 +56,7 @@ public class Settings extends Screen
 		value .append("Passcode\n\n");
 		value .append("About|Terms\n");
 		value .append("Help");
-		out .append(super.formatSpacing(value.toString()));
+		out .append(super.formatSpacing(name(),value.toString()));
 
 		return out.toString() ; 
 	}

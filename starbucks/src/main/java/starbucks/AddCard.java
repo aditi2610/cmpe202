@@ -36,7 +36,7 @@ public class AddCard extends Screen
 		StringBuffer value = new StringBuffer();
 		value.append("["+app.getCardNumber()+ "]\n");
 		value.append("["+app.getCvv()+"]\n");
-		out.append(super.formatSpacing(value.toString()));
+		out.append(super.formatSpacing(name(),value.toString()));
 		out .append("\n");
 		out.append(kp.display());
 		out.append("\n");
