@@ -46,7 +46,11 @@ public class AddCard extends Screen
 	 * prev method executes the Settings screen
 	 */
 	public void prev()  {
-		app.execute("E");   
+		app.execute("E"); 
+		app.setCardNumber("");
+		app.setCvv("");
+		app.setBalance(0.00);
+	
 	}
 	/**
 	 * Clicking on next of Add card should
