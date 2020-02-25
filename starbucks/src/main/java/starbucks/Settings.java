@@ -36,6 +36,8 @@ public class Settings extends Screen
 			app.setFocusCvv(false);
 			this.app.execute("AddCard");
 			break;
+		default:
+			break;
 		}
 		//    	if(y ==1 && (x ==1 || x==2 || x==3)) {
 		//    		this.app.execute("AddCard");

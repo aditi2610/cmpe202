@@ -49,16 +49,16 @@ public class Frame implements IFrame
 
 
 //
-//   /**
-//     * Helper Debug Dump to STDERR
-//     * @param str Lines to print
-//     */
-//    private void dumpLines(String str) {
-//          String[] lines = str.split("\r\n|\r|\n");
-//          for ( int i = 0; i<lines.length; i++ ) {
-//            System.err.println( i + ": " + lines[i] ) ;
-//          }
-//    }
+   /**
+     * Helper Debug Dump to STDERR
+     * @param str Lines to print
+     */
+    private void dumpLines(String str) {
+          String[] lines = str.split("\r\n|\r|\n");
+          for ( int i = 0; i<lines.length; i++ ) {
+            System.err.println( i + ": " + lines[i] ) ;
+          }
+    }
 
     /**
      * Helper:  Count lines in a String 
@@ -160,7 +160,7 @@ public class Frame implements IFrame
                 out += padlines ;
                 out +=  "===============\n" ;
                 out +=  "[A][B][C][D][E]\n" ;
-                //dumpLines( out ) ;
+                dumpLines( out ) ;
                 return out ;             
             }
 
@@ -219,7 +219,7 @@ public class Frame implements IFrame
                 String padlines = padLines( pad2 ) ;
                 out += padlines ;
                 out +=  "================================\n" ;
-                //dumpLines( out ) ;
+                dumpLines( out ) ;
                 return out;
             }
 

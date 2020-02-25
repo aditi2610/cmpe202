@@ -53,6 +53,8 @@ public class MyCards extends Screen {
 					app.setBalance((balance- Device.coffeeCharge));
 				}
 				break;
+			default:
+				break;
 			}
 			
 				

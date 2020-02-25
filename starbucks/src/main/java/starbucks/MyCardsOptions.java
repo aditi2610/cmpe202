@@ -33,10 +33,9 @@ public class MyCardsOptions extends Screen
     	case "3,7":
     		this.app.execute("MyCardMoreOptions");
     		break;
+    	default:
+    		break;
     	}
-//        if((x ==1 || x==2 || x==3) && y==7) {	  
-//        	this.app.execute("MyCardMoreOptions");
-//        }
         
      }
     /**
