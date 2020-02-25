@@ -314,16 +314,16 @@ public class Device implements IApp, IPinAuthObserver {
         	boolean invalid = psDisplay.contains("Invalid");
 
             String out = "" ;
-            out = "----------------\n" ;
+            out = "---------------\n" ;
             out += "   " + ps.name() + "  \n" ;
             if (invalid) {
-            	out += "----------------\n" ;
+            	out += "---------------\n" ;
             }
             else {
-                out += "----------------\n\n\n" ;            	
+                out += "---------------\n\n\n" ;            	
             }
             out += psDisplay;
-            out += "\n\n\n----------------\n" ;	
+            out += "\n\n\n---------------\n" ;	
             return out ;
         }
     }
