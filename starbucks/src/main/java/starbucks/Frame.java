@@ -2,6 +2,8 @@
 
 package starbucks ;
 
+import starbucks.Device.ORIENTATION_MODE;
+
 /**
  * Frame Class -- Container for Screens
  */
@@ -239,8 +241,12 @@ public class Frame implements IFrame
             public void selectE() {  }
        } ;     
 
-       if(currentStrategy == null)
-       		currentStrategy = portraitStrategy;
+       if(currentStrategy == null) {
+    	  if( Device.getInstance().getDeviceOrientation() == ORIENTATION_MODE.LANDSCAPE)
+    		  currentStrategy = landscapeStrategy;
+    	  else
+    		  currentStrategy = portraitStrategy;
+       }
     }
 
     /**
