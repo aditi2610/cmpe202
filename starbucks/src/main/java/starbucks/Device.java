@@ -148,7 +148,7 @@ public class Device implements IApp, IPinAuthObserver {
     public synchronized static Device getInstance() {
         if (theDevice == null ) {
             return getNewInstance( "1234" ) ;
-            //return getNewInstance("123456");
+            //return getNewInstance("000000");
         }
         else {
         	if(theDevice.getPin().length() ==0)
@@ -158,7 +158,9 @@ public class Device implements IApp, IPinAuthObserver {
         			theDevice.setPin("1234");
         		}else
         		{
-        			theDevice.setPin("123456");
+                    theDevice.setPin("123456");
+        			//theDevice.setPin("000000");
+        			//theDevice.device_orientation_state  = ORIENTATION_MODE.LANDSCAPE;
         		}
         	}
             return theDevice;
@@ -171,7 +173,7 @@ public class Device implements IApp, IPinAuthObserver {
      */
     public synchronized static Device getNewInstance() {
         return getNewInstance( "1234" ) ;
-    	//return getNewInstance("123456");
+    	//return getNewInstance("000000");
     }
     /**
      * 
@@ -249,6 +251,7 @@ public class Device implements IApp, IPinAuthObserver {
 
         // startup in portrait
         if (this.device_orientation_state == null) {
+        	System.err.println("Device had No Orientation hence assigning Portrait ");
             this.device_orientation_state = ORIENTATION_MODE.PORTRAIT ;
         }
     }
@@ -281,6 +284,9 @@ public class Device implements IApp, IPinAuthObserver {
      * @param y Y Coordinate
      */
     public void touch(int x, int y) {
+    	
+    	System.err.println("Device touch method  Orientation is:s" + Device.getInstance().getDeviceOrientation());
+    	
     	 System.err.println( "Device touched at    = " + x +  " " +y ) ;
         if ( authenticated )
             app.touch(x, y) ;

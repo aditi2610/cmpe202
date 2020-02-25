@@ -35,7 +35,7 @@ public class AppController implements IApp {
 	private StringBuilder cardNumber;
 	private StringBuilder cvv;
 
-    private static boolean focusCvv;
+    private boolean focusCvv;
 	
 
 	
