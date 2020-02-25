@@ -90,7 +90,7 @@ public class AddCard extends Screen
 			if(app.isFocusCvv()) {
 				setCvv(x, y);
 			}
-			else if(app.getCardNumber().length() <9) {
+			else if(app.getCardNumber().length() <=9) {
 				setCard(x, y);
 			}
 			break;
