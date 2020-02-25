@@ -51,10 +51,70 @@ public class Frame implements IFrame
 
 
 //
-   
-    
+   /**
+     * Helper Debug Dump to STDERR
+     * @param str Lines to print
+     */
+    private void dumpLines(String str) {
+          String[] lines = str.split("\r\n|\r|\n");
+          for ( int i = 0; i<lines.length; i++ ) {
+            System.err.println( i + ": " + lines[i] ) ;
+          }
+    }
 
-               
+    /**
+     * Helper:  Count lines in a String 
+     * @param  str Lines to Count
+     * @return     Number of Lines Counted
+     */
+    private int countLines(String str){
+
+        /*
+          // this approach doesn't work in cases: "\n\n"
+          String lines = str ;
+          String[] split = lines.split("\r\n|\r|\n") ;
+          return split.length ;
+        */
+
+        if (str == null || str.isEmpty()) {
+                return 0;
+            }
+
+        int lines = 0;
+        int pos = 0;
+        while ((pos = str.indexOf("\n", pos) + 1) != 0) {
+                lines++;
+        }
+
+        return lines ;
+    }
+
+    /** 
+     * Helper:  Pad lines for a Screen 
+     * @param  num Lines to Padd
+     * @return     Padded Lines
+     */
+    private String padLines(int num) {
+        StringBuffer lines = new StringBuffer() ;
+        for ( int i = 0; i<num; i++ ) {
+            System.err.print(".") ;
+            lines .append( "\n") ;
+        }
+        System.err.println("") ;
+        return lines.toString() ;
+    }
+    
+    /**
+     * Helper:  Pad Spaces for a Line
+     * @param  num Num Spaces to Pad
+     * @return     Padded Line
+     */
+    private String padSpaces(int num) {
+        StringBuffer spaces = new StringBuffer() ;
+        for ( int i = 0; i<num; i++ )
+            spaces .append( " " );           
+        return spaces.toString() ;     
+    }            
 
     /**
      * 
@@ -82,28 +142,28 @@ public class Frame implements IFrame
              */
             public String contents(IScreen s) 
             { 
-//                String out = "" ;
-//                out += "===============\n" ;
-//                int nameLen = s.name().length() ;
-//                if (nameLen < 14 ) {
-//                    int pad = (14 - nameLen) / 2 ;
-//                    out += padSpaces( pad ) ;
-//                }
-//                out += " " +s.name() + "\n" ;
-//                out += "===============\n" ;
+                String out = "" ;
+                out += "===============\n" ;
+                int nameLen = s.name().length() ;
+                if (nameLen < 14 ) {
+                    int pad = (14 - nameLen) / 2 ;
+                    out += padSpaces( pad ) ;
+                }
+                out += " " +s.name() + "\n" ;
+                out += "===============\n" ;
                 String screen = s.display();
-//                int cnt1 = countLines( screen ) ;
-//                int pad1 = (10 - cnt1) / 2;
-//                out += padLines( pad1 ) ;
-//                out += screen  ;
-//                int cnt2 = countLines( out ) ;
-//                int pad2 = 13 - cnt2 ;
-//                String padlines = padLines( pad2 ) ;
-//                out += padlines ;
-//                out +=  "===============\n" ;
-//                out +=  "[A][B][C][D][E]\n" ;
-//                dumpLines( out ) ;
-                return screen ;             
+                int cnt1 = countLines( screen ) ;
+                int pad1 = (10 - cnt1) / 2;
+                out += padLines( pad1 ) ;
+                out += screen  ;
+                int cnt2 = countLines( out ) ;
+                int pad2 = 13 - cnt2 ;
+                String padlines = padLines( pad2 ) ;
+                out += padlines ;
+                out +=  "===============\n" ;
+                out +=  "[A][B][C][D][E]\n" ;
+                dumpLines( out ) ;
+                return out ;             
             }
 
             /** Select Command A */
@@ -142,27 +202,27 @@ public class Frame implements IFrame
             public String contents(IScreen s) 
             { 
 			
-//            	String out = "" ; 
-//            	out += "================================\n" ;
-//            	int nameLen = s.name().length() ;
-//                if (nameLen < 31  ) {
-//                    int pad = (31 - nameLen) / 2 ;
-//                    out += padSpaces( pad ) ;
-//                }
-//                out +=  " " +s.name() + "\n" ;
-//                out += "================================\n" ;
+            	String out = "" ; 
+            	out += "================================\n" ;
+            	int nameLen = s.name().length() ;
+                if (nameLen < 31  ) {
+                    int pad = (31 - nameLen) / 2 ;
+                    out += padSpaces( pad ) ;
+                }
+                out +=  " " +s.name() + "\n" ;
+                out += "================================\n" ;
                 String screen = s.display() ;
-//                int cnt1 = countLines( screen ) ;
-//                int pad1 = (6 - cnt1) / 2;
-//                out += padLines( pad1 ) ;
-//                out += screen  ;
-//                int cnt2 = countLines( out ) ;
-//                int pad2 = 9 - cnt2 ;
-//                String padlines = padLines( pad2 ) ;
-//                out += padlines ;
-//                out +=  "================================\n" ;
-//                dumpLines( out ) ;
-                return screen;
+                int cnt1 = countLines( screen ) ;
+                int pad1 = (6 - cnt1) / 2;
+                out += padLines( pad1 ) ;
+                out += screen  ;
+                int cnt2 = countLines( out ) ;
+                int pad2 = 9 - cnt2 ;
+                String padlines = padLines( pad2 ) ;
+                out += padlines ;
+                out +=  "================================\n" ;
+                dumpLines( out ) ;
+                return out;
             }
 
              /** Don't Respond in Landscaope Mode */

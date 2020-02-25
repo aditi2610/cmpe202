@@ -53,8 +53,6 @@ public class MyCardsOptions extends Screen
         value .append("More Options\n");
         value .append("Cancel");  
         value .append("\n");
-        return value.toString() ;
-        
-        
+        return value.toString() ; 
     }
 }
