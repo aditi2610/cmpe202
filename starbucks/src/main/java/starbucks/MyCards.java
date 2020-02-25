@@ -38,14 +38,23 @@ public class MyCards extends Screen {
 	 * @param y Y Coord
 	 */
 	public void touch(int x, int y) {
+		String s = x+ ","+y;
 		if(d.getDeviceOrientation() == ORIENTATION_MODE.PORTRAIT) {
-			if (x == 3 && y == 3) {
-				this.app.execute("A1");        	
-			}
-
-			if (x == 2 && y == 4) {
+			switch(s) {
+			case "3,3":
+				this.app.execute("A1");       
+				break;
+			case "2,4":
 				this.app.execute("MyCardOptions");
+				break;
 			}
+//			if (x == 3 && y == 3) {
+//				this.app.execute("A1");        	
+//			}
+//
+//			if (x == 2 && y == 4) {
+//				this.app.execute("MyCardOptions");
+//			}
 		}
 
 	}

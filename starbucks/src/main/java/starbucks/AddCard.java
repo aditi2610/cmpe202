@@ -69,24 +69,45 @@ public class AddCard extends Screen
 	 * @param y Y Coord
 	 */
 	public void touch(int x, int y) {
-		if(y == 2 && (x == 1 || x==2 || x==3)) {
+		String s = x+ ","+y;
+		switch(s) {
+		case "1,2":
+		case "2,2":
+		case "3,2":
 			this.focusCVV = false;
-
-		} 
-		else if(x==2 && y==3) {
+			break;
+		case "2,3":
 			this.focusCVV = true;
-		}else {	
+			break;
+		default:
 			if(!((x > 0 && x < 4) && (y > 4  && y < 9))) {
 				return;
 			}
-
 			if(this.focusCVV) {
 				setCvv(x, y);
 			}
 			else if(app.getCardNumber().length() <9) {
 				setCard(x, y);
 			}
+			break;
 		}
+//		if(y == 2 && (x == 1 || x==2 || x==3)) {
+//			this.focusCVV = false;
+//		} 
+//		else if(x==2 && y==3) {
+//			this.focusCVV = true;
+//		}else {	
+//			if(!((x > 0 && x < 4) && (y > 4  && y < 9))) {
+//				return;
+//			}
+//
+//			if(this.focusCVV) {
+//				setCvv(x, y);
+//			}
+//			else if(app.getCardNumber().length() <9) {
+//				setCard(x, y);
+//			}
+//		}
 
 	}
 

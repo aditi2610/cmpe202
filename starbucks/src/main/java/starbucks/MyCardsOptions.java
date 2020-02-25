@@ -26,9 +26,17 @@ public class MyCardsOptions extends Screen
    * @param y Y Coord
    */
     public void touch(int x, int y) {
-        if((x ==1 || x==2 || x==3) && y==7) {	  
-        	this.app.execute("MyCardMoreOptions");
-        }
+    	String s = x+","+y;
+    	switch(s) {
+    	case "1,7":
+    	case "2,7":
+    	case "3,7":
+    		this.app.execute("MyCardMoreOptions");
+    		break;
+    	}
+//        if((x ==1 || x==2 || x==3) && y==7) {	  
+//        	this.app.execute("MyCardMoreOptions");
+//        }
         
      }
     /**

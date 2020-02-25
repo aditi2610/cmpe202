@@ -265,7 +265,7 @@ public class Device implements IApp, IPinAuthObserver {
      * @param y Y Coordinate
      */
     public void touch(int x, int y) {
-    	// System.err.println( "Device touched at    = " + x +  " " +y ) ;
+    	 System.err.println( "Device touched at    = " + x +  " " +y ) ;
         if ( authenticated )
             app.touch(x, y) ;
         else
@@ -322,7 +322,7 @@ public class Device implements IApp, IPinAuthObserver {
      * @param c Menu Option (A, B, C, E, or E)
      */
     public void execute( String c ) {
-    	// System.err.println( "Device executed at    = " + c) ;
+    	 System.err.println( "Device executed at    = " + c) ;
         if ( authenticated )
             app.execute( c ) ;
     }
