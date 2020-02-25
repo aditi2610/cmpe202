@@ -89,10 +89,6 @@ public class AddCard extends Screen
 			else if(app.getCardNumber().length() <9) {
 				setCard(x, y);
 			}
-			
-			if(app.getCardNumber().length() ==9 && app.getCvv().length() == 3) {
-				app.setBalance(20.00);
-			}
 			break;
 		}
 		
