@@ -29,7 +29,7 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
     		countPinDigits = 0;
     	}
     	
-        if ( y > 4 && x < 4 )
+        if (y > 4 && y <9 && x < 4 && x >0 )
         {
             System.err.println( "KeyPad Touched at (" + x + ", " + y + "), countPinDigits: " + countPinDigits) ;
             this.lastKey = getKey( x, y ) ;
