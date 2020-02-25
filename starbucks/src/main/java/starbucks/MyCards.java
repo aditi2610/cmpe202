@@ -47,14 +47,16 @@ public class MyCards extends Screen {
 			case "2,4":
 				this.app.execute("MyCardOptions");
 				break;
+			case "2,2":
+				double balance = Double.parseDouble(app.getBalance());
+				if(balance > Device.coffeeCharge) {
+					app.setBalance((balance- Device.coffeeCharge));
+				}
+				break;
 			}
-//			if (x == 3 && y == 3) {
-//				this.app.execute("A1");        	
-//			}
-//
-//			if (x == 2 && y == 4) {
-//				this.app.execute("MyCardOptions");
-//			}
+			
+				
+
 		}
 
 	}

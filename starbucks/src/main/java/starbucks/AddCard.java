@@ -10,13 +10,13 @@ public class AddCard extends Screen
 	Device d;
 	IApp app;
 	KeyPad kp;
-	boolean focusCVV = false;
 
 	/**
 	 * Dafault constructor
 	 */
 	public AddCard()
 	{
+		
 		d = Device.getInstance();
 		app = (IApp)d;
 		this.kp= new KeyPad();
@@ -74,40 +74,28 @@ public class AddCard extends Screen
 		case "1,2":
 		case "2,2":
 		case "3,2":
-			this.focusCVV = false;
+			app.setFocusCvv(false);
 			break;
 		case "2,3":
-			this.focusCVV = true;
+			app.setFocusCvv(true);
 			break;
 		default:
 			if(!((x > 0 && x < 4) && (y > 4  && y < 9))) {
 				return;
 			}
-			if(this.focusCVV) {
+			if(app.isFocusCvv()) {
 				setCvv(x, y);
 			}
 			else if(app.getCardNumber().length() <9) {
 				setCard(x, y);
 			}
+			
+			if(app.getCardNumber().length() ==9 && app.getCvv().length() == 3) {
+				app.setBalance(20.00);
+			}
 			break;
 		}
-//		if(y == 2 && (x == 1 || x==2 || x==3)) {
-//			this.focusCVV = false;
-//		} 
-//		else if(x==2 && y==3) {
-//			this.focusCVV = true;
-//		}else {	
-//			if(!((x > 0 && x < 4) && (y > 4  && y < 9))) {
-//				return;
-//			}
-//
-//			if(this.focusCVV) {
-//				setCvv(x, y);
-//			}
-//			else if(app.getCardNumber().length() <9) {
-//				setCard(x, y);
-//			}
-//		}
+		
 
 	}
 

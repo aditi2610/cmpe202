@@ -32,10 +32,13 @@ public class AppController implements IApp {
 	private IMenuCommand displayAddCard;
 	
     private Double balance;
-	private  StringBuilder cardNumber;
-	private  StringBuilder cvv;
+	private StringBuilder cardNumber;
+	private StringBuilder cvv;
+
+    private static boolean focusCvv;
 	
 
+	
 	public AppController() {
 		mycards = new MyCards();
 		frame = new Frame(mycards);
@@ -357,5 +360,22 @@ public class AppController implements IApp {
 	public String getCvv() {
     	return this.cvv.toString();
 	}
+	
+	/**
+ 	 * return focus defualt is false
+ 	 * @return if the focus is on Cvv or not 
+ 	 */
+	public boolean isFocusCvv() {
+		return focusCvv;
+	}
+
+	/**
+ 	 * 
+ 	 * @param focusCvv sets the focus
+ 	 */
+	public void setFocusCvv(boolean focusCvv) {
+		this.focusCvv = focusCvv;
+	}
+
 	
 }

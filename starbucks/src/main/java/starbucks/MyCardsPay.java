@@ -10,7 +10,7 @@ public class MyCardsPay extends Screen
 	Device d;
 	IApp app;
 
-	private static final double coffeeCharge = 1.50;
+	
 	/**
 	 * Default constructor for the class
 	 */
@@ -28,8 +28,8 @@ public class MyCardsPay extends Screen
 	}
 	/**
      * Define what happens when you touch this screen at given coordinates
-     * @param x X Coord on screen
-     * @param y Y coord on screen
+     * @param x X coord
+     * @param y Y coord
      */
 	public void touch(int x, int y) {
 		if(d.getDeviceOrientation() == ORIENTATION_MODE.PORTRAIT) {
@@ -39,8 +39,8 @@ public class MyCardsPay extends Screen
 
 			if( y==2 && (x==2 || x==3)) {
 				double balance = Double.parseDouble(app.getBalance());
-				if(balance > coffeeCharge) {
-					app.setBalance((balance- coffeeCharge));
+				if(balance > Device.coffeeCharge) {
+					app.setBalance((balance- Device.coffeeCharge));
 				}
 			}
 		}

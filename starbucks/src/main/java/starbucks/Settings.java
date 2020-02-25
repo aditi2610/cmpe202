@@ -31,6 +31,9 @@ public class Settings extends Screen
 		case "1,1":
 		case "2,1":
 		case "3,1":
+			app.setCardNumber("");
+			app.setCvv("");
+			app.setFocusCvv(false);
 			this.app.execute("AddCard");
 			break;
 		}

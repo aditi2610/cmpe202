@@ -94,6 +94,18 @@ public interface IApp
       * @param s Sets Cvv
       */
  	void setCvv(String s);
+ 	
+ 	/**
+ 	 * return focus defualt is false
+ 	 * @return if the focus is on Cvv or not 
+ 	 */
+ 	public boolean isFocusCvv();
+
+ 	/**
+ 	 * 
+ 	 * @param focusCvv sets the focus
+ 	 */
+	public void setFocusCvv(boolean focusCvv);
 
 }
 

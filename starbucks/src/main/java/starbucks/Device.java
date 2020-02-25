@@ -27,8 +27,10 @@ public class Device implements IApp, IPinAuthObserver {
     public static final int portrait_screen_length = 10 ;
     public static final int landscape_screen_width = 32 ;
     public static final int landscape_screen_length = 6 ;
+    public static final double coffeeCharge = 1.50;
     
-    /**
+    
+	/**
      * 
      * @return Enum as Portrait or Landscape
      *
@@ -395,6 +397,24 @@ public class Device implements IApp, IPinAuthObserver {
 	@Override
 	public void setCvv(String s) {
 		this.app.setCvv(s);
+		
+	}
+	/**
+ 	 * return focus defualt is false
+ 	 * @return if the focus is on Cvv or not 
+ 	 */
+	@Override
+	public boolean isFocusCvv() {
+		return app.isFocusCvv();
+	}
+	
+	/**
+ 	 * 
+ 	 * @param focusCvv sets the focus
+ 	 */
+	@Override
+	public void setFocusCvv(boolean focusCvv) {
+		app.setFocusCvv(focusCvv);
 		
 	}
 
