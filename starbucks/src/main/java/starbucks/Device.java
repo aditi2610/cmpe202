@@ -53,7 +53,7 @@ public class Device implements IApp, IPinAuthObserver {
      * Sets Device to portraitOrientation
      */
     public void setPortraitOrientation() {
-    	System.err.println( "Setting Orientation to Portrait") ;
+    	 System.err.println( "Setting Orientation to Portrait") ;
         this.device_orientation_state = ORIENTATION_MODE.PORTRAIT ;
         app.portrait() ;
     }
@@ -62,7 +62,7 @@ public class Device implements IApp, IPinAuthObserver {
      * Sets Landscape to portraitOrientation
      */
     public void setLandscapeOrientation() {
-    	System.err.println( "Setting Orientation to Landscape") ;
+    	 System.err.println( "Setting Orientation to Landscape") ;
         this.device_orientation_state = ORIENTATION_MODE.LANDSCAPE ;
         app.landscape();
     }
@@ -263,7 +263,9 @@ public class Device implements IApp, IPinAuthObserver {
     */
     public void landscape() {
     	System.err.println("Landscape was called");
-        setLandscapeOrientation();
+        if ( authenticated ) {
+            setLandscapeOrientation();
+        }
     }
 
     /**
@@ -271,7 +273,9 @@ public class Device implements IApp, IPinAuthObserver {
      */
     public void portrait() {
     	System.err.println("Portrait was called");
-        setPortraitOrientation();
+        if ( authenticated ) {
+            setPortraitOrientation();
+        }
     }
 
     /**
