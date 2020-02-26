@@ -2,8 +2,6 @@
 
 package starbucks;
 
-import starbucks.Device.ORIENTATION_MODE;
-
 /** My Card Options Screen */
 public class MyCardsOptions extends Screen
 {
@@ -18,7 +16,16 @@ public class MyCardsOptions extends Screen
 	 * @return name to the screen
 	 */
     public String name() {
-        return "My Cards" ; 
+//        return "My Cards" ;
+		StringBuilder sb = new StringBuilder();
+		String name = "My Cards";
+		double width = 15.0d;
+		int padding = (int) Math.ceil((width - (double)name.length())/2.0d);
+		for(int i = 0; i < padding; i++) {
+			sb.append(" ");
+		}
+		sb.append(name);
+        return sb.toString();
     }
   /**
    * executes the touch event

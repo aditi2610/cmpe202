@@ -144,12 +144,13 @@ public class Frame implements IFrame
             { 
                 String out = "" ;
                 out += "===============\n" ;
-                int nameLen = s.name().length() ;
-                if (nameLen < 14 ) {
-                    int pad = (14 - nameLen) / 2 ;
-                    out += padSpaces( pad ) ;
-                }
-                out += " " +s.name() + "\n" ;
+//                int nameLen = s.name().length() ;
+                out += s.name() + "\n" ;
+//                if (nameLen < 14 ) {
+//                    int pad = (14 - nameLen) / 2 ;
+//                    out += padSpaces( pad ) ;
+//                }
+//                out += " " +s.name() + "\n" ;
                 out += "===============\n" ;
                 String screen = s.display();
                 int cnt1 = countLines( screen ) ;
@@ -204,12 +205,13 @@ public class Frame implements IFrame
 			
             	String out = "" ; 
             	out += "================================\n" ;
-            	int nameLen = s.name().length() ;
-                if (nameLen < 31  ) {
-                    int pad = (31 - nameLen) / 2 ;
-                    out += padSpaces( pad ) ;
-                }
-                out +=  " " +s.name() + "\n" ;
+                out += s.name() + "\n" ;
+//            	int nameLen = s.name().length() ;
+//                if (nameLen < 31) {
+//                    int pad = (31 - nameLen) / 2 ;
+//                    out += padSpaces( pad ) ;
+//                }
+//                out +=  " " +s.name() + "\n" ;
                 out += "================================\n" ;
                 String screen = s.display() ;
                 int cnt1 = countLines( screen ) ;

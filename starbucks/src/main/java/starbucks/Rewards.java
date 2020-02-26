@@ -15,7 +15,17 @@ public class Rewards extends Screen
      */
     public String name() 
     {
-    	return "Rewards";
+		StringBuilder sb = new StringBuilder();
+		String name = "Rewards";
+		double width = 15.0d;
+		int padding = (int) Math.ceil((width - (double)name.length())/2.0d);
+		for(int i = 0; i < padding; i++) {
+			sb.append(" ");
+		}
+		sb.append(name);
+        return sb.toString();
+
+//    	return "Rewards";
     }	
     
     /**

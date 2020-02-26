@@ -24,7 +24,16 @@ public class MyCardsPay extends Screen
 	 * @return name to the screen
 	 */
 	public String name() {
-		return "My Cards" ; 
+		StringBuilder sb = new StringBuilder();
+		String name = "My Cards";
+		double width = Device.getInstance().getDeviceOrientation() == ORIENTATION_MODE.LANDSCAPE ? 32.0d : 15.0d;
+		int padding = (int) Math.ceil((width - (double)name.length())/2.0d);
+		for(int i = 0; i < padding; i++) {
+			sb.append(" ");
+		}
+		sb.append(name);
+        return sb.toString();
+//		return "My Cards" ; 
 	}
 	/**
      * Define what happens when you touch this screen at given coordinates

@@ -17,7 +17,17 @@ public class Settings extends Screen
 	 * @return Gives the name of the screen
 	 */
 	public String name() {
-		return "Settings" ; 
+		StringBuilder sb = new StringBuilder();
+		String name = "Settings";
+		double width = 15.0d;
+		int padding = (int) Math.ceil((width - (double)name.length())/2.0d);
+		for(int i = 0; i < padding; i++) {
+			sb.append(" ");
+		}
+		sb.append(name);
+        return sb.toString();
+
+//		return "Settings" ; 
 	} 
 
 	/**
