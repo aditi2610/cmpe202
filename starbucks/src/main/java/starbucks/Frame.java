@@ -302,7 +302,9 @@ public class Frame implements IFrame
      * @return Frame + Screen Contents
      */
     public String contents() 
-    { 
+    {
+    	
+    	currentStrategy = Device.getInstance().getDeviceOrientation().equals(ORIENTATION_MODE.LANDSCAPE) ? landscapeStrategy : portraitStrategy;
         if ( current != null )
         {
         	if(!(current.getClass().equals(MyCards.class) || (current.getClass().equals(MyCardsPay.class)))) {
