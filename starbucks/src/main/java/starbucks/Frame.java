@@ -48,9 +48,6 @@ public class Frame implements IFrame
     public void nextScreen() {
         current.next();
     }
-
-
-//
    /**
      * Helper Debug Dump to STDERR
      * @param str Lines to print
@@ -69,17 +66,13 @@ public class Frame implements IFrame
     public Frame(IScreen initial)
     {
         current = initial ;
-
         portraitStrategy = new IOrientationStrategy() 
         {
             /**
              * Display Screen Contents
              * @param s Reference to Screen
              */
-            public void display(IScreen s)
-            {
-                System.out.println( contents(s) ) ;
-            }         
+            public void display(IScreen s){System.out.println( contents(s) ) ;}         
 
                 /**
              * Return String / Lines for Frame and Screen
@@ -87,8 +80,7 @@ public class Frame implements IFrame
              * @return   [description]
              */
             public String contents(IScreen s) 
-            { 
-                String out = "" ;
+            { String out = "" ;
                 out += "===============\n" ;
                 out += s.name() + "\n" ;
                 out += "===============\n" ;
@@ -96,25 +88,18 @@ public class Frame implements IFrame
                 out +=  "===============\n" ;
                 out +=  "[A][B][C][D][E]\n" ;
                 dumpLines( out ) ;
-                return out ;             
-            }
+                return out ;}
 
             /** Select Command A */
             public void selectA() { menuA.invoke() ; }
-
             /** Select Command B */
             public void selectB() { menuB.invoke() ; }
-
             /** Select Command C */
             public void selectC() { menuC.invoke() ; }
-
             /** Select Command D */
             public void selectD() { menuD.invoke() ; }
-
             /** Select Command E */
-            public void selectE() { menuE.invoke(); }
-
-        } ;
+            public void selectE() { menuE.invoke(); }} ;
 
         landscapeStrategy = new IOrientationStrategy() 
         {
@@ -122,11 +107,7 @@ public class Frame implements IFrame
              * Display Screen Contents
              * @param s Reference to Screen
              */
-            public void display(IScreen s)
-            {
-                System.out.println( contents(s) ) ;
-            }         
-
+            public void display(IScreen s){System.out.println( contents(s) ) ;}         
            /**
              * Display Contents of Frame + Screen 
              * @param  s Screen to Display
@@ -134,7 +115,6 @@ public class Frame implements IFrame
              */
             public String contents(IScreen s) 
             { 
-			
             	String out = "" ; 
             	out += "================================\n" ;
                 out += s.name() + "\n" ;
@@ -142,24 +122,18 @@ public class Frame implements IFrame
                 out+= s.display();
                 out +=  "================================\n" ;
                 dumpLines( out ) ;
-                return out;
-            }
+                return out;            }
 
              /** Don't Respond in Landscaope Mode */
             public void selectA() {  }
-
             /** Don't Respond in Landscaope Mode */
             public void selectB() {  }
-
             /** Don't Respond in Landscaope Mode */
             public void selectC() {  }
-
             /** Don't Respond in Landscaope Mode */
             public void selectD() {  }
-
             /** Don't Respond in Landscaope Mode */
-            public void selectE() {  }
-       } ;     
+            public void selectE() {  }} ;     
 
        if(currentStrategy == null) {
     	  if( Device.getInstance().getDeviceOrientation() == ORIENTATION_MODE.LANDSCAPE)
@@ -214,7 +188,6 @@ public class Frame implements IFrame
     {
         if ( current != null )
             current.touch(x,y) ;
-
     }
 
     /**
@@ -226,15 +199,11 @@ public class Frame implements IFrame
         if ( current != null )
         {
         	if(!(current.getClass().equals(MyCards.class) || (current.getClass().equals(MyCardsPay.class)))) {
-        		currentStrategy = portraitStrategy;
-
-        	}
+        		currentStrategy = portraitStrategy;}
             return currentStrategy.contents( current ) ; 
         } 
         else 
-        {
-            return "" ;
-        }
+        {return "" ;}
     }
 
     /** Display Contents of Frame + Screen */

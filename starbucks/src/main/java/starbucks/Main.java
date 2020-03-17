@@ -26,7 +26,7 @@ final class Main {
 	 * @throws IOException 
 	*
 	 */
-	public static void main(final String[] args) throws IOException {
+	public static void main(final String[] args) {
 		for(String v : args) {
 			System.err.print("Args: " + v + " ");
 		}
@@ -37,9 +37,9 @@ final class Main {
 		String msg = "";
 		for (;;) {
 			flushAndPrintScreenContents(app, msg);
-			//String ch = c.readLine(); // get user command
-			BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-			String ch = bf.readLine();
+			String ch = c.readLine(); // get user command
+//			BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+//			String ch = bf.readLine();
 			String cmd = ch.toLowerCase(); // convert to lower case
 			cmd = cmd.replaceAll("\\s", ""); // remove all whitespaces
 
@@ -90,11 +90,6 @@ final class Main {
 			app.touch(3, 5); // 3
 			app.touch(1, 6); // 4
 		} 
-//		else if (cmd.equals("a") || cmd.equals("b") || cmd.equals("c") || cmd.equals("d") || cmd.equals("e")) {
-//			String selection = cmd.toUpperCase();
-//			msg = "selected: " + selection;
-//			app.execute(selection);
-//		}
 		else {
 			switch(cmd) {
 			case "a":

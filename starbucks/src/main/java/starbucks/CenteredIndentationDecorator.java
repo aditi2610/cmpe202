@@ -1,8 +1,12 @@
 package starbucks;
 
-
+/** Centered Indentation for Decorator**/
 public class CenteredIndentationDecorator extends IndentationDecorator {
-
+	 
+	/**
+     * Return Display Component Contents
+     * @return Display Component Contents
+     */
 	@Override
 	public String display() {
 		

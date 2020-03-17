@@ -95,6 +95,7 @@ public class AppController implements IApp {
 	 * Set Receivers for Screens 
 	 */
 	private void setReceiversForScreens() {
+		
 		displayMyCardsPay.setReceiver(
 				new IMenuReceiver() {
 					/** Command Action */
@@ -145,37 +146,24 @@ public class AppController implements IApp {
 					/** Command Action */
 					public void doAction() {
 						frame.setCurrentScreen(mycards);
-					}
-				}
-		);
+					}});
 		displayPayments.setReceiver( new IMenuReceiver() {
 					/** Command Action */
 					public void doAction() {
 						frame.setCurrentScreen(payments);
-					}
-				}
-		);
+					}});
 		displayRewards.setReceiver( new IMenuReceiver() {
 					/** Command Action */
 					public void doAction() {
-						frame.setCurrentScreen(rewards);
-					}
-				}
-		);
+						frame.setCurrentScreen(rewards);}});
 		doStore.setReceiver( new IMenuReceiver() {
 					/** Command Action */
 					public void doAction() {
-						frame.setCurrentScreen(store);
-					}
-				}
-		);
+						frame.setCurrentScreen(store);}});
 		displaySettings.setReceiver( new IMenuReceiver() {
 					/** Command Action */
 					public void doAction() {
-						frame.setCurrentScreen(settings);
-					}
-				}
-		);
+						frame.setCurrentScreen(settings);}});
 	}
 	/**
 	 * Set Menus for the screen
@@ -293,6 +281,7 @@ public class AppController implements IApp {
 	 * @return Screen Name
 	 */
 	public String screen() {
+		
 		return frame.screen();
 	}
 

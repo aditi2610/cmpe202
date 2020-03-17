@@ -1,10 +1,17 @@
 package starbucks;
 
+/**
+ * This the abstract class for Left and Center alignment!
+ */
 public abstract class IndentationDecorator implements IDisplayComponent {
 	String screenContents;
 	int width = Device.portrait_screen_width-1;
 	int length = Device.portrait_screen_length;
-	
+	 
+	/**
+     * Return Display Component Contents
+     * @return Display Component Contents
+     */
 	public abstract String display(); 
 	
 	public void setScreenContents(String s) {
@@ -30,7 +37,10 @@ public abstract class IndentationDecorator implements IDisplayComponent {
 			spaces .append(" ") ;           
 		return spaces.toString() ;     
 	} 
-	
+	/**
+     * Add A Child Component
+     * @param c Child Component
+     */
 	@Override
 	public void addSubComponent(IDisplayComponent c) {
 		
@@ -77,6 +87,11 @@ public abstract class IndentationDecorator implements IDisplayComponent {
         return lines.toString() ;
     }
     
+    /**
+     * it adds line pads for the screen
+     * @param value that needs to be 
+     * @return    Screen
+     */
     public String displayScreen(StringBuffer value ) {
     	StringBuffer screen= new StringBuffer();
 		int countScreenContentLines = this.countLines(value ) ;
