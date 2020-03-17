@@ -2,6 +2,7 @@
 
 package starbucks;
 
+
 /**
  * Add New Card Screen
  */
@@ -10,16 +11,20 @@ public class AddCard extends Screen
 	Device d;
 	IApp app;
 	KeyPad kp;
+	Spacer sp;
 
 	/**
 	 * Dafault constructor
 	 */
 	public AddCard()
-	{
-		
+	{		
 		d = Device.getInstance();
 		app = (IApp)d;
 		this.kp= new KeyPad();
+		this.sp = new Spacer();
+		addSubComponent(kp);
+		addSubComponent(sp);
+		this.decorator = new CenteredIndentationDecorator();
 	}
 	/**
 	 * @return the name of the Screen
@@ -41,15 +46,16 @@ public class AddCard extends Screen
 	 * @return screen content
 	 */
 	public String display() {
-		StringBuffer out = new StringBuffer(super.display());
 		StringBuffer value = new StringBuffer();
-		value.append("["+app.getCardNumber()+ "]\n");
-		value.append("["+app.getCvv()+"]\n");
-		out.append(super.formatSpacing(value.toString()));
-		out .append("\n");
-		out.append(kp.display());
+		StringBuffer out = new StringBuffer();
+		out.append("["+app.getCardNumber()+ "]\n");
+		out.append("["+app.getCvv()+"]\n");
 		out.append("\n");
-		return out.toString();
+		out.append(super.display());
+		
+		this.decorator.setScreenContents(out.toString());		
+		value.append(this.decorator.display());
+		return this.decorator.displayScreen(value);
 	}
 	/**
 	 * prev method executes the Settings screen
@@ -67,7 +73,7 @@ public class AddCard extends Screen
 	 */
 	public void next()  {
 		if(app.getCardNumber().length() == 9 && app.getCvv().length() == 3) {
-			this.app.execute("A");
+			this.app.execute("AddCard");
 			app.setBalance(20.00);
 		}else {
 			app.setCardNumber("");

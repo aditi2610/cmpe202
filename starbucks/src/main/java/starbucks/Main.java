@@ -2,8 +2,10 @@
 
 package starbucks;
 
+import java.io.BufferedReader;
 import java.io.Console;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * Main Entry Point.
@@ -21,9 +23,10 @@ final class Main {
 	/**
 	 * Main App Entry Point.
 	 * @param args No args expected.
+	 * @throws IOException 
 	*
 	 */
-	public static void main(final String[] args) {
+	public static void main(final String[] args) throws IOException {
 		for(String v : args) {
 			System.err.print("Args: " + v + " ");
 		}
@@ -34,7 +37,9 @@ final class Main {
 		String msg = "";
 		for (;;) {
 			flushAndPrintScreenContents(app, msg);
-			String ch = c.readLine(); // get user command
+			//String ch = c.readLine(); // get user command
+			BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+			String ch = bf.readLine();
 			String cmd = ch.toLowerCase(); // convert to lower case
 			cmd = cmd.replaceAll("\\s", ""); // remove all whitespaces
 
@@ -69,11 +74,7 @@ final class Main {
 	private static String executeCmd(IApp app, String msg, String cmd) {
 		if (cmd.startsWith("touch")) {
 			msg = executeTouch(app, cmd);
-		} else if (cmd.equals("a") || cmd.equals("b") || cmd.equals("c") || cmd.equals("d") || cmd.equals("e")) {
-			String selection = cmd.toUpperCase();
-			msg = "selected: " + selection;
-			app.execute(selection);
-		} else if (cmd.startsWith("prev")) {
+		}  else if (cmd.startsWith("prev")) {
 			msg = "cmd: previous";
 			app.prev();
 		} else if (cmd.startsWith("next")) {
@@ -88,8 +89,27 @@ final class Main {
 			app.touch(2, 5); // 2
 			app.touch(3, 5); // 3
 			app.touch(1, 6); // 4
-		} else {
-			msg = "";
+		} 
+//		else if (cmd.equals("a") || cmd.equals("b") || cmd.equals("c") || cmd.equals("d") || cmd.equals("e")) {
+//			String selection = cmd.toUpperCase();
+//			msg = "selected: " + selection;
+//			app.execute(selection);
+//		}
+		else {
+			switch(cmd) {
+			case "a":
+			case "b":
+			case "c":
+			case "d":
+			case "e":
+				String selection = cmd.toUpperCase();
+				msg = "selected: " + selection;
+				app.execute(selection);
+				break;
+			default:
+				msg= " ";
+			}
+				
 		}
 		return msg;
 	}

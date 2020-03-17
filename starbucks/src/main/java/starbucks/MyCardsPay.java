@@ -9,7 +9,6 @@ public class MyCardsPay extends Screen
 {
 	Device d;
 	IApp app;
-
 	
 	/**
 	 * Default constructor for the class
@@ -18,6 +17,7 @@ public class MyCardsPay extends Screen
 	{
 		this.d = Device.getInstance();
 		this.app = (IApp)d;
+		decorator = new CenteredIndentationDecorator();
 	}
 	/**
 	 * 
@@ -60,17 +60,27 @@ public class MyCardsPay extends Screen
 	 * @return content of the screen
 	 */
 	public String display() {
-		StringBuffer out = new StringBuffer(super.display());
-		StringBuffer value = new StringBuffer("");
+		StringBuffer value = new StringBuffer(super.display());
+		StringBuffer out = new StringBuffer("");
 		if(app.getCardNumber().length() ==0)
-			value .append("[000000000]\n");
+			out .append("[000000000]\n");
 		else
-			value.append("[" +app.getCardNumber()+ "]\n");
-		value .append("\n");
-		value .append("\n");
-		value.append("Scan Now");
-		out.append(super.formatSpacingLandscapeSupported(value.toString()));
-		return out.toString();
+			out.append("[" +app.getCardNumber()+ "]\n");
+		out .append("\n");
+		out .append("\n");
+		out.append("Scan Now");
+		
+		this.decorator.setScreenContents(out.toString());
+		if(d.getDeviceOrientation() == ORIENTATION_MODE.LANDSCAPE) {
+			this.decorator.setWidth(Device.landscape_screen_width-1);
+			this.decorator.setLength(Device.landscape_screen_length);
+		}else if(d.getDeviceOrientation() == ORIENTATION_MODE.PORTRAIT) {
+			this.decorator.setWidth(Device.portrait_screen_width-1);
+			this.decorator.setLength(Device.portrait_screen_length);
+		}
+		value.append(this.decorator.display());
+		return this.decorator.displayScreen(value);
+		//return value.toString();
 	}
 
 

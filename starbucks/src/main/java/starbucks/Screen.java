@@ -4,8 +4,6 @@ package starbucks ;
 
 import java.util.ArrayList;
 
-import starbucks.Device.ORIENTATION_MODE;
-
 /**
  * Base Class for Screens.
  * 
@@ -15,18 +13,18 @@ import starbucks.Device.ORIENTATION_MODE;
  * 
  */
 public class Screen implements IScreen, IDisplayComponent
-{
+{	
+	IndentationDecorator decorator;
 	/** Display Components */
 	private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
 
 	/** Front of Event Chain */
 	private ITouchEventHandler chain ;
-	private Device d;
 
 	/** Constructor */
 	public Screen()
 	{
-		d = Device.getInstance();
+	
 	}
 
 	/**
@@ -111,64 +109,64 @@ public class Screen implements IScreen, IDisplayComponent
 	 * @param str Takes the string input.. the contents of the screen
 	 * @return a String for classes which supports Portrait view
 	 */
-	public String formatSpacing(String str){
-		StringBuffer value= new StringBuffer("");
-		int width =14;
-		if (str == null || str.length()==0) {
-			return "";
-		}
-		String lines[] = str.split("\\r?\\n");
-		for(String line: lines) {
-			if (line == "\n")
-				value.append("\n");
-			else {
-				int w = line.length();
-				int space =(width-w)/2;
-				value.append(padSpaces(space+1));
-				value.append(line);
-				value.append("\n");
-			}
-		}
-		return value.toString() ;
-	}
+//	public String formatSpacing(String str){
+//		StringBuffer value= new StringBuffer("");
+//		int width =14;
+//		if (str == null || str.length()==0) {
+//			return "";
+//		}
+//		String lines[] = str.split("\\r?\\n");
+//		for(String line: lines) {
+//			if (line == "\n")
+//				value.append("\n");
+//			else {
+//				int w = line.length();
+//				int space =(width-w)/2;
+//				value.append(padSpaces(space+1));
+//				value.append(line);
+//				value.append("\n");
+//			}
+//		}
+//		return value.toString() ;
+//	}
 	
 	/**
 	 * 
 	 * @param str Takes the string input.. the contents of the screen
 	 * @return a String for classes which supports landscape view
 	 */
-	public String formatSpacingLandscapeSupported(String str){
-		StringBuffer value= new StringBuffer();
-		int width =14;
-		if(d.getDeviceOrientation() == ORIENTATION_MODE.LANDSCAPE)
-		 width = 31;
-		if (str == null || str.isEmpty()) {
-			return "";
-		}
-		String lines[] = str.split("\\r?\\n");
-		for(String line: lines) {
-			if (line == "\n")
-				value.append("\n");
-			else {
-				int w = line.length();
-				int space = (width-w)/2;
-				value.append(padSpaces(space+1));
-				value.append(line);
-				value.append("\n");
-			}
-		}
-		return value.toString() ;
-	}
-	/**
-	 * 
-	 * @param num , takes the number of spaces to be padded to the string
-	 * @return a string with spaces added
-	 */
-	private String padSpaces(int num) {
-		StringBuffer spaces = new StringBuffer("") ;
-		for ( int i = 0; i<num; i++ )
-			spaces .append(" ") ;           
-		return spaces.toString() ;     
-	} 
+//	public String formatSpacingLandscapeSupported(String str){
+//		StringBuffer value= new StringBuffer();
+//		int width =14;
+//		if(d.getDeviceOrientation() == ORIENTATION_MODE.LANDSCAPE)
+//		 width = 31;
+//		if (str == null || str.isEmpty()) {
+//			return "";
+//		}
+//		String lines[] = str.split("\\r?\\n");
+//		for(String line: lines) {
+//			if (line == "\n")
+//				value.append("\n");
+//			else {
+//				int w = line.length();
+//				int space = (width-w)/2;
+//				value.append(padSpaces(space+1));
+//				value.append(line);
+//				value.append("\n");
+//			}
+//		}
+//		return value.toString() ;
+//	}
+//	/**
+//	 * 
+//	 * @param num , takes the number of spaces to be padded to the string
+//	 * @return a string with spaces added
+//	 */
+//	private String padSpaces(int num) {
+//		StringBuffer spaces = new StringBuffer("") ;
+//		for ( int i = 0; i<num; i++ )
+//			spaces .append(" ") ;           
+//		return spaces.toString() ;     
+//	} 
 
 }

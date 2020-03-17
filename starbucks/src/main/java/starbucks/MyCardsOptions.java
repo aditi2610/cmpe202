@@ -2,17 +2,15 @@
 
 package starbucks;
 
-import starbucks.Device.ORIENTATION_MODE;
-
 /** My Card Options Screen */
 public class MyCardsOptions extends Screen
 {
-   Device d;
    IApp app;
+
     public MyCardsOptions()
     {
-       this.d = Device.getInstance();
-       this.app =(IApp)d;
+       this.app =(IApp)Device.getInstance();
+       decorator = new LeftIndentationDecorator();
     }
     /**
 	 * @return name to the screen
@@ -52,16 +50,22 @@ public class MyCardsOptions extends Screen
 	 * @return displays the content of the screen
 	 */
     public String display() { 
-    	if(d.getDeviceOrientation() == ORIENTATION_MODE.LANDSCAPE)
-    	{
-    		d.setPortraitOrientation();
-    	}
+//    	if(d.getDeviceOrientation() == ORIENTATION_MODE.LANDSCAPE)
+//    	{
+//    		d.setPortraitOrientation();
+//    	}
+
+		StringBuffer out = new StringBuffer("");
         StringBuffer value = new StringBuffer(super.display()) ;
-        value .append("\nReload\n");
-        value .append("Refresh\n");
-        value .append("More Options\n");
-        value .append("Cancel");  
-        value .append("\n");
-        return value.toString() ; 
+        out .append("\nReload\n");
+        out .append("Refresh\n");
+        out .append("More Options\n");
+        out .append("Cancel");  
+        out .append("\n");
+    	this.decorator.setScreenContents(out.toString());
+        value.append(this.decorator.display());
+        return this.decorator.displayScreen(value); 
     }
+    
+    
 }

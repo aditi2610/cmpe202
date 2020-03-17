@@ -8,7 +8,9 @@ public class MyCardsMoreOptions extends Screen
   
     public MyCardsMoreOptions()
     {
+    	decorator = new LeftIndentationDecorator();
     }
+    
     /**
 	 * gives the name to the screen
 	 * @return name of the screen
@@ -23,18 +25,19 @@ public class MyCardsMoreOptions extends Screen
 		}
 		sb.append(name);
         return sb.toString();
-//        return "My Cards" ; 
     }
     /**
 	 * Displays the content of the screen.
 	 * @return content of the screen
 	 */
     public String display() {
-    
-    	StringBuffer value = new StringBuffer(super.display());
-    	 value .append("Refresh\nReload\nAuto Reload\nTransactions");  
-    	 value.append("\n");
-    	return value.toString();
+    	StringBuffer out = new StringBuffer("");
+        StringBuffer value = new StringBuffer(super.display()) ;
+    	 out .append("Refresh\nReload\nAuto Reload\nTransactions");  
+    	 out.append("\n");
+    	 this.decorator.setScreenContents(out.toString());
+         value.append(this.decorator.display());
+         return this.decorator.displayScreen(value); 
     }
     
 }

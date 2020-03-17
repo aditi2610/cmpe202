@@ -8,7 +8,7 @@ public class Rewards extends Screen
 
     public Rewards()
     {
-    	
+    	decorator = new LeftIndentationDecorator();
     }
     /**
      * @return the name of the screen
@@ -33,11 +33,14 @@ public class Rewards extends Screen
      */
     public String display() 
     {
+    	StringBuffer out = new StringBuffer("");
     	StringBuffer value = new StringBuffer(super.display());
-    	value .append( "Make Every");
-    	value .append("\n");
-    	value.append("Visit Count");
-    	value .append( "\n");
-    	return value.toString();
+    	out .append( "Make Every");
+    	out .append("\n");
+    	out.append("Visit Count");
+    	out .append( "\n");
+    	this.decorator.setScreenContents(out.toString());
+        value.append(this.decorator.display());
+        return this.decorator.displayScreen(value); 
     }
 }

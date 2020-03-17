@@ -207,7 +207,7 @@ public class Device implements IApp, IPinAuthObserver {
         ps = new PinScreen() ;
         pm = new PinEntryMachine() ;
 
-        // setup the composite pattern
+        //c
         ps.addSubComponent( pc ) ;
         ps.addSubComponent( sp ) ;
         ps.addSubComponent( kp ) ;

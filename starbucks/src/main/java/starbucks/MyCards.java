@@ -4,7 +4,6 @@ package starbucks;
 
 import starbucks.Device.ORIENTATION_MODE;
 
-// import starbucks.Device.ORIENTATION_MODE;
 
 /**
  * My Cards Screen
@@ -21,6 +20,7 @@ public class MyCards extends Screen {
 		this.d = Device.getInstance();
 		this.app = (IApp) d;
 		myPay= new MyCardsPay();
+		decorator = new CenteredIndentationDecorator();
 	}
 	
 	/**
@@ -55,18 +55,9 @@ public class MyCards extends Screen {
 			case "2,4":
 				this.app.execute("MyCardOptions");
 				break;
-//			case "2,2":
-//				double balance = Double.parseDouble(app.getBalance());
-//				if(balance > Device.coffeeCharge) {
-//					app.setBalance((balance- Device.coffeeCharge));
-//				}
-//				break;
 			default:
 				break;
 			}
-			
-				
-
 		}
 
 	}
@@ -78,7 +69,16 @@ public class MyCards extends Screen {
 		StringBuffer value = new StringBuffer(super.display()) ;
 		StringBuffer out = new StringBuffer("$" +app.getBalance());
 		//centered Layout
-		value.append(super.formatSpacingLandscapeSupported(out.toString()));
-		return value.toString() ; 
+		this.decorator.setScreenContents(out.toString());
+		if(d.getDeviceOrientation() == ORIENTATION_MODE.LANDSCAPE) {
+			this.decorator.setWidth(Device.landscape_screen_width-1);
+			this.decorator.setLength(Device.landscape_screen_length);
+		}else if(d.getDeviceOrientation() == ORIENTATION_MODE.PORTRAIT) {
+			this.decorator.setWidth(Device.portrait_screen_width-1);
+			this.decorator.setLength(Device.portrait_screen_length);
+		}
+		
+		value.append(this.decorator.display());
+		return this.decorator.displayScreen(value);
 	}
 }
