@@ -73,7 +73,7 @@ public class AddCard extends Screen
 	 */
 	public void next()  {
 		if(app.getCardNumber().length() == 9 && app.getCvv().length() == 3) {
-			this.app.execute("AddCard");
+			this.app.execute("A");
 			app.setBalance(20.00);
 		}else {
 			app.setCardNumber("");
