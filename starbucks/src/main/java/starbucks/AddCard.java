@@ -30,7 +30,6 @@ public class AddCard extends Screen
 	 * @return the name of the Screen
 	 */
 	public String name() {
-//		return "Add Card" ; 
 		StringBuilder sb = new StringBuilder();
 		String name = "Add Card";
 		double width = 15.0d;
@@ -62,6 +61,8 @@ public class AddCard extends Screen
 	 * prev method executes the Settings screen
 	 */
 	public void prev()  {
+		StringBuffer s = new StringBuffer();
+		System.err.print("i am trying this "+ s);
 		System.err.println("Add Card=> prev");
 		app.execute("E"); 
 		app.setCardNumber("");
