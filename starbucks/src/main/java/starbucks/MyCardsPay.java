@@ -61,6 +61,16 @@ public class MyCardsPay extends Screen
 	 */
 	public String display() {
 		StringBuffer value = new StringBuffer(super.display());
+		displayScreenContent();
+		value.append(this.decorator.display());
+		return this.decorator.displayScreen(value);
+		//return value.toString();
+	}
+	
+	/**
+	 * Displays the screen contents
+	 */
+	private void displayScreenContent() {
 		StringBuffer out = new StringBuffer("");
 		if(app.getCardNumber().length() ==0)
 			out .append("[000000000]\n");
@@ -78,9 +88,6 @@ public class MyCardsPay extends Screen
 			this.decorator.setWidth(Device.portrait_screen_width-1);
 			this.decorator.setLength(Device.portrait_screen_length);
 		}
-		value.append(this.decorator.display());
-		return this.decorator.displayScreen(value);
-		//return value.toString();
 	}
 
 

@@ -36,33 +36,6 @@ public class Screen implements IScreen, IDisplayComponent
 		if(chain != null)
 			chain.touch(x, y) ;
 	}
-
-	/** Next Screen - Not Used */
-	public void next() {	
-	}
-
-	/** Previous Screen - Not Used */
-	public void prev()  {
-	}
-
-	/**
-	 * Set Next Screen - Not Used 
-	 * @param s Next Screen Object
-	 * @param n Next Screen Label
-	 */
-	public void setNext(IScreen s, String n )  {
-		// add code here
-	}
-
-	/**
-	 * Send Previous Screen - Not Used
-	 * @param s Previous Screen Object
-	 * @param n Previous Screen Label
-	 */
-	public void setPrev(IScreen s, String n )  {
-		// add code here
-	}    
-
 	/**
 	 * Add Display Component to Screen
 	 * @param c Display Component
@@ -103,70 +76,31 @@ public class Screen implements IScreen, IDisplayComponent
 	public String name() {
 		return (this.getClass().getName()).split("\\.")[1] ; 
 	}
+
+	@Override
+	public void next() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void prev() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setNext(IScreen s, String n) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setPrev(IScreen s, String n) {
+		// TODO Auto-generated method stub
+		
+	}
 	
-	/**
-	 * formats the String for display in portrait mode
-	 * @param str Takes the string input.. the contents of the screen
-	 * @return a String for classes which supports Portrait view
-	 */
-//	public String formatSpacing(String str){
-//		StringBuffer value= new StringBuffer("");
-//		int width =14;
-//		if (str == null || str.length()==0) {
-//			return "";
-//		}
-//		String lines[] = str.split("\\r?\\n");
-//		for(String line: lines) {
-//			if (line == "\n")
-//				value.append("\n");
-//			else {
-//				int w = line.length();
-//				int space =(width-w)/2;
-//				value.append(padSpaces(space+1));
-//				value.append(line);
-//				value.append("\n");
-//			}
-//		}
-//		return value.toString() ;
-//	}
-	
-	/**
-	 * 
-	 * @param str Takes the string input.. the contents of the screen
-	 * @return a String for classes which supports landscape view
-	 */
-//	public String formatSpacingLandscapeSupported(String str){
-//		StringBuffer value= new StringBuffer();
-//		int width =14;
-//		if(d.getDeviceOrientation() == ORIENTATION_MODE.LANDSCAPE)
-//		 width = 31;
-//		if (str == null || str.isEmpty()) {
-//			return "";
-//		}
-//		String lines[] = str.split("\\r?\\n");
-//		for(String line: lines) {
-//			if (line == "\n")
-//				value.append("\n");
-//			else {
-//				int w = line.length();
-//				int space = (width-w)/2;
-//				value.append(padSpaces(space+1));
-//				value.append(line);
-//				value.append("\n");
-//			}
-//		}
-//		return value.toString() ;
-//	}
-//	/**
-//	 * 
-//	 * @param num , takes the number of spaces to be padded to the string
-//	 * @return a string with spaces added
-//	 */
-//	private String padSpaces(int num) {
-//		StringBuffer spaces = new StringBuffer("") ;
-//		for ( int i = 0; i<num; i++ )
-//			spaces .append(" ") ;           
-//		return spaces.toString() ;     
-//	} 
+
 
 }

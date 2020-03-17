@@ -57,15 +57,16 @@ public class AddCard extends Screen
 		value.append(this.decorator.display());
 		return this.decorator.displayScreen(value);
 	}
+	
 	/**
 	 * prev method executes the Settings screen
 	 */
 	public void prev()  {
+		System.err.println("Add Card=> prev");
 		app.execute("E"); 
 		app.setCardNumber("");
 		app.setCvv("");
 		app.setBalance(0.00);
-	
 	}
 	/**
 	 * Clicking on next of Add card should
@@ -73,10 +74,10 @@ public class AddCard extends Screen
 	 */
 	public void next()  {
 		if(app.getCardNumber().length() == 9 && app.getCvv().length() == 3) {
-			if(app.getCardNumber() == "000000000") {
+//			if(app.getCardNumber() == "000000000") {
 			this.app.execute("A");
 			app.setBalance(20.00);
-			}
+//			}
 		}else {
 			app.setCardNumber("");
 			app.setCvv("");
