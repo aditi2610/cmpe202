@@ -249,25 +249,41 @@ public class AppController implements IApp {
 	 * @param c screen
 	 */
 	private void switchScreens(String c) {
-		switch (c) {
-		case "MyCard":
+		if(c.equals("MyCard")){
 			frame.selectMyCard();
-			break;
-		case "A1":
+			}
+		else if(c.equals("A1")){
 			frame.selectA1();
-			break;
-		case "MyCardOptions":
-			frame.selectCardOptions();
-			break;
-		case "MyCardMoreOptions":
-			frame.selectCardMoreOptions();
-			break;
-		case "AddCard":
-			frame.selectAddCard();
-			break;
-		default:
-			break;
 		}
+		else if(c.equals("MyCardOptions")){
+			frame.selectCardOptions();
+		}
+		else if(c.equals("MyCardMoreOptions")){
+			frame.selectCardMoreOptions();
+		}
+		else if(c.equals("AddCard")){
+			frame.selectAddCard();
+		}
+		
+//		switch (c) {
+//		case "MyCard":
+//			frame.selectMyCard();
+//			break;
+//		case "A1":
+//			frame.selectA1();
+//			break;
+//		case "MyCardOptions":
+//			frame.selectCardOptions();
+//			break;
+//		case "MyCardMoreOptions":
+//			frame.selectCardMoreOptions();
+//			break;
+//		case "AddCard":
+//			frame.selectAddCard();
+//			break;
+//		default:
+//			break;
+//		}
 	}
 
 	/**
