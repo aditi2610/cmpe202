@@ -389,33 +389,33 @@ public class Device implements IApp, IPinAuthObserver {
 	/**
 	 * @return the Card Number
 	 */
-	@Override
-	public String getCardNumber() {
-		return this.app.getCardNumber();
-	}
-	/**
-	 * @param s Sets the CardNumber 
-	 */
-	@Override
-	public void setCardNumber(String s) {
-		this.app.setCardNumber(s);
-		
-	}
-	/**
-	 * @return the Cvv 
-	 */
-	@Override
-	public String getCvv() {	
-		return this.app.getCvv();
-	}
-	/**
-	 * @param s Sets the Cvv 
-	 */
-	@Override
-	public void setCvv(String s) {
-		this.app.setCvv(s);
-		
-	}
+//	@Override
+//	public String getCardNumber() {
+//		return this.app.getCardNumber();
+//	}
+//	/**
+//	 * @param s Sets the CardNumber 
+//	 */
+//	@Override
+//	public void setCardNumber(String s) {
+//		this.app.setCardNumber(s);
+//		
+//	}
+//	/**
+//	 * @return the Cvv 
+//	 */
+//	@Override
+//	public String getCvv() {	
+//		return this.app.getCvv();
+//	}
+//	/**
+//	 * @param s Sets the Cvv 
+//	 */
+//	@Override
+//	public void setCvv(String s) {
+//		this.app.setCvv(s);
+//		
+//	}
 	/**
  	 * return focus defualt is false
  	 * @return if the focus is on Cvv or not 

@@ -76,25 +76,40 @@ public class Screen implements IScreen, IDisplayComponent
 	public String name() {
 		return (this.getClass().getName()).split("\\.")[1] ; 
 	}
-
+	
+	/**
+     * Navigate to next screen
+     */
 	@Override
 	public void next() {
 		// TODO Auto-generated method stub
 		
 	}
-
+	/**
+     * Navigate to previous screen
+     */
 	@Override
 	public void prev() {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	/**
+     * Set next screen with action name
+     * @param s Screen
+     * @param n Action
+     */
 	@Override
 	public void setNext(IScreen s, String n) {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	/**
+     * Set previous screen with action name
+     * @param s Screen
+     * @param n Action
+     */
 	@Override
 	public void setPrev(IScreen s, String n) {
 		// TODO Auto-generated method stub

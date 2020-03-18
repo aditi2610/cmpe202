@@ -72,10 +72,10 @@ public class MyCardsPay extends Screen
 	 */
 	private void displayScreenContent() {
 		StringBuffer out = new StringBuffer("");
-		if(app.getCardNumber().length() ==0)
+		if(CardNumber.cardNum.length() ==0)
 			out .append("[000000000]\n");
 		else
-			out.append("[" +app.getCardNumber()+ "]\n");
+			out.append("[" +CardNumber.cardNum+ "]\n");
 		out .append("\n");
 		out .append("\n");
 		out.append("Scan Now");

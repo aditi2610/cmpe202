@@ -75,25 +75,25 @@ public interface IApp
       * 
       * @return the Card Number
       */
-     String getCardNumber();
-     
-     /**
-      * Sets the card number to String s
-      * @param s sets card
-      */
-     void setCardNumber(String s);
- 	
-     /**
-      * 
-      * @return CVV 
-      */
-     String getCvv();
-     
-     /**
-      * Sets s as the current Cvv
-      * @param s Sets Cvv
-      */
- 	void setCvv(String s);
+//     String getCardNumber();
+//     
+//     /**
+//      * Sets the card number to String s
+//      * @param s sets card
+//      */
+//     void setCardNumber(String s);
+// 	
+//     /**
+//      * 
+//      * @return CVV 
+//      */
+//     String getCvv();
+//     
+//     /**
+//      * Sets s as the current Cvv
+//      * @param s Sets Cvv
+//      */
+// 	void setCvv(String s);
  	
  	/**
  	 * return focus defualt is false
