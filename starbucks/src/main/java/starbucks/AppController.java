@@ -177,18 +177,6 @@ public class AppController implements IApp {
 
 	}
 
-	/**
-	 * Set Receivers for Screens
-	 */
-//	private void setReceiversForScreens() {
-//	}
-//
-//	/**
-//	 * Set Receivers for Menu Items
-//	 */
-//	private void setReceiversForMenuItems() {
-//
-//	}
 
 	/**
 	 * Set Menus for the screen

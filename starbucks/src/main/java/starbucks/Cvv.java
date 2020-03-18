@@ -1,5 +1,6 @@
 package starbucks;
 
+/**Cvv */
 public class Cvv implements IDisplayComponent, ITouchEventHandler, IKeyPadObserver {
 	 static StringBuilder cvv;
 	ITouchEventHandler nextHandler;
@@ -10,10 +11,19 @@ public class Cvv implements IDisplayComponent, ITouchEventHandler, IKeyPadObserv
 		app = (IApp) Device.getInstance();
 	}
 
+	/**
+     * Returns Cvv
+     * @return cvv
+     */
 	public StringBuilder getCvv() {
 		return cvv;
 	}
 
+	 /**
+     * Key Event Update
+     * @param numKeys   Count of Keys So Far
+     * @param key Last key Pressed
+     */
 	@Override
 	public void keyEventUpdate(int numKeys, String key) {
 		if (app.isFocusCvv()) {
@@ -21,7 +31,13 @@ public class Cvv implements IDisplayComponent, ITouchEventHandler, IKeyPadObserv
 		}
 
 	}
-
+	
+	/**
+	 * Send In Touch Events
+	 *
+	 * @param x X Coord
+	 * @param y Y Coord
+	 */
 	@Override
 	public void touch(int x, int y) {
 		String s = x + "," + y;
@@ -40,30 +56,42 @@ public class Cvv implements IDisplayComponent, ITouchEventHandler, IKeyPadObserv
 		}
 
 	}
-
+	  /**
+     * Set next screen with action name
+     * @param next Screen
+     * 
+     */
 	@Override
 	public void setNext(ITouchEventHandler next) {
 		nextHandler = next;
 
 	}
 
+	/**
+	 * Displays the content of the screen.
+	 * 
+	 * @return screen content
+	 */
 	@Override
 	public String display() {
 		System.err.println("Cvv => display");
 		return "[" + getCvv() + "]";
 	}
 
+	 /**
+     * Add Sub Component (Not used)
+     * @param c Sub Component to Add
+     */
 	@Override
 	public void addSubComponent(IDisplayComponent c) {
-		// TODO Auto-generated method stub
 
 	}
 
 	/**
 	 * Sets the Cvv for the cardx
 	 * 
-	 * @param x X Coord
-	 * @param y Y Coord
+	 * @param key X Coord
+	 * @return cvv
 	 */
 	private StringBuilder convertKeyEvent(String key) {
 		StringBuilder cvv = new StringBuilder(getCvv());

@@ -1,5 +1,6 @@
 package starbucks;
 
+/** Card Number */
 public class CardNumber implements IDisplayComponent, ITouchEventHandler,IKeyPadObserver {
 
 	ITouchEventHandler nextHandler ;
@@ -10,16 +11,32 @@ public class CardNumber implements IDisplayComponent, ITouchEventHandler,IKeyPad
 		cardNum = new StringBuilder("");
 		app = (IApp) Device.getInstance();
 	}
+	
+	/**
+	 * Displays the content of the screen.
+	 * 
+	 * @return screen content
+	 */
 	@Override
 	public String display() {
 		return "["+getCardNum()+"]";
 	}
 
+	 /**
+     * Add Sub Component (Not used)
+     * @param c Sub Component to Add
+     */
 	@Override
 	public void addSubComponent(IDisplayComponent c) {
 		
 	}
 
+	/**
+	 * Send In Touch Events
+	 *
+	 * @param x X Coord
+	 * @param y Y Coord
+	 */
 	@Override
 	public void touch(int x, int y) {
 		if(x ==2 && y==3)
@@ -27,37 +44,29 @@ public class CardNumber implements IDisplayComponent, ITouchEventHandler,IKeyPad
 		if(nextHandler!= null) {
 			nextHandler.touch(x,y) ;
 		}
-//		System.err.println("CardNumber => touch "+s + " "+ nextHandler);
-//		
-//		switch(s) {
-////		case "1,2":
-////		case "2,2":
-////		case "3,2":
-////			break;
-//		case "2,3":
-//			setNext(nextHandler);    
-//			break;
-//		default:
-//			if(!((x > 0 && x < 4) && (y > 4  && y < 9))) {
-//				return;
-//			}
-//			else if(getCardNum().length() <=9) {
-//				setCardNum(cardNum.append(key));
-//				System.err.println("CardNumber => touch");
-//			}
-//			break;
-//		}
 	}
 
+	  /**
+     * Set next screen with action name
+     * @param next ITouchEventHandler
+     */
 	@Override
 	public void setNext(ITouchEventHandler next) {
 		 nextHandler = next ;
-		
 	}
+	
+	/**
+     * Set next screen with action name
+     * @return cardNum
+     */
 	public StringBuilder getCardNum() {
 		return cardNum;
 	}
-
+	 /**
+     * Key Event Update
+     * @param numKeys   Count of Keys So Far
+     * @param key Last key Pressed
+     */
 	@Override
 	public void keyEventUpdate(int numKeys, String key) {
 		if(!app.isFocusCvv())
@@ -68,8 +77,8 @@ public class CardNumber implements IDisplayComponent, ITouchEventHandler,IKeyPad
 	/**
 	 * Set the card Number
 	 * 
-	 * @param x X coord
-	 * @param y Y coord
+	 * @param key X coord
+	 * @return cardNumber
 	 */
 	private StringBuilder convertKeyEvent(String key) {
 		StringBuilder cardNumber = new StringBuilder(getCardNum());

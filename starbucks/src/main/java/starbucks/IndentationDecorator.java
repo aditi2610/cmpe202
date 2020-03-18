@@ -95,14 +95,14 @@ public abstract class IndentationDecorator implements IDisplayComponent {
     public String displayScreen(StringBuffer value ) {
     	StringBuffer screen= new StringBuffer();
 		int countScreenContentLines = this.countLines(value ) ;
-		System.err.println("IndentationDecorator => countScreenCountentLines "+ countScreenContentLines + " , length "+ this.length);
+		//System.err.println("IndentationDecorator => countScreenCountentLines "+ countScreenContentLines + " , length "+ this.length);
         int countLinesBeforeScreenContent = (this.length - countScreenContentLines)/2;
-		System.err.println("IndentationDecorator => countLinesBeforeScreenContent "+ countLinesBeforeScreenContent);
+		//System.err.println("IndentationDecorator => countLinesBeforeScreenContent "+ countLinesBeforeScreenContent);
         screen.append(this.padLines( countLinesBeforeScreenContent )) ;
         screen .append( value ) ;
         int countLinesAfterScreenContent = this.countLines( screen ) ;
         int pad2 = this.length - countLinesAfterScreenContent ;
-        System.err.println("IndentationDecorator =>countLinesAfterScreenContent " +countLinesAfterScreenContent+  " pad2 "+ pad2);
+        //System.err.println("IndentationDecorator =>countLinesAfterScreenContent " +countLinesAfterScreenContent+  " pad2 "+ pad2);
         String padlines = this.padLines( pad2 ) ;
         screen .append(padlines) ;
 		return screen.toString() ;
