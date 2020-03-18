@@ -43,13 +43,8 @@ public class AppController implements IApp {
 		frame = new Frame(mycards);
 		cardNumber = new CardNumber();
 		cvv = new Cvv();
-
 		instantiateClasses();
-
 		balance = 0.0;
-//		cardNumber = new StringBuilder();
-//		cvv = new StringBuilder();
-
 		setReceivers();
 		setMenus();
 	}
@@ -176,7 +171,6 @@ public class AppController implements IApp {
 		});
 
 	}
-
 
 	/**
 	 * Set Menus for the screen
@@ -333,20 +327,6 @@ public class AppController implements IApp {
 
 	}
 
-//	/**
-//	 * @param s sets the cardNumber
-//	 */
-//	public void setCardNumber(String s) {
-//		this.cardNumber.setCardNum(new StringBuilder(s));
-//	}
-//
-//	/**
-//	 * @param s Sets the Cvv
-//	 */
-//	public void setCvv(String s) {
-//		this.cvv.setCvv(new StringBuilder(s));
-//
-//	}
 
 	/**
 	 * @return the card number
