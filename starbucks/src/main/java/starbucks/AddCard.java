@@ -6,14 +6,17 @@ package starbucks;
  * Add New Card Screen
  */
 public class AddCard extends Screen implements IDisplayComponent {
+	private static final String _000000000 = "000000000";
 	Device d;
 	IApp app;
-	
+
 	/**
 	 * Dafault constructor
 	 */
 	public AddCard() {
 		d = Device.getInstance();
+//		CardNumber.cardNum=new StringBuilder("");
+//		Cvv.cvv= new StringBuilder("");
 		app = (IApp) d;
 		this.decorator = new CenteredIndentationDecorator();
 	}
@@ -53,8 +56,8 @@ public class AddCard extends Screen implements IDisplayComponent {
 	 */
 	public void prev() {
 		app.execute("E");
-		CardNumber.cardNum =new StringBuilder("");
-		Cvv.cvv=new StringBuilder("");
+		CardNumber.cardNum = new StringBuilder("");
+		Cvv.cvv = new StringBuilder("");
 		app.setBalance(0.00);
 	}
 
@@ -64,15 +67,18 @@ public class AddCard extends Screen implements IDisplayComponent {
 	 */
 	public void next() {
 		if (CardNumber.cardNum.length() == 9 && Cvv.cvv.length() == 3) {
-			this.app.execute("A");
-			app.setBalance(20.00);
-//			}
+			if (CardNumber.cardNum.toString().equals(_000000000)) {
+				CardNumber.cardNum = new StringBuilder("");
+				Cvv.cvv = new StringBuilder("");
+			}else {
+				this.app.execute("A");
+				app.setBalance(20.00);
+			}
 		} else {
 			CardNumber.cardNum = new StringBuilder("");
-			Cvv.cvv= new StringBuilder("");
+			Cvv.cvv = new StringBuilder("");
 		}
 
 	}
-
 
 }
