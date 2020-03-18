@@ -8,7 +8,7 @@ package starbucks ;
 public class Device implements IApp, IPinAuthObserver {
     
     private static Device theDevice = null;   
-    private boolean fourPin = true ;
+    private boolean fourPin = false ;
     private boolean sixPin = false ;
     private String pin = "" ; 
 
@@ -149,13 +149,19 @@ public class Device implements IApp, IPinAuthObserver {
      */
     public synchronized static Device getInstance() {
         if (theDevice == null ) {
+        	//return getNewInstance();
             return getNewInstance( "1234" ) ;
             //return getNewInstance("000000");
         }
         else {
         	if(theDevice.getPin().length() ==0)
         	{
-        		if(theDevice.getPinOption() ==4)
+        		if(theDevice.getPinOption() ==0)
+        		{
+        			System.err.println("Device => Device getInstance()");
+        			theDevice.setPin("");
+        		}
+        		else if(theDevice.getPinOption() ==4)
         		{
         			theDevice.setPin("1234");
         		}else
@@ -174,6 +180,7 @@ public class Device implements IApp, IPinAuthObserver {
     public synchronized static Device getNewInstance() {
         return getNewInstance( "1234" ) ;
     	//return getNewInstance("000000");
+        //return getNewInstance("");
     }
     /**
      * 
@@ -181,13 +188,16 @@ public class Device implements IApp, IPinAuthObserver {
      * @return instance of device
      */
     public synchronized static Device getNewInstance( String pin ) {
+    	System.err.println("Device => getNewInstance( String pin )");
         theDevice = new Device() ;
         theDevice.setPin( pin ) ;
         if(pin.length() == 4)
         	theDevice.startUp4Pin() ;
-        else {
+        else if(pin.length() == 6 ){
         	theDevice.startUp6Pin();
-        	
+        }else if(pin.length() == 0) {
+        	System.err.println("Device getNewInstance( String pin ) No pin selected hence setting authentication True ");;
+        	theDevice.authenticated = true;
         }
         debug() ;
         return theDevice ;
@@ -386,36 +396,7 @@ public class Device implements IApp, IPinAuthObserver {
 		this.app.setBalance(d);
 		
 	}
-	/**
-	 * @return the Card Number
-	 */
-//	@Override
-//	public String getCardNumber() {
-//		return this.app.getCardNumber();
-//	}
-//	/**
-//	 * @param s Sets the CardNumber 
-//	 */
-//	@Override
-//	public void setCardNumber(String s) {
-//		this.app.setCardNumber(s);
-//		
-//	}
-//	/**
-//	 * @return the Cvv 
-//	 */
-//	@Override
-//	public String getCvv() {	
-//		return this.app.getCvv();
-//	}
-//	/**
-//	 * @param s Sets the Cvv 
-//	 */
-//	@Override
-//	public void setCvv(String s) {
-//		this.app.setCvv(s);
-//		
-//	}
+
 	/**
  	 * return focus defualt is false
  	 * @return if the focus is on Cvv or not 
