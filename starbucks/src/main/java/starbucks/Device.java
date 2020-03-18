@@ -189,17 +189,23 @@ public class Device implements IApp, IPinAuthObserver {
      * @return instance of device
      */
     public synchronized static Device getNewInstance( String pin ) {
-    	System.err.println("Device => getNewInstance( String pin )");
+    	System.err.println("Device => getNewInstance(" + pin + ")");
         theDevice = new Device() ;
         theDevice.setPin( pin ) ;
-        if(pin.length() == 4)
+        if(pin.length() == 4) {
         	theDevice.startUp4Pin() ;
+        }
         else if(pin.length() == 6 ){
         	theDevice.startUp6Pin();
-        }else if(pin.length() == 0) {
-        	System.err.println("Device getNewInstance( String pin ) No pin selected hence setting authentication True ");;
+        }
+        else if(pin.length() == 0) {
         	theDevice.startUpNoPin();
         }
+        else {
+        	System.err.println("Device getNewInstance called with arbitrary length pin, defaulting to no pin");
+        	theDevice.startUpNoPin();
+        }
+
         debug() ;
         return theDevice ;
     }
