@@ -6,13 +6,17 @@ package starbucks;
 public class Settings extends Screen
 {
 	IApp app;
+	CardNumber cardNumber;
+	Cvv cvv;
 	/**
 	 * Default constructor for the class
 	 */
-	public Settings()
+	public Settings(CardNumber cNumber, Cvv cvv)
 	{
 		this.app = (IApp)Device.getInstance() ;
 		decorator = new CenteredIndentationDecorator();
+		this.cardNumber = cNumber;
+		this.cvv= cvv;
 	}
 	/**
 	 * @return Gives the name of the screen
@@ -42,8 +46,8 @@ public class Settings extends Screen
 		case "1,1":
 		case "2,1":
 		case "3,1":
-			CardNumber.cardNum = new StringBuilder("");
-			Cvv.cvv=new StringBuilder("");
+			cardNumber.setCardNum(new StringBuilder(""));
+			cvv.setCvv(new StringBuilder(""));
 			this.app.setFocusCvv(false);
 			this.app.execute("AddCard");
 			break;

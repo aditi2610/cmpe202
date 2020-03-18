@@ -9,15 +9,17 @@ public class MyCardsPay extends Screen
 {
 	Device d;
 	IApp app;
+	CardNumber cardNumber;
 	
 	/**
 	 * Default constructor for the class
 	 */
-	public MyCardsPay()
+	public MyCardsPay(CardNumber cardNumber)
 	{
 		this.d = Device.getInstance();
 		this.app = (IApp)d;
 		decorator = new CenteredIndentationDecorator();
+		this.cardNumber = cardNumber;
 	}
 	/**
 	 * 
@@ -72,10 +74,10 @@ public class MyCardsPay extends Screen
 	 */
 	private void displayScreenContent() {
 		StringBuffer out = new StringBuffer("");
-		if(CardNumber.cardNum.length() ==0)
+		if(cardNumber.getCardNum().length() ==0)
 			out .append("[000000000]\n");
 		else
-			out.append("[" +CardNumber.cardNum+ "]\n");
+			out.append("[" +cardNumber.getCardNum()+ "]\n");
 		out .append("\n");
 		out .append("\n");
 		out.append("Scan Now");

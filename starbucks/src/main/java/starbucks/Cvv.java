@@ -2,7 +2,7 @@ package starbucks;
 
 /**Cvv */
 public class Cvv implements IDisplayComponent, ITouchEventHandler, IKeyPadObserver {
-	 static StringBuilder cvv;
+	private StringBuilder cvv;
 	ITouchEventHandler nextHandler;
 	IApp app;
 
@@ -17,6 +17,13 @@ public class Cvv implements IDisplayComponent, ITouchEventHandler, IKeyPadObserv
      */
 	public StringBuilder getCvv() {
 		return cvv;
+	}
+	/**
+     * Set next screen with action name
+     * @param cvv set
+     */
+	public void setCvv(StringBuilder cvv) {
+		this.cvv = cvv;
 	}
 
 	 /**

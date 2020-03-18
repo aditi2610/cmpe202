@@ -11,7 +11,7 @@ import starbucks.Device.ORIENTATION_MODE;
 public class MyCards extends Screen {
 	Device d;
 	IApp app;
-	MyCardsPay myPay;
+	//MyCardsPay myPay;
 
 	/**
 	 * Default Constructor for the class
@@ -19,7 +19,7 @@ public class MyCards extends Screen {
 	public MyCards() {
 		this.d = Device.getInstance();
 		this.app = (IApp) d;
-		myPay= new MyCardsPay();
+		//myPay= new MyCardsPay();
 		decorator = new CenteredIndentationDecorator();
 	}
 	

@@ -9,16 +9,18 @@ public class AddCard extends Screen implements IDisplayComponent {
 	private static final String _000000000 = "000000000";
 	Device d;
 	IApp app;
+	CardNumber cardNumber;
+	Cvv cvv;
 
 	/**
 	 * Dafault constructor
 	 */
-	public AddCard() {
+	public AddCard(CardNumber cardNumber, Cvv cvv) {
 		d = Device.getInstance();
-//		CardNumber.cardNum=new StringBuilder("");
-//		Cvv.cvv= new StringBuilder("");
 		app = (IApp) d;
 		this.decorator = new CenteredIndentationDecorator();
+		this.cardNumber = cardNumber;
+		this.cvv = cvv;
 	}
 
 	/**
@@ -56,8 +58,8 @@ public class AddCard extends Screen implements IDisplayComponent {
 	 */
 	public void prev() {
 		app.execute("E");
-		CardNumber.cardNum = new StringBuilder("");
-		Cvv.cvv = new StringBuilder("");
+		this.cardNumber.setCardNum(new StringBuilder(""));
+		this.cvv.setCvv(new StringBuilder(""));
 		app.setBalance(0.00);
 	}
 
@@ -66,17 +68,17 @@ public class AddCard extends Screen implements IDisplayComponent {
 	 * successfully added.
 	 */
 	public void next() {
-		if (CardNumber.cardNum.length() == 9 && Cvv.cvv.length() == 3) {
-			if (CardNumber.cardNum.toString().equals(_000000000)) {
-				CardNumber.cardNum = new StringBuilder("");
-				Cvv.cvv = new StringBuilder("");
+		if (this.cardNumber.getCardNum().length() == 9 && this.cvv.getCvv().length() == 3) {
+			if (this.cardNumber.getCardNum().toString().equals(_000000000)) {
+				this.cardNumber.setCardNum(new StringBuilder(""));
+				this.cvv.setCvv(new StringBuilder(""));
 			}else {
 				this.app.execute("A");
 				app.setBalance(20.00);
 			}
 		} else {
-			CardNumber.cardNum = new StringBuilder("");
-			Cvv.cvv = new StringBuilder("");
+			this.cardNumber.setCardNum(new StringBuilder(""));
+			this.cvv.setCvv(new StringBuilder(""));
 		}
 
 	}

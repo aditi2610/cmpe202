@@ -4,8 +4,10 @@ package starbucks;
 public class CardNumber implements IDisplayComponent, ITouchEventHandler,IKeyPadObserver {
 
 	ITouchEventHandler nextHandler ;
-	static StringBuilder cardNum;
+	private StringBuilder cardNum;
+	
 	IApp app;
+	//private StringBuilder cardNumber="";
 	
 	CardNumber(){
 		cardNum = new StringBuilder("");
@@ -55,13 +57,22 @@ public class CardNumber implements IDisplayComponent, ITouchEventHandler,IKeyPad
 		 nextHandler = next ;
 	}
 	
-	/**
-     * Set next screen with action name
-     * @return cardNum
-     */
+		/**
+	     * Set next screen with action name
+	     * @return cardNum
+	     */
 	public StringBuilder getCardNum() {
 		return cardNum;
 	}
+	
+	/**
+     * Set next screen with action name
+     * @param cardNum set
+     */
+	public void setCardNum(StringBuilder cardNum) {
+		this.cardNum = cardNum;
+	}
+
 	 /**
      * Key Event Update
      * @param numKeys   Count of Keys So Far

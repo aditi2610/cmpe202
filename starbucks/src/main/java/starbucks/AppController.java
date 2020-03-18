@@ -72,14 +72,14 @@ public class AppController implements IApp {
 	 * Instantiates all the classes required by the class
 	 */
 	private void instantiateDependentClasses() {
-		myCardsPay = new MyCardsPay();
+		myCardsPay = new MyCardsPay(cardNumber);
 		myCardsOptions = new MyCardsOptions();
 		myCardsMoreOptions = new MyCardsMoreOptions();
-		addCard = new AddCard();
+		addCard = new AddCard(cardNumber, cvv);
 		store = new Store();
 		rewards = new Rewards();
 		payments = new Payments();
-		settings = new Settings();
+		settings = new Settings(cardNumber, cvv);
 		kp = new KeyPad() ;
         sp = new Spacer() ;
 		
