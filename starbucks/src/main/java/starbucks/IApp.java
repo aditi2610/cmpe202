@@ -57,8 +57,6 @@ public interface IApp
      * @return Screen Content
      */
     String screenContents() ; 
-    
-    
     /**
      * 
      * @return Balance of the card
@@ -70,30 +68,7 @@ public interface IApp
      * @param d takes in d and sets it as the balance
      */
      void setBalance(Double d);
-     
-     /**
-      * 
-      * @return the Card Number
-      */
-//     String getCardNumber();
-//     
-//     /**
-//      * Sets the card number to String s
-//      * @param s sets card
-//      */
-//     void setCardNumber(String s);
-// 	
-//     /**
-//      * 
-//      * @return CVV 
-//      */
-//     String getCvv();
-//     
-//     /**
-//      * Sets s as the current Cvv
-//      * @param s Sets Cvv
-//      */
-// 	void setCvv(String s);
+
  	
  	/**
  	 * return focus defualt is false

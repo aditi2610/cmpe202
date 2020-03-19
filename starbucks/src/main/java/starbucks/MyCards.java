@@ -54,16 +54,6 @@ public class MyCards extends Screen {
 			if(s.equals("2,4")) {
 				this.app.execute("MyCardOptions");
 			}
-//			switch(s) {
-//			case "3,3":
-//				this.app.execute("A1");       
-//				break;
-//			case "2,4":
-//				this.app.execute("MyCardOptions");
-//				break;
-//			default:
-//				break;
-//			}
 		}
 
 	}

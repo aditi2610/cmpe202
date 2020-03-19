@@ -16,7 +16,7 @@ public class AppController implements IApp {
 	private IMenuCommand displayMyCards;
 	private IMenuCommand displayPayments;
 	private IMenuCommand displayRewards;
-	private IMenuCommand doStore;
+	private IMenuCommand displayStore;
 	private IMenuCommand displaySettings;
 	private IFrame frame;
 
@@ -37,6 +37,7 @@ public class AppController implements IApp {
     //private IApp app ;
     private KeyPad kp ;
 	private boolean focusCvv;
+	private AppControllerHelper receiverHelper;
 
 	public AppController() {
 		mycards = new MyCards();
@@ -45,8 +46,10 @@ public class AppController implements IApp {
 		cvv = new Cvv();
 		instantiateClasses();
 		balance = 0.0;
+		receiverHelper = new AppControllerHelper();
 		setReceivers();
 		setMenus();
+		
 	}
 
 	/**
@@ -59,7 +62,7 @@ public class AppController implements IApp {
 		displayMyCards = new MenuCommand();
 		displayPayments = new MenuCommand();
 		displayRewards = new MenuCommand();
-		doStore = new MenuCommand();
+		displayStore = new MenuCommand();
 		displaySettings = new MenuCommand();
 
 		displayMyCardsPay = new MenuCommand();
@@ -93,104 +96,20 @@ public class AppController implements IApp {
 		((IKeyPadSubject)kp).attach(cvv);
 		
 	}
-
-	/**
-	 * Sets receivers
-	 * 
-	 */
-	private void setReceivers() {
-		setReceiverMyCards();
-		setReceiverMyCardsOptions();
-		setReceiverSettingAndAddCard();
-		displayPayments.setReceiver(new IMenuReceiver() {
-			/** Command Action */
-			public void doAction() {
-				((IFrame)frame).setCurrentScreen(payments);
-			}
-		});
-		displayRewards.setReceiver(new IMenuReceiver() {
-			/** Command Action */
-			public void doAction() {
-				((IFrame)frame).setCurrentScreen(rewards);
-			}
-		});
-		doStore.setReceiver(new IMenuReceiver() {
-			/** Command Action */
-			public void doAction() {
-				((IFrame)frame).setCurrentScreen(store);
-			}
-		});
-		
-
-	}
-	/**
-	 * Sets receivers
-	 * 
-	 */
-	private void setReceiverSettingAndAddCard() {
-		displaySettings.setReceiver(new IMenuReceiver() {
-			/** Command Action */
-			public void doAction() {
-				frame.setCurrentScreen(settings);
-			}
-		});
-		displayAddCard.setReceiver(new IMenuReceiver() {
-			/**
-			 * sets the current screen to params
-			 */
-			@Override
-			public void doAction() {
-				frame.setCurrentScreen(addCard);
-			}
-		});
-	}
 	
 	/**
 	 * Sets receivers
 	 * 
 	 */
-	private void setReceiverMyCardsOptions() {
-		displayMyCardsOptions.setReceiver(new IMenuReceiver() {
-			/**
-			 * sets the current screen to params
-			 */
-			@Override
-			public void doAction() {
-				frame.setCurrentScreen(myCardsOptions);
+	public void setReceivers() {
+		((AppControllerHelper)receiverHelper).setReceiverMyCardsOptions(displayMyCardsOptions, displayMyCardMoreOptions, frame, myCardsOptions, myCardsMoreOptions);
+		((AppControllerHelper)receiverHelper).setReceiverSettingAndAddCard(displaySettings, displayAddCard, frame, settings, addCard);
+		((AppControllerHelper)receiverHelper).setReceiverStorePaymentAndRewards(displayPayments , displayRewards, displayStore, frame, payments, rewards, store);
+		((AppControllerHelper)receiverHelper).setReceiverMyCards(displayMyCards, displayMyCardsPay, frame, mycards, myCardsPay);
 
-			}
-		});
-		displayMyCardMoreOptions.setReceiver(new IMenuReceiver() {
-			/**
-			 * sets the current screen to params
-			 */
-			@Override
-			public void doAction() {
-				frame.setCurrentScreen(myCardsMoreOptions);
-
-			}
-		});
 	}
+
 	
-	/**
-	 * Sets receivers
-	 * 
-	 */
-	private void setReceiverMyCards() {
-		displayMyCards.setReceiver(new IMenuReceiver() {
-			/** Command Action */
-			public void doAction() {
-				frame.setCurrentScreen(mycards);
-			}
-		});
-		displayMyCardsPay.setReceiver(new IMenuReceiver() {
-			/** Command Action */
-			public void doAction() {
-				frame.setCurrentScreen(myCardsPay);
-			}
-		});
-	}
-
 	/**
 	 * Set Menus for the screen
 	 */
@@ -198,7 +117,7 @@ public class AppController implements IApp {
 		((IFrame)frame).setMenuItem("A", displayMyCards);
 		((IFrame)frame).setMenuItem("B", displayPayments);
 		((IFrame)frame).setMenuItem("C", displayRewards);
-		((IFrame)frame).setMenuItem("D", doStore);
+		((IFrame)frame).setMenuItem("D", displayStore);
 		((IFrame)frame).setMenuItem("E", displaySettings);
 
 		((IFrame)frame).setInMenuScreen("MyCard", displayMyCards);
