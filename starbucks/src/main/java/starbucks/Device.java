@@ -156,7 +156,6 @@ public class Device implements IApp, IPinAuthObserver {
 		} else {
 			if (theDevice.getPin().length() == 0) {
 				if (theDevice.getPinOption() == 0) {
-					System.err.println("Device => Device getInstance()");
 					theDevice.setPin("");
 					theDevice.authenticated = true;
 				} else if (theDevice.getPinOption() == 4) {

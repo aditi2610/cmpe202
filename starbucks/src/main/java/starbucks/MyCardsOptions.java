@@ -33,16 +33,22 @@ public class MyCardsOptions extends Screen
    * @param y Y Coord
    */
     public void touch(int x, int y) {
-    	String s = x+","+y;
-    	switch(s) {
-    	case "1,7":
-    	case "2,7":
-    	case "3,7":
-    		this.app.execute("MyCardMoreOptions");
-    		break;
-    	default:
-    		break;
+    	//String s = x+","+y;
+    	
+    	if(y==7) {
+    		if(x >0 && x<4) {
+    			this.app.execute("MyCardMoreOptions");
+    		}
     	}
+//    	switch(s) {
+//    	case "1,7":
+//    	case "2,7":
+//    	case "3,7":
+//    		this.app.execute("MyCardMoreOptions");
+//    		break;
+//    	default:
+//    		break;
+//    	}
         
      }
     /**
