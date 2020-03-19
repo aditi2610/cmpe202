@@ -1,5 +1,10 @@
 package starbucks;
-
+/**
+ * Provides Receiver to App controller class
+ * AppControllerHelper
+ * @author aditimangal
+ *
+ */
 public class AppControllerHelper {
 
 	
@@ -7,13 +12,11 @@ public class AppControllerHelper {
 	 * Sets receivers
 	 * @param displayPayments displaysPayments
 	 * @param displayRewards rewards
-	 * @param displayStore rewards
 	 * @param frame frame
 	 * @param payments rewards
 	 * @param rewards rewards
-	 * @param store rewards
 	 */
-	public void setReceiverStorePaymentAndRewards(IMenuCommand displayPayments, IMenuCommand displayRewards ,IMenuCommand displayStore , IFrame frame, IScreen payments,IScreen rewards, IScreen store ) {
+	public void setReceiverPaymentAndRewards(IMenuCommand displayPayments, IMenuCommand displayRewards , IFrame frame, IScreen payments,IScreen rewards ) {
 		displayPayments.setReceiver(new IMenuReceiver() {
 			/** Command Action */
 			public void doAction() {
@@ -26,6 +29,15 @@ public class AppControllerHelper {
 				((IFrame)frame).setCurrentScreen(rewards);
 			}
 		});
+	}
+	
+	/**
+	 * Sets receivers
+	 * @param displayStore rewards
+	 * @param frame frame
+	 * @param store rewards
+	 */
+	public void setReceiverStore(IMenuCommand displayStore , IFrame frame, IScreen store ) {
 		displayStore.setReceiver(new IMenuReceiver() {
 			/** Command Action */
 			public void doAction() {
@@ -33,6 +45,7 @@ public class AppControllerHelper {
 			}
 		});
 	}
+	
 	
 	/**
 	 * Sets receivers

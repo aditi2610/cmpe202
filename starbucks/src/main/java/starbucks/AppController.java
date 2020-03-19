@@ -104,9 +104,10 @@ public class AppController implements IApp {
 	public void setReceivers() {
 		((AppControllerHelper)receiverHelper).setReceiverMyCardsOptions(displayMyCardsOptions, displayMyCardMoreOptions, frame, myCardsOptions, myCardsMoreOptions);
 		((AppControllerHelper)receiverHelper).setReceiverSettingAndAddCard(displaySettings, displayAddCard, frame, settings, addCard);
-		((AppControllerHelper)receiverHelper).setReceiverStorePaymentAndRewards(displayPayments , displayRewards, displayStore, frame, payments, rewards, store);
+		((AppControllerHelper)receiverHelper).setReceiverPaymentAndRewards(displayPayments , displayRewards, frame, payments, rewards);
 		((AppControllerHelper)receiverHelper).setReceiverMyCards(displayMyCards, displayMyCardsPay, frame, mycards, myCardsPay);
-
+		((AppControllerHelper)receiverHelper).setReceiverStore(displayStore, frame, store);
+		
 	}
 
 	
