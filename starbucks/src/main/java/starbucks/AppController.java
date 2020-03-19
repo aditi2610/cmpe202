@@ -89,8 +89,8 @@ public class AppController implements IApp {
 		((IDisplayComponent)addCard).addSubComponent(sp);
 		((IDisplayComponent)addCard).addSubComponent(kp);
 		
-		kp.attach(cardNumber);
-		kp.attach(cvv);
+		((IKeyPadSubject)kp).attach(cardNumber);
+		((IKeyPadSubject)kp).attach(cvv);
 		
 	}
 
@@ -245,47 +245,7 @@ public class AppController implements IApp {
 		if(c.equals("AddCard"))
 			frame.selectAddCard();
 		
-//		switch (c) {
-//		case "A":
-//		case "B":
-//		case "C":
-//		case "D":
-//		case "E":
-//			frame.cmd(c);
-//			break;
-//		default:
-//			switchScreens(c);
-//			break;
-
-//		}
 	}
-
-//	/**
-//	 * Invokes the different screens
-//	 * 
-//	 * @param c screen
-//	 */
-//	private void switchScreens(String c) {		
-//		switch (c) {
-//		case "MyCard":
-//			frame.selectMyCard();
-//			break;
-//		case "A1":
-//			frame.selectA1();
-//			break;
-//		case "MyCardOptions":
-//			frame.selectCardOptions();
-//			break;
-//		case "MyCardMoreOptions":
-//			frame.selectCardMoreOptions();
-//			break;
-//		case "AddCard":
-//			frame.selectAddCard();
-//			break;
-//		default:
-//			break;
-//		}
-//	}
 
 	/**
 	 * Navigate to Previous Screen
