@@ -9,7 +9,110 @@ import starbucks.Device.ORIENTATION_MODE;
  */
 public class Frame implements IFrame
 {
-    private IScreen current ;
+	/**
+	 * Landscape Starategy class
+	 * @author aditimangal
+	 *
+	 */
+    private final class LandscapeStrategyClass implements IOrientationStrategy {
+		/**
+		 * Display Screen Contents
+		 * @param s Reference to Screen
+		 */
+		public void display(IScreen s){System.out.println( contents(s) ) ;}
+
+		/**
+             * Display Contents of Frame + Screen 
+             * @param  s Screen to Display
+             * @return   Contents for Screen
+             */
+            public String contents(IScreen s) 
+            { 
+            	String out = "" ; 
+            	out += "================================\n" ;
+                out += s.name() + "\n" ;
+                out += "================================\n" ;
+                out+= s.display();
+                out +=  "================================\n" ;
+                dumpLines( out ) ;
+                return out;            }
+
+		/** Don't Respond in Landscaope Mode */
+		public void selectA() {  }
+
+		/** Don't Respond in Landscaope Mode */
+		public void selectB() {  }
+
+		/** Don't Respond in Landscaope Mode */
+		public void selectC() {  }
+
+		/** Don't Respond in Landscaope Mode */
+		public void selectD() {  }
+
+		/** Don't Respond in Landscaope Mode */
+		public void selectE() {  }
+	}
+    
+    /**
+     * Portrait Starategy class
+     * @author aditimangal
+     *
+     */
+	private final class PortraitStarategy implements IOrientationStrategy {
+		/**
+		 * Display Screen Contents
+		 * 
+		 * @param s Reference to Screen
+		 */
+		public void display(IScreen s) {
+			System.out.println(contents(s));
+		}
+
+		/**
+		 * Return String / Lines for Frame and Screen
+		 * 
+		 * @param s [description]
+		 * @return [description]
+		 */
+		public String contents(IScreen s) {
+			String out = "";
+			out += "===============\n";
+			out += s.name() + "\n";
+			out += "===============\n";
+			out += s.display();
+			out += "===============\n";
+			out += "[A][B][C][D][E]\n";
+			dumpLines(out);
+			return out;
+		}
+
+		/** Select Command A */
+		public void selectA() {
+			menuA.invoke();
+		}
+
+		/** Select Command B */
+		public void selectB() {
+			menuB.invoke();
+		}
+
+		/** Select Command C */
+		public void selectC() {
+			menuC.invoke();
+		}
+
+		/** Select Command D */
+		public void selectD() {
+			menuD.invoke();
+		}
+
+		/** Select Command E */
+		public void selectE() {
+			menuE.invoke();
+		}
+	}
+
+	private IScreen current ;
     private IMenuInvoker menuA = new MenuOption() ;  
     private IMenuInvoker menuB = new MenuOption() ;
     private IMenuInvoker menuC = new MenuOption() ;
@@ -65,74 +168,10 @@ public class Frame implements IFrame
      */
     public Frame(IScreen initial)
     {
-        current = initial ;
-        portraitStrategy = new IOrientationStrategy() 
-        {
-            /**
-             * Display Screen Contents
-             * @param s Reference to Screen
-             */
-            public void display(IScreen s){System.out.println( contents(s) ) ;}         
-                /**
-             * Return String / Lines for Frame and Screen
-             * @param  s [description]
-             * @return   [description]
-             */
-            public String contents(IScreen s) 
-            { String out = "" ;
-                out += "===============\n" ;
-                out += s.name() + "\n" ;
-                out += "===============\n" ;
-                out+= s.display();
-                out +=  "===============\n" ;
-                out +=  "[A][B][C][D][E]\n" ;
-                dumpLines( out ) ;
-                return out ;}
+		current = initial;
+		portraitStrategy = new PortraitStarategy();
 
-            /** Select Command A */
-            public void selectA() { menuA.invoke() ; }
-            /** Select Command B */
-            public void selectB() { menuB.invoke() ; }
-            /** Select Command C */
-            public void selectC() { menuC.invoke() ; }
-            /** Select Command D */
-            public void selectD() { menuD.invoke() ; }
-            /** Select Command E */
-            public void selectE() { menuE.invoke(); }} ;
-
-        landscapeStrategy = new IOrientationStrategy() 
-        {
-            /**
-             * Display Screen Contents
-             * @param s Reference to Screen
-             */
-            public void display(IScreen s){System.out.println( contents(s) ) ;}         
-           /**
-             * Display Contents of Frame + Screen 
-             * @param  s Screen to Display
-             * @return   Contents for Screen
-             */
-            public String contents(IScreen s) 
-            { 
-            	String out = "" ; 
-            	out += "================================\n" ;
-                out += s.name() + "\n" ;
-                out += "================================\n" ;
-                out+= s.display();
-                out +=  "================================\n" ;
-                dumpLines( out ) ;
-                return out;            }
-
-             /** Don't Respond in Landscaope Mode */
-            public void selectA() {  }
-            /** Don't Respond in Landscaope Mode */
-            public void selectB() {  }
-            /** Don't Respond in Landscaope Mode */
-            public void selectC() {  }
-            /** Don't Respond in Landscaope Mode */
-            public void selectD() {  }
-            /** Don't Respond in Landscaope Mode */
-            public void selectE() {  }} ;     
+        landscapeStrategy = new LandscapeStrategyClass() ;     
 
        if(currentStrategy == null) {
     	   currentStrategy = Device.getInstance().getDeviceOrientation() == ORIENTATION_MODE.LANDSCAPE? landscapeStrategy : portraitStrategy;
