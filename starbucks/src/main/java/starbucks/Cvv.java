@@ -97,19 +97,21 @@ public class Cvv implements IDisplayComponent, ITouchEventHandler, IKeyPadObserv
 	private StringBuilder convertKeyEvent(String key) {
 		StringBuilder cvv = new StringBuilder(getCvv());
 		
-		while(true) {
-			if(key.equals("X")) {
-				if(cvv.length() == 0)
+		while (true) {
+			if (key.equals("X")) {
+				if (cvv.length() == 0)
 					break;
 				cvv.deleteCharAt(cvv.length() - 1);
 				break;
 			}
-			if(key.equals(" "))
+			if (key.equals(" "))
 				break;
-			if(cvv.length() ==3)
-				break;
-			else
-				cvv.append(key);
+			else {
+				if (cvv.length() == 3)
+					break;
+				else
+					cvv.append(key);
+			}
 		}
 //		switch (key) {
 //		case "X":
