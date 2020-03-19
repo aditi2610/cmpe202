@@ -52,17 +52,6 @@ public class Cvv implements IDisplayComponent, ITouchEventHandler, IKeyPadObserv
 				app.setFocusCvv(false);
 			}
 		}
-//		String s = x + "," + y;
-//		switch (s) {
-//		case "1,2":
-//		case "2,2":
-//		case "3,2":
-//			app.setFocusCvv(false);
-//			break;
-//		default:
-//			break;
-//
-//		}
 		if (nextHandler != null) {
 			nextHandler.touch(x, y);
 		}
@@ -107,21 +96,36 @@ public class Cvv implements IDisplayComponent, ITouchEventHandler, IKeyPadObserv
 	 */
 	private StringBuilder convertKeyEvent(String key) {
 		StringBuilder cvv = new StringBuilder(getCvv());
-		switch (key) {
-		case "X":
-			if (cvv.length() == 0) {
+		
+		while(true) {
+			if(key.equals("X")) {
+				if(cvv.length() == 0)
+					break;
+				cvv.deleteCharAt(cvv.length() - 1);
 				break;
 			}
-			cvv.deleteCharAt(cvv.length() - 1);
-			break;
-		case " ":
-			break;
-		default:
-			if (cvv.length() == 3) {
+			if(key.equals(" "))
 				break;
-			}
-			cvv.append(key);
+			if(cvv.length() ==3)
+				break;
+			else
+				cvv.append(key);
 		}
+//		switch (key) {
+//		case "X":
+//			if (cvv.length() == 0) {
+//				break;
+//			}
+//			cvv.deleteCharAt(cvv.length() - 1);
+//			break;
+//		case " ":
+//			break;
+//		default:
+//			if (cvv.length() == 3) {
+//				break;
+//			}
+//			cvv.append(key);
+//		}
 		return cvv;
 	}
 
