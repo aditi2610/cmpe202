@@ -57,10 +57,10 @@ public class AddCard extends Screen implements IDisplayComponent {
 	 * prev method executes the Settings screen
 	 */
 	public void prev() {
-		app.execute("E");
+		this.app.execute("E");
 		this.cardNumber.setCardNum(new StringBuilder(""));
 		this.cvv.setCvv(new StringBuilder(""));
-		app.setBalance(0.00);
+		this.app.setBalance(0.00);
 	}
 
 	/**

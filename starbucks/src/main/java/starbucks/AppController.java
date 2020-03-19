@@ -228,43 +228,44 @@ public class AppController implements IApp {
 	 * @param c Menu Bar Option (A, B, C, D or E)
 	 */
 	public void execute(String c) {
-		switch (c) {
-		case "A":
-		case "B":
-		case "C":
-		case "D":
-		case "E":
+		if(c.equals("A") || c.equals("B"))
 			frame.cmd(c);
-			break;
-		default:
-			switchScreens(c);
-			break;
+		if(c.equals("C") || c.equals("D"))
+			frame.cmd(c);
+		if(c.equals("E"))
+			frame.cmd(c);
+		if(c.equals("MyCard"))
+			frame.selectMyCard();
+		if(c.equals("A1"))
+			frame.selectA1();
+		if(c.equals("MyCardOptions"))
+			frame.selectCardOptions();
+		if(c.equals("MyCardMoreOptions"))
+			frame.selectCardMoreOptions();
+		if(c.equals("AddCard"))
+			frame.selectAddCard();
+		
+//		switch (c) {
+//		case "A":
+//		case "B":
+//		case "C":
+//		case "D":
+//		case "E":
+//			frame.cmd(c);
+//			break;
+//		default:
+//			switchScreens(c);
+//			break;
 
-		}
+//		}
 	}
 
-	/**
-	 * Invokes the different screens
-	 * 
-	 * @param c screen
-	 */
-	private void switchScreens(String c) {
-		if(c.equals("MyCard")){
-			frame.selectMyCard();
-			}
-		else if(c.equals("A1")){
-			frame.selectA1();
-		}
-		else if(c.equals("MyCardOptions")){
-			frame.selectCardOptions();
-		}
-		else if(c.equals("MyCardMoreOptions")){
-			frame.selectCardMoreOptions();
-		}
-		else if(c.equals("AddCard")){
-			frame.selectAddCard();
-		}
-		
+//	/**
+//	 * Invokes the different screens
+//	 * 
+//	 * @param c screen
+//	 */
+//	private void switchScreens(String c) {		
 //		switch (c) {
 //		case "MyCard":
 //			frame.selectMyCard();
@@ -284,7 +285,7 @@ public class AppController implements IApp {
 //		default:
 //			break;
 //		}
-	}
+//	}
 
 	/**
 	 * Navigate to Previous Screen

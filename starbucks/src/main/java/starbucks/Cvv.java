@@ -34,7 +34,7 @@ public class Cvv implements IDisplayComponent, ITouchEventHandler, IKeyPadObserv
 	@Override
 	public void keyEventUpdate(int numKeys, String key) {
 		if (app.isFocusCvv()) {
-			cvv = (convertKeyEvent(key));
+			setCvv(convertKeyEvent(key));
 		}
 
 	}

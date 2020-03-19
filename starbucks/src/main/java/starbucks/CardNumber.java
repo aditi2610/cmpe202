@@ -81,7 +81,7 @@ public class CardNumber implements IDisplayComponent, ITouchEventHandler,IKeyPad
 	@Override
 	public void keyEventUpdate(int numKeys, String key) {
 		if(!app.isFocusCvv())
-			cardNum=(convertKeyEvent(key));
+			setCardNum(convertKeyEvent(key));
 		
 	}
 	
