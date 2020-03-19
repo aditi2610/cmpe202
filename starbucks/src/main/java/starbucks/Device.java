@@ -198,24 +198,7 @@ public class Device implements IApp, IPinAuthObserver {
 	 */
 	public void startUp() {
 		if (pin.length() == 4 || pin.length() == 6) {
-			kp = new KeyPad();
-			sp = new Spacer();
-			ps = new PinScreen();
-			pm = new PinEntryMachine();
-
-			if (pin.length() == 6) {
-				pc6 = new Passcode6();
-				ps.addSubComponent(pc6);
-				((IKeyPadSubject) kp).attach(pc6);
-			} else {
-				pc = new Passcode();
-				ps.addSubComponent(pc);
-				((IKeyPadSubject) kp).attach(pc);
-			}
-			ps.addSubComponent(sp);
-			ps.addSubComponent(kp);
-			((IKeyPadSubject) kp).attach(pm);
-			((IPinAuthSubject) pm).registerObserver(this);
+			deviceWithPin();
 		}
 		else {
 			this.authenticated = true;
@@ -223,9 +206,30 @@ public class Device implements IApp, IPinAuthObserver {
 		// get app controller reference
 		app = new AppController();
 		// startup in portrait
-		if (this.device_orientation_state == null) {
-			this.device_orientation_state = ORIENTATION_MODE.PORTRAIT;
+		this.device_orientation_state = this.device_orientation_state != null?this.device_orientation_state: ORIENTATION_MODE.PORTRAIT;
+	}
+	/**
+	 * Device Starup Process. Starts Up with Default 6-Pin Option
+	 */
+	private void deviceWithPin() {
+		kp = new KeyPad();
+		sp = new Spacer();
+		ps = new PinScreen();
+		pm = new PinEntryMachine();
+
+		if (pin.length() == 6) {
+			pc6 = new Passcode6();
+			((PinScreen)ps).addSubComponent(pc6);
+			((IKeyPadSubject) kp).attach(pc6);
+		} else {
+			pc = new Passcode();
+			((PinScreen)ps).addSubComponent(pc);
+			((IKeyPadSubject) kp).attach(pc);
 		}
+		((PinScreen)ps).addSubComponent(sp);
+		((PinScreen)ps).addSubComponent(kp);
+		((IKeyPadSubject) kp).attach(pm);
+		((IPinAuthSubject) pm).registerObserver(this);
 	}
 
 

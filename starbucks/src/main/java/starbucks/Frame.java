@@ -73,7 +73,6 @@ public class Frame implements IFrame
              * @param s Reference to Screen
              */
             public void display(IScreen s){System.out.println( contents(s) ) ;}         
-
                 /**
              * Return String / Lines for Frame and Screen
              * @param  s [description]
@@ -136,10 +135,7 @@ public class Frame implements IFrame
             public void selectE() {  }} ;     
 
        if(currentStrategy == null) {
-    	  if( Device.getInstance().getDeviceOrientation() == ORIENTATION_MODE.LANDSCAPE)
-    		  currentStrategy = landscapeStrategy;
-    	  else
-    		  currentStrategy = portraitStrategy;
+    	   currentStrategy = Device.getInstance().getDeviceOrientation() == ORIENTATION_MODE.LANDSCAPE? landscapeStrategy : portraitStrategy;
        }
     }
 
