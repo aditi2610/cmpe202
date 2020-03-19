@@ -88,27 +88,21 @@ final class Main {
 		}
 		if (cmd.equalsIgnoreCase("landscape")) {
 			app.landscape();
-		} if (cmd.startsWith("login")) {
+		} 
+		if (cmd.startsWith("login")) {
 			app.touch(1, 5); // 1
 			app.touch(2, 5); // 2
 			app.touch(3, 5); // 3
 			app.touch(1, 6); // 4
-		} 
-		else {
-			String selection = cmd.toUpperCase();
-			msg = "selected: " + selection;
-			if(cmd.equals("a") || cmd.equals("b")) {
-				app.execute(selection);
-			}
-			if(cmd.equals("c") || cmd.equals("d")) {
-				app.execute(selection);
-			}
-			if(cmd.equals("e")) {
-				app.execute(selection);
-			}
-			else {
-				msg = " ";
-			}
+		}
+		msg = " ";
+		if (cmd.equals("a") || cmd.equals("b") || cmd.equals("e")) {
+			msg = "selected: " + cmd.toUpperCase();
+			app.execute(cmd.toUpperCase());
+		}
+		if (cmd.equals("c") || cmd.equals("d")) {
+			msg = "selected: " + cmd.toUpperCase();
+			app.execute(cmd.toUpperCase());
 		}
 		return msg;
 	}
