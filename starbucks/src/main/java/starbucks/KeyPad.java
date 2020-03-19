@@ -70,9 +70,9 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
         ky = y-4 ;
         if ( kx==3 && ky ==4 )
             return "X" ;
-        else if ( kx==2 && ky == 4 )
+        if ( kx==2 && ky == 4 )
             return "0" ;
-        else if ( kx==1 && ky ==4 )
+        if ( kx==1 && ky ==4 )
             return " " ;
         else
             return Integer.toString(kx+3*(ky-1)) ;   
