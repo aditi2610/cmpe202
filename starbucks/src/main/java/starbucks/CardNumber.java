@@ -93,21 +93,60 @@ public class CardNumber implements IDisplayComponent, ITouchEventHandler,IKeyPad
 	 */
 	private StringBuilder convertKeyEvent(String key) {
 		StringBuilder cardNumber = new StringBuilder(getCardNum());
-		switch (key) {
-		case "X":
-			if (cardNumber.length() == 0) {
-				break;
-			}
-			cardNumber.deleteCharAt(cardNumber.length() - 1);
-			break;
-		case " ":
-			break;
-		default:
-			if (cardNumber.length() == 9) {
-				break;
-			}
-			cardNumber.append(key);
+		
+//		while(true) {
+//			if(key.equals("X")) {
+//				if (cardNumber.length() == 0) {
+//					break;
+//				}
+//				cardNumber.deleteCharAt(cardNumber.length() - 1);
+//				break;
+//			}
+//			if(key.equals(" ")) 
+//				break;
+//			if(cardNumber.length() == 9)
+//				break;
+//			else
+//				cardNumber.append(key);
+//			
+//		}
+
+//		switch (key) {
+//		case "X":
+//			if (cardNumber.length() == 0) {
+//				break;
+//			}
+//			cardNumber.deleteCharAt(cardNumber.length() - 1);
+//			break;
+//		case " ":
+//			break;
+//		default:
+//			if (cardNumber.length() == 9) {
+//				break;
+//			}
+//			cardNumber.append(key);
+//		}
+//		return cardNumber;
+//		
+//
+		if(key.equals("X") && cardNumber.length() == 0) {
+			return cardNumber;
 		}
+		
+		if(key.equals("X") && cardNumber.length() != 0) {
+			cardNumber.deleteCharAt(cardNumber.length() - 1);
+			return cardNumber;
+		}
+		
+		if(key.equals(" ")) {
+			return cardNumber;
+		}
+		
+		if(cardNumber.length() == 9) {
+			return cardNumber;
+		}
+		
+		cardNumber.append(key);
 		return cardNumber;
 	}
 	

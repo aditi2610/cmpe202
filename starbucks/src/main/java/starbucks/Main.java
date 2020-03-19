@@ -2,10 +2,8 @@
 
 package starbucks;
 
-import java.io.BufferedReader;
 import java.io.Console;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 /**
  * Main Entry Point.
@@ -22,12 +20,12 @@ final class Main {
 
 	/**
 	 * Main App Entry Point.
+	 * 
 	 * @param args No args expected.
-	 * @throws IOException 
-	*
+	 *
 	 */
 	public static void main(final String[] args) {
-		for(String v : args) {
+		for (String v : args) {
 			System.err.print("Args: " + v + " ");
 		}
 		System.err.println();
@@ -38,18 +36,18 @@ final class Main {
 		for (;;) {
 			flushAndPrintScreenContents(app, msg);
 			String ch = c.readLine(); // get user command
-//			BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-//			String ch = bf.readLine();
+			// BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+			// String ch = bf.readLine();
 			String cmd = ch.toLowerCase(); // convert to lower case
 			cmd = cmd.replaceAll("\\s", ""); // remove all whitespaces
 
 			/* process commands */
 			msg = cmd;
-			System.err.println(String.format("Input Command: %s", cmd)) ;
-			msg = executeCmd(app, msg, cmd);
+			System.err.println(String.format("Input Command: %s", cmd));
+			msg = executeCmd(app, cmd);
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param app instance of IApp
@@ -61,17 +59,19 @@ final class Main {
 		System.out.println(app.screenContents());
 		System.out.println(msg);
 		System.out.print("=> ");
-	
+
 	}
 
 	/**
 	 * executes whenever any command is executed
+	 * 
 	 * @param app instance of IApp
 	 * @param msg cmd passed through args
 	 * @param cmd cmd passed
 	 * @return String contents
 	 */
-	private static String executeCmd(IApp app, String msg, String cmd) {
+	private static String executeCmd(IApp app, String cmd) {
+		String msg = " ";
 		if (cmd.startsWith("touch")) {
 			msg = executeTouch(app, cmd);
 		}
@@ -88,14 +88,13 @@ final class Main {
 		}
 		if (cmd.equalsIgnoreCase("landscape")) {
 			app.landscape();
-		} 
+		}
 		if (cmd.startsWith("login")) {
 			app.touch(1, 5); // 1
 			app.touch(2, 5); // 2
 			app.touch(3, 5); // 3
 			app.touch(1, 6); // 4
 		}
-		msg = " ";
 		if (cmd.equals("a") || cmd.equals("b") || cmd.equals("e")) {
 			msg = "selected: " + cmd.toUpperCase();
 			app.execute(cmd.toUpperCase());
@@ -106,9 +105,10 @@ final class Main {
 		}
 		return msg;
 	}
-	
+
 	/**
 	 * this would execute whenever the command starts with touch
+	 * 
 	 * @param app instance of Iapp
 	 * @param cmd entered by the user
 	 * @return String to be displayed
@@ -119,7 +119,7 @@ final class Main {
 		parms = parms.substring(1);
 		parms = parms.substring(0, parms.length() - 1);
 		String[] values = parms.split(",");
-		for(String s: values) {
+		for (String s : values) {
 			System.err.print("Value: " + s + " ");
 		}
 		System.err.println("");
