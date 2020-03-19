@@ -43,17 +43,33 @@ public class Passcode implements ITouchEventHandler, IDisplayComponent, IKeyPadO
     public String display() 
     {
         String value = "" ;
-        switch ( count )
-        {
-            case 0: value = "  [_][_][_][_]" ; break ;
-            case 1: value = "  [*][_][_][_]" ; break ;
-            case 2: value = "  [*][*][_][_]" ; break ;
-            case 3: value = "  [*][*][*][_]" ; break ;
-            case 4: value = authenticatPin(value);
-            	break ;
-            default :
-            	break;
-        }
+        
+       if(count == 0) {
+    	   value = "  [_][_][_][_]" ;
+       }
+       if(count ==1) {
+    	   value = "  [*][_][_][_]" ;
+       }
+       if(count ==2) {
+    	   value = "  [*][*][_][_]" ;
+       }
+       if(count ==3) {
+    	   value = "  [*][*][*][_]" ;
+       }
+       if(count ==4) {
+    	   value = authenticatPin(value);
+       }
+//        switch ( count )
+//        {
+//            case 0: value = "  [_][_][_][_]" ; break ;
+//            case 1: value = "  [*][_][_][_]" ; break ;
+//            case 2: value = "  [*][*][_][_]" ; break ;
+//            case 3: value = "  [*][*][*][_]" ; break ;
+//            case 4: value = authenticatPin(value);
+//            	break ;
+//            default :
+//            	break;
+//        }
          return value  ;
     }
     /**
