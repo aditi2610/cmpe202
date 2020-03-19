@@ -72,38 +72,21 @@ final class Main {
 	 */
 	private static String executeCmd(IApp app, String cmd) {
 		String msg = " ";
-		if (cmd.startsWith("touch")) {
-			msg = executeTouch(app, cmd);
-		}
-		if (cmd.startsWith("prev")) {
-			msg = "cmd: previous";
-			app.prev();
-		}
+		if (cmd.startsWith("touch")) msg = executeTouch(app, cmd);
+		if (cmd.startsWith("prev")) {msg = "cmd: previous";
+			app.prev();}
 		if (cmd.startsWith("next")) {
 			msg = "cmd: next";
-			app.next();
-		}
-		
-		if (cmd.equalsIgnoreCase("portrait")) {
-			app.portrait();
-		}
-
-		if (cmd.equalsIgnoreCase("landscape")) {
-			app.landscape();
-		}
-
+			app.next();}
+		if (cmd.equalsIgnoreCase("portrait")) app.portrait();
+		if (cmd.equalsIgnoreCase("landscape")) app.landscape();
 		if (cmd.startsWith("login")) {
 			app.touch(1, 5); // 1
 			app.touch(2, 5); // 2
 			app.touch(3, 5); // 3
 			app.touch(1, 6); // 4
-		}
-
-		if (handleMenuOption(app, cmd)) {
-			msg = "selected: " + cmd.toUpperCase();
-			return msg;
-		}
-
+			}
+		if (handleMenuOption(app, cmd)) msg = "selected: " + cmd.toUpperCase();
 		return msg;
 	}
 	

@@ -99,13 +99,9 @@ public class AppController implements IApp {
 	 * 
 	 */
 	private void setReceivers() {
-
-		displayMyCards.setReceiver(new IMenuReceiver() {
-			/** Command Action */
-			public void doAction() {
-				frame.setCurrentScreen(mycards);
-			}
-		});
+		setReceiverMyCards();
+		setReceiverMyCardsOptions();
+		setReceiverSettingAndAddCard();
 		displayPayments.setReceiver(new IMenuReceiver() {
 			/** Command Action */
 			public void doAction() {
@@ -124,20 +120,36 @@ public class AppController implements IApp {
 				frame.setCurrentScreen(store);
 			}
 		});
+		
+
+	}
+	/**
+	 * Sets receivers
+	 * 
+	 */
+	private void setReceiverSettingAndAddCard() {
 		displaySettings.setReceiver(new IMenuReceiver() {
 			/** Command Action */
 			public void doAction() {
 				frame.setCurrentScreen(settings);
 			}
 		});
-
-		displayMyCardsPay.setReceiver(new IMenuReceiver() {
-			/** Command Action */
+		displayAddCard.setReceiver(new IMenuReceiver() {
+			/**
+			 * sets the current screen to params
+			 */
+			@Override
 			public void doAction() {
-				frame.setCurrentScreen(myCardsPay);
+				frame.setCurrentScreen(addCard);
 			}
 		});
-
+	}
+	
+	/**
+	 * Sets receivers
+	 * 
+	 */
+	private void setReceiverMyCardsOptions() {
 		displayMyCardsOptions.setReceiver(new IMenuReceiver() {
 			/**
 			 * sets the current screen to params
@@ -158,18 +170,25 @@ public class AppController implements IApp {
 
 			}
 		});
-
-		displayAddCard.setReceiver(new IMenuReceiver() {
-			/**
-			 * sets the current screen to params
-			 */
-			@Override
+	}
+	
+	/**
+	 * Sets receivers
+	 * 
+	 */
+	private void setReceiverMyCards() {
+		displayMyCards.setReceiver(new IMenuReceiver() {
+			/** Command Action */
 			public void doAction() {
-				frame.setCurrentScreen(addCard);
-
+				frame.setCurrentScreen(mycards);
 			}
 		});
-
+		displayMyCardsPay.setReceiver(new IMenuReceiver() {
+			/** Command Action */
+			public void doAction() {
+				frame.setCurrentScreen(myCardsPay);
+			}
+		});
 	}
 
 	/**
@@ -228,12 +247,12 @@ public class AppController implements IApp {
 	 * @param c Menu Bar Option (A, B, C, D or E)
 	 */
 	public void execute(String c) {
-		if(c.equals("A") || c.equals("B"))
-			frame.cmd(c);
-		if(c.equals("C") || c.equals("D"))
-			frame.cmd(c);
-		if(c.equals("E"))
-			frame.cmd(c);
+//		if(c.equals("A") || c.equals("B"))
+//			frame.cmd(c);
+//		if(c.equals("C") || c.equals("D"))
+//			frame.cmd(c);
+//		if(c.equals("E"))
+//			frame.cmd(c);
 		if(c.equals("MyCard"))
 			frame.selectMyCard();
 		if(c.equals("A1"))
@@ -244,6 +263,8 @@ public class AppController implements IApp {
 			frame.selectCardMoreOptions();
 		if(c.equals("AddCard"))
 			frame.selectAddCard();
+		else
+			frame.cmd(c);
 		
 	}
 
