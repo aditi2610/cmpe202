@@ -90,27 +90,50 @@ final class Main {
 		if (cmd.equalsIgnoreCase("landscape")) {
 			app.landscape();
 		}
+		msg = cmdLoginAndCommand(app, msg, cmd);
+		return msg;
+	}
+
+	private static String cmdLoginAndCommand(IApp app, String msg, String cmd) {
 		if (cmd.startsWith("login")) {
 			app.touch(1, 5); // 1
 			app.touch(2, 5); // 2
 			app.touch(3, 5); // 3
 			app.touch(1, 6); // 4
-		} else {
-			switch (cmd) {
-				case "a":
-				case "b":
-				case "c":
-				case "d":
-				case "e":
-					String selection = cmd.toUpperCase();
-					msg = "selected: " + selection;
-					app.execute(selection);
-					break;
-				default:
-					msg = " ";
-			}
-
 		}
+		
+		if(cmd.equals("a") || cmd.equals("b")) {
+			String selection = cmd.toUpperCase();
+			msg = "selected: " + selection;
+			app.execute(selection);
+		}
+		if(cmd.equals("c") || cmd.equals("d")) {
+			String selection = cmd.toUpperCase();
+			msg = "selected: " + selection;
+			app.execute(selection);
+		}
+		if(cmd.equals("e")) {
+			String selection = cmd.toUpperCase();
+			msg = "selected: " + selection;
+			app.execute(selection);
+		}
+		else
+			msg =" ";
+//		else {
+//			switch (cmd) {
+//				case "a":
+//				case "b":
+//				case "c":
+//				case "d":
+//				case "e":
+//					String selection = cmd.toUpperCase();
+//					msg = "selected: " + selection;
+//					app.execute(selection);
+//					break;
+//				default:
+//					msg = " ";
+//			}
+//		}
 		return msg;
 	}
 
