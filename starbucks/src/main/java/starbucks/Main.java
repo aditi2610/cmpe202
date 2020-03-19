@@ -44,7 +44,32 @@ final class Main {
 			/* process commands */
 			msg = cmd;
 			System.err.println(String.format("Input Command: %s", cmd));
-			msg = executeCmd(app, cmd);
+			if (cmd.startsWith("touch")) {
+				msg = executeTouch(app, cmd);
+			}
+			if (cmd.startsWith("prev")) {
+				msg = "cmd: previous";
+				app.prev();
+			}
+			if (cmd.startsWith("next")) {
+				msg = "cmd: next";
+				app.next();
+			}
+			if (cmd.equalsIgnoreCase("portrait")) {
+				app.portrait();
+			}
+			if (cmd.equalsIgnoreCase("landscape")) {
+				app.landscape();
+			}
+			if (cmd.startsWith("login")) {
+				app.touch(1, 5); // 1
+				app.touch(2, 5); // 2
+				app.touch(3, 5); // 3
+				app.touch(1, 6); // 4
+			}
+			if (handleMenuOption(app, cmd)) {
+				msg = "selected: " + cmd.toUpperCase();
+			}
 		}
 	}
 
@@ -70,65 +95,69 @@ final class Main {
 	 * @param cmd cmd passed
 	 * @return String contents
 	 */
-	private static String executeCmd(IApp app, String cmd) {
-		String msg = " ";
-		if (cmd.startsWith("touch")) {
-			msg = executeTouch(app, cmd);
-		}
-		if (cmd.startsWith("prev")) {
-			msg = "cmd: previous";
-			app.prev();
-		}
-		if (cmd.startsWith("next")) {
-			msg = "cmd: next";
-			app.next();
-		}
-		
-		if (handleOrientation(app, cmd)) {
-			return msg;
-		}
-
-		if (cmd.startsWith("login")) {
-			app.touch(1, 5); // 1
-			app.touch(2, 5); // 2
-			app.touch(3, 5); // 3
-			app.touch(1, 6); // 4
-		}
-
-		if (handleMenuOption(app, cmd)) {
-			msg = "selected: " + cmd.toUpperCase();
-			return msg;
-		}
-
-		return msg;
-	}
+//	private static String executeCmd(IApp app, String cmd) {
+//		String msg = " ";
+//		if (cmd.startsWith("touch")) {
+//			msg = executeTouch(app, cmd);
+//		}
+//		if (cmd.startsWith("prev")) {
+//			msg = "cmd: previous";
+//			app.prev();
+//		}
+//		if (cmd.startsWith("next")) {
+//			msg = "cmd: next";
+//			app.next();
+//		}
+//		
+//		if (cmd.equalsIgnoreCase("portrait")) {
+//			app.portrait();
+//		}
+//
+//		if (cmd.equalsIgnoreCase("landscape")) {
+//			app.landscape();
+//		}
+//
+//		if (cmd.startsWith("login")) {
+//			app.touch(1, 5); // 1
+//			app.touch(2, 5); // 2
+//			app.touch(3, 5); // 3
+//			app.touch(1, 6); // 4
+//		}
+//
+//		if (handleMenuOption(app, cmd)) {
+//			msg = "selected: " + cmd.toUpperCase();
+//			return msg;
+//		}
+//
+//		return msg;
+//	}
+	
+//	/**
+//	 * executes Orientation
+//	 * 
+//	 * @param app instance of IApp
+//	 * @param command cmd passed
+//	 * @return boolean true/false
+//	 */
+//	private static boolean handleOrientation(IApp app, String command) {
+//		if (command.equalsIgnoreCase("portrait")) {
+//			app.portrait();
+//			return true;
+//		}
+//
+//		if (command.equalsIgnoreCase("landscape")) {
+//			app.landscape();
+//			return true;
+//		}
+//		
+//		return false;
+//	}
 	
 	/**
-	 * executes Orientation
+	 * executes L
 	 * 
 	 * @param app instance of IApp
-	 * @param command passed
-	 * @return boolean true/false
-	 */
-	private static boolean handleOrientation(IApp app, String command) {
-		if (command.equalsIgnoreCase("portrait")) {
-			app.portrait();
-			return true;
-		}
-
-		if (command.equalsIgnoreCase("landscape")) {
-			app.landscape();
-			return true;
-		}
-		
-		return false;
-	}
-	
-	/**
-	 * executes Command
-	 * 
-	 * @param app instance of IApp
-	 * @param cmd passed
+	 * @param command cmd passed
 	 * @return boolean true/false
 	 */
 	private static boolean handleMenuOption(IApp app, String cmd) {

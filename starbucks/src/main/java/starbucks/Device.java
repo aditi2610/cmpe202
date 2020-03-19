@@ -138,25 +138,6 @@ public class Device implements IApp, IPinAuthObserver {
 		fourPin = false;
 		sixPin = false;
 		return;
-		
-//		switch (len) {
-//		case 0:
-//			fourPin = false;
-//			sixPin = false;
-//			break;
-//		case 4:
-//			fourPin = true;
-//			sixPin = false;
-//			break;
-//		case 6:
-//			fourPin = false;
-//			sixPin = true;
-//			break;
-//		default:
-//			fourPin = false;
-//			sixPin = false;
-//			break;
-//		}
 	}
 
 	/**
@@ -216,51 +197,37 @@ public class Device implements IApp, IPinAuthObserver {
 	 * Device Starup Process. Starts Up with Default 6-Pin Option
 	 */
 	public void startUp() {
-		int pinLength = pin.length();
-		if (pinLength == 4 || pinLength == 6) {
-			deviceWithPin(pinLength);
+		if (pin.length() == 4 || pin.length() == 6) {
+			kp = new KeyPad();
+			sp = new Spacer();
+			ps = new PinScreen();
+			pm = new PinEntryMachine();
+
+			if (pin.length() == 6) {
+				pc6 = new Passcode6();
+				ps.addSubComponent(pc6);
+				((IKeyPadSubject) kp).attach(pc6);
+			} else {
+				pc = new Passcode();
+				ps.addSubComponent(pc);
+				((IKeyPadSubject) kp).attach(pc);
+			}
+			ps.addSubComponent(sp);
+			ps.addSubComponent(kp);
+			((IKeyPadSubject) kp).attach(pm);
+			((IPinAuthSubject) pm).registerObserver(this);
 		}
 		else {
 			this.authenticated = true;
 		}
 		// get app controller reference
 		app = new AppController();
-
 		// startup in portrait
 		if (this.device_orientation_state == null) {
 			this.device_orientation_state = ORIENTATION_MODE.PORTRAIT;
 		}
 	}
 
-	/**
-	 * Device Starup Process. Starts Up with Default 4-6-Pin Option
-	 * @param pinLength is the length of pin
-	 */
-	private void deviceWithPin(int pinLength) {
-		kp = new KeyPad();
-		sp = new Spacer();
-		ps = new PinScreen();
-		pm = new PinEntryMachine();
-
-		if (pinLength == 6) {
-			pc6 = new Passcode6();
-			ps.addSubComponent(pc6);
-		} else {
-			pc = new Passcode();
-			ps.addSubComponent(pc);
-		}
-		ps.addSubComponent(sp);
-		ps.addSubComponent(kp);
-
-		// setup the observer pattern
-		if (pinLength == 6) {
-			((IKeyPadSubject) kp).attach(pc6);
-		} else {
-			((IKeyPadSubject) kp).attach(pc);
-		}
-		((IKeyPadSubject) kp).attach(pm);
-		((IPinAuthSubject) pm).registerObserver(this);
-	}
 
 	/**
 	 * Switch to Landscape View
