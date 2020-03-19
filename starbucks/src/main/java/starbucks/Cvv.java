@@ -47,17 +47,22 @@ public class Cvv implements IDisplayComponent, ITouchEventHandler, IKeyPadObserv
 	 */
 	@Override
 	public void touch(int x, int y) {
-		String s = x + "," + y;
-		switch (s) {
-		case "1,2":
-		case "2,2":
-		case "3,2":
-			app.setFocusCvv(false);
-			break;
-		default:
-			break;
-
+		if(y ==2) {
+			if(x>0 && x <4) {
+				app.setFocusCvv(false);
+			}
 		}
+//		String s = x + "," + y;
+//		switch (s) {
+//		case "1,2":
+//		case "2,2":
+//		case "3,2":
+//			app.setFocusCvv(false);
+//			break;
+//		default:
+//			break;
+//
+//		}
 		if (nextHandler != null) {
 			nextHandler.touch(x, y);
 		}

@@ -26,7 +26,7 @@ final class Main {
 	 * @throws IOException 
 	*
 	 */
-	public static void main(final String[] args) {
+	public static void main(final String[] args) throws IOException {
 		for(String v : args) {
 			System.err.print("Args: " + v + " ");
 		}
@@ -37,9 +37,9 @@ final class Main {
 		String msg = "";
 		for (;;) {
 			flushAndPrintScreenContents(app, msg);
-			String ch = c.readLine(); // get user command
-//			BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-//			String ch = bf.readLine();
+//			String ch = c.readLine(); // get user command
+			BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+			String ch = bf.readLine();
 			String cmd = ch.toLowerCase(); // convert to lower case
 			cmd = cmd.replaceAll("\\s", ""); // remove all whitespaces
 
@@ -74,17 +74,22 @@ final class Main {
 	private static String executeCmd(IApp app, String msg, String cmd) {
 		if (cmd.startsWith("touch")) {
 			msg = executeTouch(app, cmd);
-		}  else if (cmd.startsWith("prev")) {
+		}
+		if (cmd.startsWith("prev")) {
 			msg = "cmd: previous";
 			app.prev();
-		} else if (cmd.startsWith("next")) {
+		}
+		if (cmd.startsWith("next")) {
 			msg = "cmd: next";
 			app.next();
-		} else if (cmd.equalsIgnoreCase("portrait")) {
+		}
+		if (cmd.equalsIgnoreCase("portrait")) {
 			app.portrait();
-		} else if (cmd.equalsIgnoreCase("landscape")) {
+		}
+		if (cmd.equalsIgnoreCase("landscape")) {
 			app.landscape();
-		} else if (cmd.startsWith("login")) {
+		}
+		if (cmd.startsWith("login")) {
 			app.touch(1, 5); // 1
 			app.touch(2, 5); // 2
 			app.touch(3, 5); // 3
