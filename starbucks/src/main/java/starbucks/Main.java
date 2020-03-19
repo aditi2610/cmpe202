@@ -90,11 +90,20 @@ final class Main {
 		if (cmd.equalsIgnoreCase("landscape")) {
 			app.landscape();
 		}
-		msg = cmdLoginAndCommand(app, msg, cmd);
+		msg = cmdLoginAndCommand(app, cmd);
 		return msg;
 	}
 
-	private static String cmdLoginAndCommand(IApp app, String msg, String cmd) {
+	/**
+	 * executes whenever any command is executed
+	 * 
+	 * @param app instance of IApp
+	 * @param msg cmd passed through args
+	 * @param cmd cmd passed
+	 * @return String contents
+	 */
+	private static String cmdLoginAndCommand(IApp app, String cmd) {
+		String msg= " ";
 		if (cmd.startsWith("login")) {
 			app.touch(1, 5); // 1
 			app.touch(2, 5); // 2
@@ -117,23 +126,6 @@ final class Main {
 			msg = "selected: " + selection;
 			app.execute(selection);
 		}
-		else
-			msg =" ";
-//		else {
-//			switch (cmd) {
-//				case "a":
-//				case "b":
-//				case "c":
-//				case "d":
-//				case "e":
-//					String selection = cmd.toUpperCase();
-//					msg = "selected: " + selection;
-//					app.execute(selection);
-//					break;
-//				default:
-//					msg = " ";
-//			}
-//		}
 		return msg;
 	}
 
