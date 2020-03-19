@@ -195,17 +195,17 @@ public class AppController implements IApp {
 	 * Set Menus for the screen
 	 */
 	private void setMenus() {
-		frame.setMenuItem("A", displayMyCards);
-		frame.setMenuItem("B", displayPayments);
-		frame.setMenuItem("C", displayRewards);
-		frame.setMenuItem("D", doStore);
-		frame.setMenuItem("E", displaySettings);
+		((IFrame)frame).setMenuItem("A", displayMyCards);
+		((IFrame)frame).setMenuItem("B", displayPayments);
+		((IFrame)frame).setMenuItem("C", displayRewards);
+		((IFrame)frame).setMenuItem("D", doStore);
+		((IFrame)frame).setMenuItem("E", displaySettings);
 
-		frame.setInMenuScreen("MyCard", displayMyCards);
-		frame.setInMenuScreen("A1", displayMyCardsPay);
-		frame.setInMenuScreen("MyCardOptions", displayMyCardsOptions);
-		frame.setInMenuScreen("MyCardMoreOptions", displayMyCardMoreOptions);
-		frame.setInMenuScreen("AddCard", displayAddCard);
+		((IFrame)frame).setInMenuScreen("MyCard", displayMyCards);
+		((IFrame)frame).setInMenuScreen("A1", displayMyCardsPay);
+		((IFrame)frame).setInMenuScreen("MyCardOptions", displayMyCardsOptions);
+		((IFrame)frame).setInMenuScreen("MyCardMoreOptions", displayMyCardMoreOptions);
+		((IFrame)frame).setInMenuScreen("AddCard", displayAddCard);
 	}
 
 	/**
