@@ -216,7 +216,7 @@ public class Device implements IApp, IPinAuthObserver {
 
 	/**
 	 * Device Starup Process. Starts Up with Default 4-6-Pin Option
-	 * @param pinLength 
+	 * @param pinLength is the length of pin
 	 */
 	private void deviceWithPin(int pinLength) {
 		kp = new KeyPad();
