@@ -30,9 +30,9 @@ public class Frame implements IFrame
             { 
             	String out = "" ; 
             	out += "================================\n" ;
-                out += s.name() + "\n" ;
+                out += ((IScreen)s).name() + "\n" ;
                 out += "================================\n" ;
-                out+= s.display();
+                out+= ((IScreen)s).display();
                 out +=  "================================\n" ;
                 dumpLines( out ) ;
                 return out;            }
@@ -77,9 +77,9 @@ public class Frame implements IFrame
 		public String contents(IScreen s) {
 			String out = "";
 			out += "===============\n";
-			out += s.name() + "\n";
+			out += ((IScreen)s).name() + "\n";
 			out += "===============\n";
-			out += s.display();
+			out += ((IScreen)s).display();
 			out += "===============\n";
 			out += "[A][B][C][D][E]\n";
 			dumpLines(out);
