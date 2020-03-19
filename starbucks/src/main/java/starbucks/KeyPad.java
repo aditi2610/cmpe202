@@ -29,22 +29,18 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
     		countPinDigits = 0;
     	}
     	
-        if (y > 4 && y <9 && x < 4 && x >0 )
-        {
-            System.err.println( "KeyPad Touched at (" + x + ", " + y + "), countPinDigits: " + countPinDigits) ;
-            this.lastKey = getKey( x, y ) ;
-            if ( x==3 && y==8  && countPinDigits > 0 )
-            {
-                countPinDigits-- ;
-                
-            }
-            else if ( y < 8 || (x==2 && y==8))
-            {
-                countPinDigits++ ;
-              
-            }   
-            notifyObservers() ;            
-        }
+		if (y > 4 && y < 9) {
+			if (x < 4 && x > 0) {
+				System.err.println("KeyPad Touched at (" + x + ", " + y + "), countPinDigits: " + countPinDigits);
+				this.lastKey = getKey(x, y);
+				if (x == 3 && y == 8 && countPinDigits > 0) {
+					countPinDigits--;
+				} else if (y < 8 || (x == 2 && y == 8)) {
+					countPinDigits++;
+				}
+				notifyObservers();
+			}
+		}
         else
         {
             if ( nextHandler != null )
