@@ -95,38 +95,20 @@ final class Main {
 			app.touch(1, 6); // 4
 		} 
 		else {
+			String selection = cmd.toUpperCase();
+			msg = "selected: " + selection;
 			if(cmd.equals("a") || cmd.equals("b")) {
-				String selection = cmd.toUpperCase();
-				msg = "selected: " + selection;
 				app.execute(selection);
 			}
 			if(cmd.equals("c") || cmd.equals("d")) {
-				String selection = cmd.toUpperCase();
-				msg = "selected: " + selection;
 				app.execute(selection);
 			}
 			if(cmd.equals("e")) {
-				String selection = cmd.toUpperCase();
-				msg = "selected: " + selection;
 				app.execute(selection);
 			}
 			else {
 				msg = " ";
 			}
-//			switch(cmd) {
-//			case "a":
-//			case "b":
-//			case "c":
-//			case "d":
-//			case "e":
-//				String selection = cmd.toUpperCase();
-//				msg = "selected: " + selection;
-//				app.execute(selection);
-//				break;
-//			default:
-//				msg= " ";
-//			}
-				
 		}
 		return msg;
 	}

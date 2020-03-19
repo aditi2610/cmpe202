@@ -150,23 +150,25 @@ public class Device implements IApp, IPinAuthObserver {
 	 */
 	public synchronized static Device getInstance() {
 		if (theDevice == null) {
-			//return getNewInstance("");
+			// return getNewInstance("");
 			return getNewInstance("1234");
-			 //return getNewInstance("000000");
-		} else {
-			if (theDevice.getPin().length() == 0) {
-				if (theDevice.getPinOption() == 0) {
-					System.err.println("Device => Device getInstance()");
-					theDevice.setPin("");
-					theDevice.authenticated = true;
-				} else if (theDevice.getPinOption() == 4) {
-					theDevice.setPin("1234");
-				} else {
-					theDevice.setPin("123456");
-				}
-			}
-			return theDevice;
+			// return getNewInstance("000000");
 		}
+		if (theDevice.getPin().length() == 0) {
+			if (theDevice.getPinOption() == 0) {
+				System.err.println("Device => Device getInstance()");
+				theDevice.setPin("");
+				theDevice.authenticated = true;
+			}
+			if (theDevice.getPinOption() == 4) {
+				theDevice.setPin("1234");
+			}
+			if (theDevice.getPinOption() == 6) {
+				theDevice.setPin("123456");
+			}
+		}
+		return theDevice;
+
 	}
 
 	/**
