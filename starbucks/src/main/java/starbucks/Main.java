@@ -83,27 +83,65 @@ final class Main {
 			msg = "cmd: next";
 			app.next();
 		}
-		if (cmd.equalsIgnoreCase("portrait")) {
-			app.portrait();
+		
+		if (handleOrientation(app, cmd)) {
+			return msg;
 		}
-		if (cmd.equalsIgnoreCase("landscape")) {
-			app.landscape();
-		}
+
 		if (cmd.startsWith("login")) {
 			app.touch(1, 5); // 1
 			app.touch(2, 5); // 2
 			app.touch(3, 5); // 3
 			app.touch(1, 6); // 4
 		}
-		if (cmd.equals("a") || cmd.equals("b") || cmd.equals("e")) {
+
+		if (handleMenuOption(app, cmd)) {
 			msg = "selected: " + cmd.toUpperCase();
+			return msg;
+		}
+
+		return msg;
+	}
+	
+	/**
+	 * executes Orientation
+	 * 
+	 * @param app instance of IApp
+	 * @param command passed
+	 * @return boolean true/false
+	 */
+	private static boolean handleOrientation(IApp app, String command) {
+		if (command.equalsIgnoreCase("portrait")) {
+			app.portrait();
+			return true;
+		}
+
+		if (command.equalsIgnoreCase("landscape")) {
+			app.landscape();
+			return true;
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * executes Command
+	 * 
+	 * @param app instance of IApp
+	 * @param cmd passed
+	 * @return boolean true/false
+	 */
+	private static boolean handleMenuOption(IApp app, String cmd) {
+		if (cmd.equals("a") || cmd.equals("b") || cmd.equals("e")) {
 			app.execute(cmd.toUpperCase());
+			return true;
 		}
 		if (cmd.equals("c") || cmd.equals("d")) {
-			msg = "selected: " + cmd.toUpperCase();
 			app.execute(cmd.toUpperCase());
+			return true;
 		}
-		return msg;
+		
+		return false;
 	}
 
 	/**

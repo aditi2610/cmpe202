@@ -29,22 +29,60 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
     		countPinDigits = 0;
     	}
     	
-		if (y > 4 && y < 9) {
-			if (x < 4 && x > 0) {
-				this.lastKey = getKey(x, y);
-				if (x == 3 && y == 8 && countPinDigits > 0) {
-					countPinDigits--;
-				} else if (y < 8 || (x == 2 && y == 8)) {
-					countPinDigits++;
-				}
-				notifyObservers();
+		if (isKeypad(x, y)) {
+			this.lastKey = getKey(x, y);
+			if (x == 3 && y == 8 && countPinDigits > 0) {
+				countPinDigits--;
 			}
+
+			if (y < 8 || (x == 2 && y == 8)) {
+				countPinDigits++;
+			}
+			notifyObservers();
+			return;
 		}
-        else
-        {
-            if ( nextHandler != null )
-                nextHandler.touch(x,y) ;
-        }
+
+		if (nextHandler != null)
+			nextHandler.touch(x, y);
+    	
+//		if (y > 4 && y < 9) {
+//			if (x < 4 && x > 0) {
+//				this.lastKey = getKey(x, y);
+//				if (x == 3 && y == 8 && countPinDigits > 0) {
+//					countPinDigits--;
+//				} 
+//				if (y < 8 || (x == 2 && y == 8)) {
+//					countPinDigits++;
+//				}
+//				notifyObservers();
+//			}
+//		}
+//        else
+//        {
+//            if ( nextHandler != null )
+//                nextHandler.touch(x,y) ;
+//        }
+    }
+    
+    /**
+     * Helper method to determine if a coordinate belongs to a keypad press
+     * @param x coordinate x
+     * @param y coordinate y
+     * @return boolean if part of keypad
+     */
+    private boolean isKeypad(int x, int y) {
+    	boolean ySatisfied = false;
+    	boolean xSatisfied = false;
+    	
+    	if (y > 4 && y < 9) {
+    		ySatisfied = true;
+    	}
+    	
+    	if (x < 4 && x > 0) {
+    		xSatisfied = true;
+    	}
+
+    	return ySatisfied && xSatisfied;
     }
 
     /**
