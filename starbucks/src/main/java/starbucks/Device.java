@@ -123,24 +123,41 @@ public class Device implements IApp, IPinAuthObserver {
 	private void setPin(String p) {
 		pin = p;
 		int len = p.length();
-		switch (len) {
-		case 0:
+		
+		if(len ==0) {
 			fourPin = false;
 			sixPin = false;
-			break;
-		case 4:
+		}
+		if(len == 4) {
 			fourPin = true;
 			sixPin = false;
-			break;
-		case 6:
+		}
+		if(len == 6) {
 			fourPin = false;
 			sixPin = true;
-			break;
-		default:
+		}
+		else {
 			fourPin = false;
 			sixPin = false;
-			break;
 		}
+//		switch (len) {
+//		case 0:
+//			fourPin = false;
+//			sixPin = false;
+//			break;
+//		case 4:
+//			fourPin = true;
+//			sixPin = false;
+//			break;
+//		case 6:
+//			fourPin = false;
+//			sixPin = true;
+//			break;
+//		default:
+//			fourPin = false;
+//			sixPin = false;
+//			break;
+//		}
 	}
 
 	/**
