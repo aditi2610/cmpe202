@@ -93,42 +93,6 @@ public class CardNumber implements IDisplayComponent, ITouchEventHandler,IKeyPad
 	 */
 	private StringBuilder convertKeyEvent(String key) {
 		StringBuilder cardNumber = new StringBuilder(getCardNum());
-		
-//		while(true) {
-//			if(key.equals("X")) {
-//				if (cardNumber.length() == 0) {
-//					break;
-//				}
-//				cardNumber.deleteCharAt(cardNumber.length() - 1);
-//				break;
-//			}
-//			if(key.equals(" ")) 
-//				break;
-//			if(cardNumber.length() == 9)
-//				break;
-//			else
-//				cardNumber.append(key);
-//			
-//		}
-
-//		switch (key) {
-//		case "X":
-//			if (cardNumber.length() == 0) {
-//				break;
-//			}
-//			cardNumber.deleteCharAt(cardNumber.length() - 1);
-//			break;
-//		case " ":
-//			break;
-//		default:
-//			if (cardNumber.length() == 9) {
-//				break;
-//			}
-//			cardNumber.append(key);
-//		}
-//		return cardNumber;
-//		
-//
 		if(key.equals("X") && cardNumber.length() == 0) {
 			return cardNumber;
 		}
