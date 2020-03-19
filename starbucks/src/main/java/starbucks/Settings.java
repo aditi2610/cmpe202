@@ -41,19 +41,28 @@ public class Settings extends Screen
 	 * @param y Touch Y Coord.
 	 */
 	public void touch(int x, int y) {
-		String s = x+","+y;
-		switch(s) {
-		case "1,1":
-		case "2,1":
-		case "3,1":
-			cardNumber.setCardNum(new StringBuilder(""));
-			cvv.setCvv(new StringBuilder(""));
-			this.app.setFocusCvv(false);
-			this.app.execute("AddCard");
-			break;
-		default:
-			break;
+		
+		if(y ==1) {
+			if(x > 0 && x < 4) {
+				cardNumber.setCardNum(new StringBuilder(""));
+				cvv.setCvv(new StringBuilder(""));
+				this.app.setFocusCvv(false);
+				this.app.execute("AddCard");
+			}
 		}
+//		String s = x+","+y;
+//		switch(s) {
+//		case "1,1":
+//		case "2,1":
+//		case "3,1":
+//			cardNumber.setCardNum(new StringBuilder(""));
+//			cvv.setCvv(new StringBuilder(""));
+//			this.app.setFocusCvv(false);
+//			this.app.execute("AddCard");
+//			break;
+//		default:
+//			break;
+//		}
 	}
 
 	/**

@@ -22,12 +22,12 @@ final class Main {
 
 	/**
 	 * Main App Entry Point.
+	 * 
 	 * @param args No args expected.
-	 * @throws IOException 
-	*
+	 *
 	 */
-	public static void main(final String[] args) throws IOException {
-		for(String v : args) {
+	public static void main(final String[] args) {
+		for (String v : args) {
 			System.err.print("Args: " + v + " ");
 		}
 		System.err.println();
@@ -37,19 +37,19 @@ final class Main {
 		String msg = "";
 		for (;;) {
 			flushAndPrintScreenContents(app, msg);
-//			String ch = c.readLine(); // get user command
-			BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-			String ch = bf.readLine();
+			String ch = c.readLine(); // get user command
+			// BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+			// String ch = bf.readLine();
 			String cmd = ch.toLowerCase(); // convert to lower case
 			cmd = cmd.replaceAll("\\s", ""); // remove all whitespaces
 
 			/* process commands */
 			msg = cmd;
-			System.err.println(String.format("Input Command: %s", cmd)) ;
+			System.err.println(String.format("Input Command: %s", cmd));
 			msg = executeCmd(app, msg, cmd);
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param app instance of IApp
@@ -61,11 +61,12 @@ final class Main {
 		System.out.println(app.screenContents());
 		System.out.println(msg);
 		System.out.print("=> ");
-	
+
 	}
 
 	/**
 	 * executes whenever any command is executed
+	 * 
 	 * @param app instance of IApp
 	 * @param msg cmd passed through args
 	 * @param cmd cmd passed
@@ -94,28 +95,28 @@ final class Main {
 			app.touch(2, 5); // 2
 			app.touch(3, 5); // 3
 			app.touch(1, 6); // 4
-		} 
-		else {
-			switch(cmd) {
-			case "a":
-			case "b":
-			case "c":
-			case "d":
-			case "e":
-				String selection = cmd.toUpperCase();
-				msg = "selected: " + selection;
-				app.execute(selection);
-				break;
-			default:
-				msg= " ";
+		} else {
+			switch (cmd) {
+				case "a":
+				case "b":
+				case "c":
+				case "d":
+				case "e":
+					String selection = cmd.toUpperCase();
+					msg = "selected: " + selection;
+					app.execute(selection);
+					break;
+				default:
+					msg = " ";
 			}
-				
+
 		}
 		return msg;
 	}
-	
+
 	/**
 	 * this would execute whenever the command starts with touch
+	 * 
 	 * @param app instance of Iapp
 	 * @param cmd entered by the user
 	 * @return String to be displayed
@@ -126,7 +127,7 @@ final class Main {
 		parms = parms.substring(1);
 		parms = parms.substring(0, parms.length() - 1);
 		String[] values = parms.split(",");
-		for(String s: values) {
+		for (String s : values) {
 			System.err.print("Value: " + s + " ");
 		}
 		System.err.println("");
