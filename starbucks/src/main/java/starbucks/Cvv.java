@@ -47,22 +47,17 @@ public class Cvv implements IDisplayComponent, ITouchEventHandler, IKeyPadObserv
 	 */
 	@Override
 	public void touch(int x, int y) {
-		//String s = x + "," + y;
-		if(y ==2 ) {
-			if(x>0 && x<4) {
-				app.setFocusCvv(false);
-			}
+		String s = x + "," + y;
+		switch (s) {
+		case "1,2":
+		case "2,2":
+		case "3,2":
+			app.setFocusCvv(false);
+			break;
+		default:
+			break;
+
 		}
-//		switch (s) {
-//		case "1,2":
-//		case "2,2":
-//		case "3,2":
-//			app.setFocusCvv(false);
-//			break;
-//		default:
-//			break;
-//
-//		}
 		if (nextHandler != null) {
 			nextHandler.touch(x, y);
 		}
@@ -107,28 +102,21 @@ public class Cvv implements IDisplayComponent, ITouchEventHandler, IKeyPadObserv
 	 */
 	private StringBuilder convertKeyEvent(String key) {
 		StringBuilder cvv = new StringBuilder(getCvv());
-		
-		if(key.equals("X") && cvv.length() != 0) {
+		switch (key) {
+		case "X":
+			if (cvv.length() == 0) {
+				break;
+			}
 			cvv.deleteCharAt(cvv.length() - 1);
-		}
-		if(cvv.length() < 9) {
+			break;
+		case " ":
+			break;
+		default:
+			if (cvv.length() == 3) {
+				break;
+			}
 			cvv.append(key);
 		}
-//		switch (key) {
-//		case "X":
-//			if (cvv.length() == 0) {
-//				break;
-//			}
-//			cvv.deleteCharAt(cvv.length() - 1);
-//			break;
-//		case " ":
-//			break;
-//		default:
-//			if (cvv.length() == 3) {
-//				break;
-//			}
-//			cvv.append(key);
-//		}
 		return cvv;
 	}
 
