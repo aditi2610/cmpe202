@@ -10,7 +10,7 @@ public class MyCardsOptions extends Screen
     public MyCardsOptions()
     {
        this.app =(IApp)Device.getInstance();
-       decorator = new LeftIndentationDecorator();
+       //decorator = new LeftIndentationDecorator();
     }
     /**
 	 * @return name to the screen
@@ -52,9 +52,11 @@ public class MyCardsOptions extends Screen
         out .append("More Options\n");
         out .append("Cancel");  
         out .append("\n");
-    	this.decorator.setScreenContents(out.toString());
-        value.append(this.decorator.display());
-        return this.decorator.displayScreen(value); 
+        value.append(out);
+        return value.toString();
+//    	this.decorator.setScreenContents(out.toString());
+//        value.append(this.decorator.display());
+//        return this.decorator.displayScreen(value); 
     }
     
     

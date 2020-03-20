@@ -19,7 +19,8 @@ public class Frame implements IFrame
 		 * Display Screen Contents
 		 * @param s Reference to Screen
 		 */
-		public void display(IScreen s){System.out.println( contents(s) ) ;}
+		public void display(IScreen s){
+			System.out.println( contents(s) ) ;}
 
 		/**
              * Display Contents of Frame + Screen 
@@ -112,7 +113,7 @@ public class Frame implements IFrame
 		}
 	}
 
-	private IScreen current ;
+	private IndentationDecorator current ;
     private IMenuInvoker menuA = new MenuOption() ;  
     private IMenuInvoker menuB = new MenuOption() ;
     private IMenuInvoker menuC = new MenuOption() ;
@@ -168,7 +169,7 @@ public class Frame implements IFrame
      */
     public Frame(IScreen initial)
     {
-		current = initial;
+		current = (IndentationDecorator)initial;
 		portraitStrategy = new PortraitStarategy();
 
         landscapeStrategy = new LandscapeStrategyClass() ;     
@@ -184,7 +185,7 @@ public class Frame implements IFrame
      */
     public void setCurrentScreen( IScreen s )
     {
-        current = s ;
+        current =(IndentationDecorator) s ;
     }
 
     /**
@@ -233,8 +234,10 @@ public class Frame implements IFrame
     { 
         if ( current != null )
         {
-        	if(!(current.getClass().equals(MyCards.class) || (current.getClass().equals(MyCardsPay.class)))) {
-        		currentStrategy = portraitStrategy;}
+        	if(!(current.screen.getClass().equals(MyCards.class) || (current.screen.getClass().equals(MyCardsPay.class)))) {
+        		Device.getInstance().setPortraitOrientation();
+        		currentStrategy = portraitStrategy;
+        		}
             return currentStrategy.contents( current ) ; 
         } 
         else 

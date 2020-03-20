@@ -10,7 +10,7 @@ public class Store extends Screen
 	 */
     public Store()
     {
-    	decorator = new LeftIndentationDecorator();
+    	//decorator = new LeftIndentationDecorator();
     }
     /**
      * @return Gives the name to the screen
@@ -39,9 +39,11 @@ public class Store extends Screen
     	for(int space: spaces) {
     		createLine(space, out);
     	}	
-    	this.decorator.setScreenContents(out.toString());
-        value.append(this.decorator.display());
-        return this.decorator.displayScreen(value); 
+    	
+    	return value.append(out).toString();
+//    	this.decorator.setScreenContents(out.toString());
+//        value.append(this.decorator.display());
+//        return this.decorator.displayScreen(value); 
     }
     
     /** 

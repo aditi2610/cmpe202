@@ -11,7 +11,6 @@ import starbucks.Device.ORIENTATION_MODE;
 public class MyCards extends Screen {
 	Device d;
 	IApp app;
-	//MyCardsPay myPay;
 
 	/**
 	 * Default Constructor for the class
@@ -19,8 +18,6 @@ public class MyCards extends Screen {
 	public MyCards() {
 		this.d = Device.getInstance();
 		this.app = (IApp) d;
-		//myPay= new MyCardsPay();
-		decorator = new CenteredIndentationDecorator();
 	}
 	
 	/**
@@ -64,17 +61,19 @@ public class MyCards extends Screen {
 	public String display() { 
 		StringBuffer value = new StringBuffer(super.display()) ;
 		StringBuffer out = new StringBuffer("$" +app.getBalance());
+		value.append(out);
+		return value.toString();
 		//centered Layout
-		this.decorator.setScreenContents(out.toString());
-		if(d.getDeviceOrientation() == ORIENTATION_MODE.LANDSCAPE) {
-			this.decorator.setWidth(Device.landscape_screen_width-1);
-			this.decorator.setLength(Device.landscape_screen_length);
-		}else if(d.getDeviceOrientation() == ORIENTATION_MODE.PORTRAIT) {
-			this.decorator.setWidth(Device.portrait_screen_width-1);
-			this.decorator.setLength(Device.portrait_screen_length);
-		}
-		
-		value.append(this.decorator.display());
-		return this.decorator.displayScreen(value);
+//		this.decorator.setScreenContents(out.toString());
+//		if(d.getDeviceOrientation() == ORIENTATION_MODE.LANDSCAPE) {
+//			this.decorator.setWidth(Device.landscape_screen_width-1);
+//			this.decorator.setLength(Device.landscape_screen_length);
+//		}else if(d.getDeviceOrientation() == ORIENTATION_MODE.PORTRAIT) {
+//			this.decorator.setWidth(Device.portrait_screen_width-1);
+//			this.decorator.setLength(Device.portrait_screen_length);
+//		}
+//		
+//		value.append(this.decorator.display());
+//		return this.decorator.displayScreen(value);
 	}
 }

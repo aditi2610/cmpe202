@@ -8,7 +8,7 @@ public class Payments extends Screen
 
     public Payments()
     {
-    	decorator = new LeftIndentationDecorator();
+    	//decorator = new LeftIndentationDecorator();
     }
     
     /** 
@@ -33,9 +33,11 @@ public class Payments extends Screen
     	StringBuffer value = new StringBuffer(super.display());
     	out .append("Find Store\nEnable Payments");
     	out.append("\n");
-    	this.decorator.setScreenContents(out.toString());
-        value.append(this.decorator.display());
-        return this.decorator.displayScreen(value); 
+    	value.append(out);
+    	return value.toString();
+//    	this.decorator.setScreenContents(out.toString());
+//        value.append(this.decorator.display());
+//        return this.decorator.displayScreen(value); 
     }
 
 }

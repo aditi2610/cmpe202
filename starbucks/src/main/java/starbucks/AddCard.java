@@ -18,7 +18,6 @@ public class AddCard extends Screen implements IDisplayComponent {
 	public AddCard(CardNumber cardNumber, Cvv cvv) {
 		d = Device.getInstance();
 		app = (IApp) d;
-		this.decorator = new CenteredIndentationDecorator();
 		this.cardNumber = cardNumber;
 		this.cvv = cvv;
 	}
@@ -44,13 +43,9 @@ public class AddCard extends Screen implements IDisplayComponent {
 	 * @return screen content
 	 */
 	public String display() {
-		StringBuffer value = new StringBuffer();
 		StringBuffer out = new StringBuffer();
 		out.append(super.display());
-
-		this.decorator.setScreenContents(out.toString());
-		value.append(this.decorator.display());
-		return this.decorator.displayScreen(value);
+		return out.toString();
 	}
 
 	/**

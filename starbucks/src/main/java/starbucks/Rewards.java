@@ -8,7 +8,7 @@ public class Rewards extends Screen
 
     public Rewards()
     {
-    	decorator = new LeftIndentationDecorator();
+    	//decorator = new LeftIndentationDecorator();
     }
     /**
      * @return the name of the screen
@@ -39,8 +39,9 @@ public class Rewards extends Screen
     	out .append("\n");
     	out.append("Visit Count");
     	out .append( "\n");
-    	this.decorator.setScreenContents(out.toString());
-        value.append(this.decorator.display());
-        return this.decorator.displayScreen(value); 
+    	return value.append(out).toString();
+//    	this.decorator.setScreenContents(out.toString());
+//        value.append(this.decorator.display());
+//        return this.decorator.displayScreen(value); 
     }
 }

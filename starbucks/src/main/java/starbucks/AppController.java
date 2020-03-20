@@ -24,6 +24,7 @@ public class AppController implements IApp {
 	private IScreen myCardsOptions;
 	private IScreen myCardsMoreOptions;
 	private IScreen addCard;
+	private IScreen addCardScreen;
 
 	private IMenuCommand displayMyCardsPay;
 	private IMenuCommand displayMyCardsOptions;
@@ -34,13 +35,12 @@ public class AppController implements IApp {
 	private CardNumber cardNumber;
 	private Cvv cvv;
     private Spacer sp ;
-    //private IApp app ;
     private KeyPad kp ;
 	private boolean focusCvv;
 	private AppControllerHelper receiverHelper;
 
 	public AppController() {
-		mycards = new MyCards();
+		mycards = new CenteredIndentationDecorator(new MyCards());
 		frame = new Frame(mycards);
 		cardNumber = new CardNumber();
 		cvv = new Cvv();
@@ -49,6 +49,8 @@ public class AppController implements IApp {
 		receiverHelper = new AppControllerHelper();
 		setReceivers();
 		setMenus();
+		
+		
 		
 	}
 
@@ -75,25 +77,29 @@ public class AppController implements IApp {
 	 * Instantiates all the classes required by the class
 	 */
 	private void instantiateDependentClasses() {
-		myCardsPay = new MyCardsPay(cardNumber);
-		myCardsOptions = new MyCardsOptions();
-		myCardsMoreOptions = new MyCardsMoreOptions();
-		addCard = new AddCard(cardNumber, cvv);
+		myCardsPay = new CenteredIndentationDecorator(new MyCardsPay(cardNumber));
+		myCardsOptions = new LeftIndentationDecorator(new MyCardsOptions());
+		myCardsMoreOptions = new LeftIndentationDecorator(new MyCardsMoreOptions());
+		
+		addCardScreen = new AddCard(cardNumber, cvv);
 		store = new Store();
-		rewards = new Rewards();
-		payments = new Payments();
-		settings = new Settings(cardNumber, cvv);
+		rewards = new LeftIndentationDecorator(new Rewards());
+		payments = new LeftIndentationDecorator( new Payments());
+		settings = new CenteredIndentationDecorator(new Settings(cardNumber, cvv));
 		kp = new KeyPad() ;
         sp = new Spacer() ;
 		
-		((IDisplayComponent)addCard).addSubComponent(cardNumber);
-		((IDisplayComponent)addCard).addSubComponent(cvv);
+		((IDisplayComponent)addCardScreen).addSubComponent(cardNumber);
+		((IDisplayComponent)addCardScreen).addSubComponent(cvv);
 	
-		((IDisplayComponent)addCard).addSubComponent(sp);
-		((IDisplayComponent)addCard).addSubComponent(kp);
+		((IDisplayComponent)addCardScreen).addSubComponent(sp);
+		((IDisplayComponent)addCardScreen).addSubComponent(kp);
+		
+		addCard = new CenteredIndentationDecorator(addCardScreen);
 		
 		((IKeyPadSubject)kp).attach(cardNumber);
 		((IKeyPadSubject)kp).attach(cvv);
+		
 		
 	}
 	

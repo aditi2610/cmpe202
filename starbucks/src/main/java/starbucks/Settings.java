@@ -14,7 +14,6 @@ public class Settings extends Screen
 	public Settings(CardNumber cNumber, Cvv cvv)
 	{
 		this.app = (IApp)Device.getInstance() ;
-		decorator = new CenteredIndentationDecorator();
 		this.cardNumber = cNumber;
 		this.cvv= cvv;
 	}
@@ -77,9 +76,7 @@ public class Settings extends Screen
 		out .append("Passcode\n\n");
 		out .append("About|Terms\n");
 		out .append("Help");
-		this.decorator.setScreenContents(out.toString());		
-		value.append(this.decorator.display());
-		return this.decorator.displayScreen(value);
+		return value.append(out).toString();
 	}
 
 

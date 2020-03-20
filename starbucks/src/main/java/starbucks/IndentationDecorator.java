@@ -1,30 +1,24 @@
 package starbucks;
 
+import starbucks.Device.ORIENTATION_MODE;
+
 /**
  * This the abstract class for Left and Center alignment!
  */
-public abstract class IndentationDecorator implements IDisplayComponent {
-	String screenContents;
-	int width = Device.portrait_screen_width-1;
-	int length = Device.portrait_screen_length;
+public abstract class IndentationDecorator implements IDisplayComponent, IScreen {
+	IScreen screen;
+	/** Constructor */
+	public IndentationDecorator(IScreen screen) {
+		this.screen = screen;
+	}
 	 
 	/**
      * Return Display Component Contents
      * @return Display Component Contents
      */
-	public abstract String display(); 
-	
-	public void setScreenContents(String s) {
-		this.screenContents = s;
-	}
-	
-	public void setWidth(int w) {
-		this.width= w;
-	}
-	
-	public void setLength(int l) {
-		this.length= l;
-	}
+	public String display() {
+		return  this.screen.display();
+	} 
 	
 	/**
 	 * 
@@ -52,13 +46,6 @@ public abstract class IndentationDecorator implements IDisplayComponent {
      * @return     Number of Lines Counted
      */
     protected int countLines(StringBuffer str){
-        /*
-          // this approach doesn't work in cases: "\n\n"
-          String lines = str ;
-          String[] split = lines.split("\r\n|\r|\n") ;
-          return split.length ;
-        */
-
         if (str == null || str.length() == 0) {
                 return 0;
             }
@@ -93,16 +80,15 @@ public abstract class IndentationDecorator implements IDisplayComponent {
      * @return    Screen
      */
     public String displayScreen(StringBuffer value ) {
+    	int length = Device.getInstance().getDeviceOrientation()== ORIENTATION_MODE.LANDSCAPE? Device.landscape_screen_length: Device.portrait_screen_length;
+    	System.err.println("IndentationDecorator => Screen Length is:" + length);
     	StringBuffer screen= new StringBuffer();
 		int countScreenContentLines = this.countLines(value ) ;
-		//System.err.println("IndentationDecorator => countScreenCountentLines "+ countScreenContentLines + " , length "+ this.length);
-        int countLinesBeforeScreenContent = (this.length - countScreenContentLines)/2;
-		//System.err.println("IndentationDecorator => countLinesBeforeScreenContent "+ countLinesBeforeScreenContent);
+        int countLinesBeforeScreenContent = (length - countScreenContentLines)/2;
         screen.append(this.padLines( countLinesBeforeScreenContent )) ;
         screen .append( value ) ;
         int countLinesAfterScreenContent = this.countLines( screen ) ;
-        int pad2 = this.length - countLinesAfterScreenContent ;
-        //System.err.println("IndentationDecorator =>countLinesAfterScreenContent " +countLinesAfterScreenContent+  " pad2 "+ pad2);
+        int pad2 = length - countLinesAfterScreenContent ;
         String padlines = this.padLines( pad2 ) ;
         screen .append(padlines) ;
 		return screen.toString() ;
