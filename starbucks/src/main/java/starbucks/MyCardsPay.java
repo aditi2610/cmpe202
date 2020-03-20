@@ -72,34 +72,9 @@ public class MyCardsPay extends Screen
 		out .append("\n");
 		out.append("Scan Now");
 		return value.append(out).toString();
-		
-//		value.append(this.decorator.display());
-//		return this.decorator.displayScreen(value);
-		//return value.toString();
 	}
 	
-	/**
-	 * Displays the screen contents
-	 */
-	private void displayScreenContent() {
-//		StringBuffer out = new StringBuffer("");
-//		if(cardNumber.getCardNum().length() ==0)
-//			out .append("[000000000]\n");
-//		else
-//			out.append("[" +cardNumber.getCardNum()+ "]\n");
-//		out .append("\n");
-//		out .append("\n");
-//		out.append("Scan Now");
-		
-//		this.decorator.setScreenContents(out.toString());
-//		if(d.getDeviceOrientation() == ORIENTATION_MODE.LANDSCAPE) {
-//			this.decorator.setWidth(Device.landscape_screen_width-1);
-//			this.decorator.setLength(Device.landscape_screen_length);
-//		}else if(d.getDeviceOrientation() == ORIENTATION_MODE.PORTRAIT) {
-//			this.decorator.setWidth(Device.portrait_screen_width-1);
-//			this.decorator.setLength(Device.portrait_screen_length);
-//		}
-	}
+
 
 
 }
