@@ -14,7 +14,6 @@ import java.util.ArrayList;
  */
 public class Screen implements IScreen, IDisplayComponent
 {	
-	IndentationDecorator decorator;
 	/** Display Components */
 	private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
 
