@@ -82,7 +82,7 @@ public class AppController implements IApp {
 		myCardsMoreOptions = new LeftIndentationDecorator(new MyCardsMoreOptions());
 		
 		addCardScreen = new AddCard(cardNumber, cvv);
-		store = new Store();
+		store = new LeftIndentationDecorator(new  Store());
 		rewards = new LeftIndentationDecorator(new Rewards());
 		payments = new LeftIndentationDecorator( new Payments());
 		settings = new CenteredIndentationDecorator(new Settings(cardNumber, cvv));

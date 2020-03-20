@@ -41,9 +41,6 @@ public class Store extends Screen
     	}	
     	
     	return value.append(out).toString();
-//    	this.decorator.setScreenContents(out.toString());
-//        value.append(this.decorator.display());
-//        return this.decorator.displayScreen(value); 
     }
     
     /** 
