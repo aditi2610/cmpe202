@@ -1,3 +1,64 @@
+# Starbucks Design Note
+
+Design Details:
+
+Design Patterns Used
+
+## Creational Design Pattern
+*   	Singleton:
+		
+		Device provides a getInstance method that provides a single instance for a device.
+
+## Structural Design Pattern
+* 	Composite:
+		
+		Add Card has a composite pattern implemented where Card Number, Spacer and Cvv have been added as components 
+*	Decorator:
+
+		Left and Right Screens alignment has been implemented using Decorator pattern.
+* 	Proxy:
+
+		Device class has been used as a proxy for AppController.
+
+## Behavioral Pattern
+* Chain of Responsibility
+
+		Add card has this pattern implemented. When a touch event occurs the touch flows through each component and checks if the component can handle the event. 
+		Pin Screen has this pattern implemented as well. 
+ 
+* Command
+
+		Menu Items in portrait mode have command patterns implemented.  
+		Also used for screens like MyCardOptions.
+
+* Observer
+		
+		In the Add card screen, the keypad has cardNumber and cvv added as the observers to the keypad
+
+* State
+	
+		PinState Machine has 6 possible states for a pin. Each class has been implemented using the state pattern.
+		
+* Strategy
+
+		Landscape and Portrait are the strategies supported by starbucks app using a strategy pattern.
+		
+# Class Diagram for 4 and 6 Pin Authentication.  
+
+![GitHub Webhook](./images/Class Diagram_Pin state Machine.png)
+
+# Class Diagram for Centered and Landscape. 
+
+![GitHub Webhook](./images/Class Diagram_Centered.png)
+ 
+# Class Diagram for AddCard. 
+
+![GitHub Webhook](./images/ClassDiagram_AddCard.png) 
+
+
+# Sequence Diagram on Centered and Landscape. 
+
+![GitHub Webhook](./images/Sequence Diagram.png)
 # Starbucks Mobile App (Text UI) Project
 
 ## Submission for Grader
