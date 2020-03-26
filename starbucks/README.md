@@ -58,7 +58,8 @@ Design Patterns Used
 
 # Sequence Diagram on Centered and Landscape. 
 
-![GitHub Webhook](./images/Sequence Diagram.png)
+![GitHub Webhook](./images/Sequence_Diagram.png)
+
 # Starbucks Mobile App (Text UI) Project
 
 ## Submission for Grader
