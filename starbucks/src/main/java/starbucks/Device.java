@@ -52,7 +52,7 @@ public class Device implements IApp, IPinAuthObserver {
 	 * Sets Device to portraitOrientation
 	 */
 	public void setPortraitOrientation() {
-		System.err.println("Setting Orientation to Portrait");
+		//System.err.println("Setting Orientation to Portrait");
 		this.device_orientation_state = ORIENTATION_MODE.PORTRAIT;
 		app.portrait();
 	}
@@ -61,7 +61,7 @@ public class Device implements IApp, IPinAuthObserver {
 	 * Sets Landscape to portraitOrientation
 	 */
 	public void setLandscapeOrientation() {
-		System.err.println("Setting Orientation to Landscape");
+		//System.err.println("Setting Orientation to Landscape");
 		this.device_orientation_state = ORIENTATION_MODE.LANDSCAPE;
 		app.landscape();
 	}
@@ -69,18 +69,18 @@ public class Device implements IApp, IPinAuthObserver {
 	private Device() {
 	}
 
-	/** Debug Device State */
-	public static void debug() {
-		Device d = Device.getInstance();
-		System.err.println("============================================");
-		System.err.println("--------- D E V I C E  S T A T E  ----------");
-		System.err.println("============================================");
-		System.err.println("Pin Option    = " + d.getPinOption());
-		System.err.println("Stored Pin    = " + d.getPin());
-		System.err.println("Authenticated = " + d.isAuthenticated());
-		System.err.println("Orientation   = " + d.getDeviceOrientation());
-		System.err.println("============================================");
-	}
+//	/** Debug Device State */
+//	public static void debug() {
+//		Device d = Device.getInstance();
+//		System.err.println("============================================");
+//		System.err.println("--------- D E V I C E  S T A T E  ----------");
+//		System.err.println("============================================");
+//		System.err.println("Pin Option    = " + d.getPinOption());
+//		System.err.println("Stored Pin    = " + d.getPin());
+//		System.err.println("Authenticated = " + d.isAuthenticated());
+//		System.err.println("Orientation   = " + d.getDeviceOrientation());
+//		System.err.println("============================================");
+//	}
 
 	/**
 	 * Get Current Auth State
@@ -185,11 +185,11 @@ public class Device implements IApp, IPinAuthObserver {
 	 * @return instance of device
 	 */
 	public synchronized static Device getNewInstance(String pin) {
-		System.err.println("Device => getNewInstance(" + pin + ")");
+		//System.err.println("Device => getNewInstance(" + pin + ")");
 		theDevice = new Device();
 		theDevice.setPin(pin);
 		theDevice.startUp();
-		debug();
+		//debug();
 		return theDevice;
 	}
 
@@ -237,7 +237,7 @@ public class Device implements IApp, IPinAuthObserver {
 	 * Switch to Landscape View
 	 */
 	public void landscape() {
-		System.err.println("Landscape was called");
+		//System.err.println("Landscape was called");
 		if (authenticated) {
 			setLandscapeOrientation();
 		}
@@ -247,7 +247,7 @@ public class Device implements IApp, IPinAuthObserver {
 	 * Switch to Portait View
 	 */
 	public void portrait() {
-		System.err.println("Portrait was called");
+		//System.err.println("Portrait was called");
 		if (authenticated) {
 			setPortraitOrientation();
 		}
@@ -261,9 +261,9 @@ public class Device implements IApp, IPinAuthObserver {
 	 */
 	public void touch(int x, int y) {
 
-		System.err.println("Device touch method  Orientation is:s" + Device.getInstance().getDeviceOrientation());
-
-		System.err.println("Device touched at    = " + x + " " + y);
+//		System.err.println("Device touch method  Orientation is:s" + Device.getInstance().getDeviceOrientation());
+//
+//		System.err.println("Device touched at    = " + x + " " + y);
 		if (authenticated)
 			app.touch(x, y);
 		else
@@ -321,7 +321,7 @@ public class Device implements IApp, IPinAuthObserver {
 	 * @param c Menu Option (A, B, C, E, or E)
 	 */
 	public void execute(String c) {
-		System.err.println("Device executed at    = " + c);
+		//System.err.println("Device executed at    = " + c);
 		if (authenticated)
 			app.execute(c);
 	}
@@ -330,7 +330,7 @@ public class Device implements IApp, IPinAuthObserver {
 	 * Navigate to Previous Screen
 	 */
 	public void prev() {
-		System.err.println("Device executed at prev");
+		//System.err.println("Device executed at prev");
 		if (authenticated)
 			app.prev();
 	}
@@ -339,7 +339,7 @@ public class Device implements IApp, IPinAuthObserver {
 	 * Navigate to Next Screen
 	 */
 	public void next() {
-		System.err.println("Device executed at next");
+		//System.err.println("Device executed at next");
 		if (authenticated)
 			app.next();
 	}
