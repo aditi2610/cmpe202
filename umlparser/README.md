@@ -1,6 +1,6 @@
 # Uml Parser
 
-This application will take the Java code and generate UML diagram for the classes. It would be able to show the relationship like Association, Aggregation etc between the classes.
+This application will take the Java code and generate UML diagram for the classes. It would be able to show the relationship like Association, Aggregation etc between the classes. We will be using the below mentioned tools and libraries for it.
 
 # Tools and Libraries Used:
 
