@@ -25,7 +25,6 @@ Commands used By Antlr are:
 2. -tree prints out the parse tree in LISP form.
 3. -gui displays the parse tree visually in a dialog box.
 4. -ps file.ps generates a visual representation of the parse tree in PostScript and stores it in file.ps. The parse tree figures in this chapter were generated with -ps.
-5. -encoding encodingname specifies the test rig input file encoding if the current locale would not read the input properly. For example, we need this option to parse a Japanese-encoded XML file in Section 12.4, Parsing and Lexing XML, on page 224.
-6. -trace prints the rule name and current token upon rule entry and exit. -diagnostics turns on diagnostic messages during parsing. This generates mes-
-sages only for unusual situations such as ambiguous input phrases.
+5. -encoding encodingname specifies the test rig input file encoding if the current locale would not read the input properly. 
+6. -trace prints the rule name and current token upon rule entry and exit. -diagnostics turns on diagnostic messages during parsing. This generates messages only for unusual situations such as ambiguous input phrases.
 7. -SLL uses a faster but slightly weaker parsing strategy.
