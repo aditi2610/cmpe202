@@ -42,4 +42,4 @@ parser takes the tokens to recognize the sentence structure.
 
                      LEXER                                    PARSER
           (Lexical Analyisis/ Tokenizing)           (By Default ANTLR generates a tree sturucture)
-Input ===> Group into Characters/Tokens      ===> takes tokens to recongnize the structure
+Input ===> Group into Characters/Tokens          ===>           takes tokens to recongnize the structure
