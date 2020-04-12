@@ -19,12 +19,13 @@ Note: This is a live document and would be updated from time to time.
 
 # WEEK 2
 
-commands used By Antlr are: 
-tokens prints out the token stream.
--tree prints out the parse tree in LISP form.
--gui displays the parse tree visually in a dialog box.
--ps file.ps generates a visual representation of the parse tree in PostScript and stores it in file.ps. The parse tree figures in this chapter were generated with -ps.
--encoding encodingname specifies the test rig input file encoding if the current locale would not read the input properly. For example, we need this option to parse a Japanese-encoded XML file in Section 12.4, Parsing and Lexing XML, on page 224.
--trace prints the rule name and current token upon rule entry and exit. -diagnostics turns on diagnostic messages during parsing. This generates mes-
+Commands used By Antlr are:
+
+1. tokens prints out the token stream.
+2. -tree prints out the parse tree in LISP form.
+3. -gui displays the parse tree visually in a dialog box.
+4. -ps file.ps generates a visual representation of the parse tree in PostScript and stores it in file.ps. The parse tree figures in this chapter were generated with -ps.
+5. -encoding encodingname specifies the test rig input file encoding if the current locale would not read the input properly. For example, we need this option to parse a Japanese-encoded XML file in Section 12.4, Parsing and Lexing XML, on page 224.
+6. -trace prints the rule name and current token upon rule entry and exit. -diagnostics turns on diagnostic messages during parsing. This generates mes-
 sages only for unusual situations such as ambiguous input phrases.
--SLL uses a faster but slightly weaker parsing strategy.
+7. -SLL uses a faster but slightly weaker parsing strategy.
