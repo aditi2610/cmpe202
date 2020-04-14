@@ -14,7 +14,7 @@ import org.antlr.v4.runtime.tree.*;
 public class Test {
     public static void main(String[] args) throws Exception {
         // create a CharStream that reads from standard input
-        CharStream input = CharStreams.fromFileName("umlparser/uml-parser-test-1/B.java");
+        CharStream input = CharStreams.fromFileName("umlparser/uml-parser-test-1/A.java");
         // System.out.println("Input is: " + input);
 
         // create a lexer that feeds off of input CharStream
