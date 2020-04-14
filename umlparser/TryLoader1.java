@@ -7,6 +7,7 @@ public class TryLoader1 extends JavaParserBaseListener {
     static List<String> list;
     static String primitiveString;
     int flagForCollection = 0;
+    String element = "";
 
     @Override
     public void enterClassDeclaration(JavaParser.ClassDeclarationContext ctx) {
@@ -23,7 +24,7 @@ public class TryLoader1 extends JavaParserBaseListener {
             if (i == 0) {
                 System.out.println("[" + className + " |" + primitiveString + "]" + list.get(i));
             } else {
-                System.out.println("[" + className + "]" + list.get(i));
+                System.out.println("[" + className + "]" + "-" + list.get(i));
             }
         }
 
@@ -32,12 +33,13 @@ public class TryLoader1 extends JavaParserBaseListener {
     @Override
     public void enterMemberDeclaration(JavaParser.MemberDeclarationContext ctx) {
         flagForCollection = 0;
+        element = "";
     }
 
     @Override
     public void enterClassOrInterfaceModifier(JavaParser.ClassOrInterfaceModifierContext ctx) {
         if (ctx.getText().equals("private")) {
-            primitiveString += "-";
+            element = "-";
         }
     }
 
@@ -45,6 +47,7 @@ public class TryLoader1 extends JavaParserBaseListener {
     public void enterFieldDeclaration(JavaParser.FieldDeclarationContext ctx) {
 
         if (ctx.typeType().primitiveType() != null) {
+            primitiveString += element;
             primitiveString += ctx.variableDeclarators().variableDeclarator(0).variableDeclaratorId().getText();
             primitiveString += ":" + ctx.typeType().primitiveType().getText();
             if ((ctx.typeType().getText().charAt(ctx.typeType().getText().length() - 1)) == (']')) {
@@ -63,7 +66,7 @@ public class TryLoader1 extends JavaParserBaseListener {
             flagForCollection = 1;
             list.add(element);
         } else if (flagForCollection == 0) {
-            element += "- 1[" + ctx.getText() + "]";
+            element += "1[" + ctx.getText() + "]";
             list.add(element);
         }
 
