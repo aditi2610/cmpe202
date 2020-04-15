@@ -2,12 +2,12 @@
 public class CreditOrDebit extends Screen {
     // IMenuCommand displayCredit;
     App app;
-    private IScreen appScreen;
+    // private IScreen appScreen;
 
     public CreditOrDebit(IScreen s) {
 
         super();
-        appScreen = s;
+        // appScreen = s;
 
     }
 

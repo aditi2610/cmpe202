@@ -1,22 +1,22 @@
 
-public class EnterZipCode extends Screen {
+public class EnterYourPin extends Screen {
 
     private IScreen appScreen;
     private IUserInputHandler chain;
 
-    EnterZipCode(IScreen s) {
+    EnterYourPin(IScreen s) {
         super();
         appScreen = s;
     }
 
     public String message() {
-        String name = "Enter your Zip code";
+        String name = "Enter Your Pin";
         return name;
     }
 
     // what to do next when someone touches something on this screen
     public void key(String c) {
-        if (c.length() == 5) {
+        if (c.length() == 4) {
             appScreen.setCurrentScreen((IScreen) chain);
         } else {
             chain.key(c);

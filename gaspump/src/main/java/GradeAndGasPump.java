@@ -1,26 +1,26 @@
 
-public class EnterZipCode extends Screen {
-
-    private IScreen appScreen;
+public class GradeAndGasPump extends Screen {
     private IUserInputHandler chain;
+    private IScreen appScreen;
 
-    EnterZipCode(IScreen s) {
+    public GradeAndGasPump(IScreen s) {
         super();
         appScreen = s;
+
     }
 
     public String message() {
-        String name = "Enter your Zip code";
+        String name = "Select Grade and Pump Gas";
         return name;
     }
 
     // what to do next when someone touches something on this screen
     public void key(String c) {
-        if (c.length() == 5) {
-            appScreen.setCurrentScreen((IScreen) chain);
-        } else {
-            chain.key(c);
-        }
+        // if (c.contains("\n")) {
+        appScreen.setCurrentScreen((IScreen) chain);
+        // } else {
+        // chain.key(c);
+        // }
     }
 
     @Override
@@ -51,4 +51,5 @@ public class EnterZipCode extends Screen {
         output += "========================================\n";
         return output;
     }
+
 }

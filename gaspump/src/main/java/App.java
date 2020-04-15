@@ -11,24 +11,39 @@ public class App {
     private IScreen credit;
     private IScreen debit;
     private IScreen enterNewZipCode;
+    private IScreen gradeAndGasPump;
+    private IScreen printReceipt;
+    private IScreen thankYou;
+    private IScreen enterPin;
 
     static HashMap<String, IMenuInvoker> menuMap;
 
     public App() {
         // list = new ArrayList<String>();
         s = new Screen();
+        thankYou = new ThankYou(s);
+        printReceipt = new PrintReceipt(s);
+        gradeAndGasPump = new GradeAndGasPump(s);
         enterNewZipCode = new EnterZipCode(s);
+        enterPin = new EnterYourPin(s);
         credit = new Credit(s);
-        (credit).setNext((IUserInputHandler) enterNewZipCode);
-
-        debit = new Debit();
-
+        debit = new Debit(s);
         creditorDebitScreen = (IScreen) new CreditOrDebit(s);
+
+        // setNext screen for the chain
+        printReceipt.setNext((IUserInputHandler) thankYou);
+        gradeAndGasPump.setNext((IUserInputHandler) printReceipt);
+
+        enterNewZipCode.setNext((IUserInputHandler) gradeAndGasPump);
+        enterPin.setNext((IUserInputHandler) gradeAndGasPump);
+
+        debit.setNext((IUserInputHandler) enterPin);
+        credit.setNext((IUserInputHandler) enterNewZipCode);
 
         ((Screen) s).setCurrentScreen(creditorDebitScreen);
 
         menuMap = new HashMap<String, IMenuInvoker>();
-
+        // Command Pattern
         // set Receivers and invokers;
         IMenuInvoker creditMenuItem = new MenuItem();
         IMenuInvoker debitMenuItem = new MenuItem();

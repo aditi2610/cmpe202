@@ -1,7 +1,7 @@
 
 public class Credit extends Screen {
     private IUserInputHandler chain;
-    private EnterZipCode zipCode;
+    // private EnterZipCode zipCode;
     private IScreen appScreen;
 
     public Credit(IScreen s) {

@@ -1,32 +1,24 @@
 
-public class EnterZipCode extends Screen {
+public class ThankYou extends Screen {
 
-    private IScreen appScreen;
-    private IUserInputHandler chain;
-
-    EnterZipCode(IScreen s) {
+    public ThankYou(IScreen s) {
         super();
-        appScreen = s;
+
     }
 
     public String message() {
-        String name = "Enter your Zip code";
+        String name = "Thank You ";
         return name;
     }
 
     // what to do next when someone touches something on this screen
     public void key(String c) {
-        if (c.length() == 5) {
-            appScreen.setCurrentScreen((IScreen) chain);
-        } else {
-            chain.key(c);
-        }
+        System.out.println("inside key");
     }
 
     @Override
     public void setNext(IUserInputHandler userInput) {
-        this.chain = userInput;
-
+        // this is the last one.. so do nothing.
     }
 
     public String display() {
@@ -51,4 +43,5 @@ public class EnterZipCode extends Screen {
         output += "========================================\n";
         return output;
     }
+
 }
