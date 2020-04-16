@@ -8,10 +8,20 @@ public class TryLoader1 extends JavaParserBaseListener {
     static String primitiveString;
     int flagForCollection = 0;
     String element = "";
+    static List<String> extendingClasses;
+    static List<String> implementingClasses;
 
     @Override
     public void enterClassDeclaration(JavaParser.ClassDeclarationContext ctx) {
         className = ctx.getText().charAt(5);
+        extendingClasses = new ArrayList<String>();
+        implementingClasses = new ArrayList<String>();
+        if (ctx.getText().contains("extends")) {
+            extendingClasses.add(ctx.typeType().classOrInterfaceType().getText());
+        }
+        if (ctx.getText().contains("implements")) {
+            implementingClasses.add(ctx.typeList().typeType(0).classOrInterfaceType().getText());
+        }
         list = new ArrayList<String>();
         primitiveString = "";
 
