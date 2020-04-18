@@ -3,7 +3,7 @@ import java.util.List;
 
 public class TryLoader1 extends JavaParserBaseListener {
 
-    static char className = ' ';
+    static String className = "";
     static List<String> list;
     static String primitiveString;
     int flagForCollection = 0;
@@ -13,7 +13,16 @@ public class TryLoader1 extends JavaParserBaseListener {
 
     @Override
     public void enterClassDeclaration(JavaParser.ClassDeclarationContext ctx) {
-        className = ctx.getText().charAt(5);
+        for (int i = 5; i < ctx.getText().length(); i++) {
+            char c = ctx.getText().charAt(i);
+            if (!(Character.isDigit(c) || Character.isLetter(c))) {
+                break;
+            } else {
+                className += c;
+            }
+        }
+        // className = ctx.getText().charAt(5);
+        System.out.println("ClassName: " + className);
         extendingClasses = new ArrayList<String>();
         implementingClasses = new ArrayList<String>();
         if (ctx.getText().contains("extends")) {
