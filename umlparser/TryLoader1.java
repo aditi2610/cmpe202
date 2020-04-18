@@ -29,7 +29,12 @@ public class TryLoader1 extends JavaParserBaseListener {
 
     @Override
     public void exitClassDeclaration(JavaParser.ClassDeclarationContext ctx) {
-
+        for (String implementingClass : implementingClasses) {
+            System.out.println("[<<interface>>; " + implementingClass + "]^-.-[" + className + "]");
+        }
+        for (String extendingClass : extendingClasses) {
+            System.out.println("[" + extendingClass + "]^-[" + className + "]");
+        }
         for (int i = 0; i < list.size(); i++) {
             if (i == 0) {
                 System.out.println("[" + className + " |" + primitiveString + "]" + list.get(i));
