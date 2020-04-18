@@ -16,11 +16,8 @@ public class GradeAndGasPump extends Screen {
 
     // what to do next when someone touches something on this screen
     public void key(String c) {
-        // if (c.contains("\n")) {
-        appScreen.setCurrentScreen((IScreen) chain);
-        // } else {
-        // chain.key(c);
-        // }
+        System.out.println("Inside grade and gas pump" + c);
+        appScreen.setCurrentScreen((CenterOrientationDecorator) chain);
     }
 
     @Override
@@ -30,26 +27,7 @@ public class GradeAndGasPump extends Screen {
     }
 
     public String display() {
-        String output = "";
-        output += "\n";
-        output += "========================================\n";
-        output += message();
-        output += "\n";
-        output += "\n";
-        output += "\n";
-        output += "\n";
-        output += "[A]                                  [E]\n";
-        output += "\n";
-        output += "[B]                                  [F]\n";
-        output += "\n";
-        output += "[C]                                  [G]\n";
-        output += "\n";
-        output += "[D]                                  [H]\n";
-        output += "\n";
-        output += super.getAdvertisement();
-        output += "\n";
-        output += "========================================\n";
-        return output;
+        return "";
     }
 
 }

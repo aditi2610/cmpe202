@@ -17,8 +17,8 @@ public class Credit extends Screen {
 
     // what to do next when someone touches something on this screen
     public void key(String c) {
-        if (c.length() == 10) {
-            appScreen.setCurrentScreen((IScreen) chain);
+        if (c.length() >= 10) {
+            appScreen.setCurrentScreen((CenterOrientationDecorator) chain);
         } else {
             chain.key(c);
         }
@@ -31,26 +31,7 @@ public class Credit extends Screen {
     }
 
     public String display() {
-        String output = "";
-        output += "\n";
-        output += "========================================\n";
-        output += message();
-        output += "\n";
-        output += "\n";
-        output += "\n";
-        output += "\n";
-        output += "[A]                                  [E]\n";
-        output += "\n";
-        output += "[B]                                  [F]\n";
-        output += "\n";
-        output += "[C]                                  [G]\n";
-        output += "\n";
-        output += "[D]                                  [H]\n";
-        output += "\n";
-        output += super.getAdvertisement();
-        output += "\n";
-        output += "========================================\n";
-        return output;
+        return "";
     }
 
 }

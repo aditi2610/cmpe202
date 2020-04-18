@@ -7,28 +7,28 @@ import java.util.HashMap;
 public class App {
 
     private IScreen s;
-    private IScreen creditorDebitScreen;
-    private IScreen credit;
-    private IScreen debit;
-    private IScreen enterNewZipCode;
-    private IScreen gradeAndGasPump;
-    private IScreen printReceipt;
-    private IScreen thankYou;
-    private IScreen enterPin;
+    private CenterOrientationDecorator creditorDebitScreen;
+    private CenterOrientationDecorator credit;
+    private CenterOrientationDecorator debit;
+    private CenterOrientationDecorator enterNewZipCode;
+    private CenterOrientationDecorator gradeAndGasPump;
+    private CenterOrientationDecorator printReceipt;
+    private CenterOrientationDecorator thankYou;
+    private CenterOrientationDecorator enterPin;
 
     static HashMap<String, IMenuInvoker> menuMap;
 
     public App() {
         // list = new ArrayList<String>();
         s = new Screen();
-        thankYou = new ThankYou(s);
-        printReceipt = new PrintReceipt(s);
-        gradeAndGasPump = new GradeAndGasPump(s);
-        enterNewZipCode = new EnterZipCode(s);
-        enterPin = new EnterYourPin(s);
-        credit = new Credit(s);
-        debit = new Debit(s);
-        creditorDebitScreen = (IScreen) new CreditOrDebit(s);
+        thankYou = new CenterOrientationDecorator((IScreen) new ThankYou(s));
+        printReceipt = new CenterOrientationDecorator((IScreen) new PrintReceipt(s));
+        gradeAndGasPump = new CenterOrientationDecorator((IScreen) new GradeAndGasPump(s));
+        enterNewZipCode = new CenterOrientationDecorator((IScreen) new EnterZipCode(s));
+        enterPin = new CenterOrientationDecorator((IScreen) new EnterYourPin(s));
+        credit = new CenterOrientationDecorator((IScreen) new Credit(s));
+        debit = new CenterOrientationDecorator((IScreen) new Debit(s));
+        creditorDebitScreen = new CenterOrientationDecorator((IScreen) new CreditOrDebit(s));
 
         // setNext screen for the chain
         printReceipt.setNext((IUserInputHandler) thankYou);

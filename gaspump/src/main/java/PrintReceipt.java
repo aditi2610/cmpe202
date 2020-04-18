@@ -18,7 +18,7 @@ public class PrintReceipt extends Screen {
     public void key(String c) {
         // System.out.println("inside key");
         // if (c.contains("\n")) {
-        appScreen.setCurrentScreen((IScreen) chain);
+        appScreen.setCurrentScreen((CenterOrientationDecorator) chain);
         // } else {
         // chain.key(c);
         // }
@@ -32,24 +32,9 @@ public class PrintReceipt extends Screen {
 
     public String display() {
         String output = "";
-        output += "\n";
-        output += "========================================\n";
-        output += message();
-        output += "\n";
-        output += "\n";
-        output += "\n";
-        output += "\n";
-        output += "[A]                                  [E]\n";
-        output += "\n";
-        output += "[B]                                  [F]\n";
-        output += "\n";
-        output += "[C] Yes                         Help [G]\n";
-        output += "\n";
-        output += "[D] No                          Done [H]\n";
-        output += "\n";
-        output += super.getAdvertisement();
-        output += "\n";
-        output += "========================================\n";
+
+        output += "Yes Help\n";
+        output += "No Done\n";
         return output;
     }
 

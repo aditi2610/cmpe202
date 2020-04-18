@@ -32,24 +32,8 @@ public class CreditOrDebit extends Screen {
 
     public String display() {
         String output = "";
-        output += "\n";
-        output += "========================================\n";
-        output += message();
-        output += "\n";
-        output += "\n";
-        output += "\n";
-        output += "\n";
-        output += "[A]                                  [E]\n";
-        output += "\n";
-        output += "[B]                                  [F]\n";
-        output += "\n";
-        output += "[C] Credit                           [G]\n";
-        output += "\n";
-        output += "[D] Debit                            [H]\n";
-        output += "\n";
-        output += super.getAdvertisement();
-        output += "\n";
-        output += "========================================\n";
+        output += "Credit\n";
+        output += "Debit\n";
         return output;
     }
 

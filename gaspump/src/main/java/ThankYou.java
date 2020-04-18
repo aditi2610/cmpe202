@@ -7,13 +7,14 @@ public class ThankYou extends Screen {
     }
 
     public String message() {
-        String name = "Thank You ";
+        String name = "Thank for Your Business\n";
+        name += "Please visit us again";
         return name;
     }
 
     // what to do next when someone touches something on this screen
     public void key(String c) {
-        System.out.println("inside key");
+        // System.out.println("inside key");
     }
 
     @Override
@@ -23,24 +24,6 @@ public class ThankYou extends Screen {
 
     public String display() {
         String output = "";
-        output += "\n";
-        output += "========================================\n";
-        output += message();
-        output += "\n";
-        output += "\n";
-        output += "\n";
-        output += "\n";
-        output += "[A]                                  [E]\n";
-        output += "\n";
-        output += "[B]                                  [F]\n";
-        output += "\n";
-        output += "[C]                                  [G]\n";
-        output += "\n";
-        output += "[D]                                  [H]\n";
-        output += "\n";
-        output += super.getAdvertisement();
-        output += "\n";
-        output += "========================================\n";
         return output;
     }
 

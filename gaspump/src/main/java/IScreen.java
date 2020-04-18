@@ -10,6 +10,6 @@ public interface IScreen {
 
     void setNext(IUserInputHandler userInput);
 
-    void setCurrentScreen(IScreen s);
+    void setCurrentScreen(CenterOrientationDecorator s);
 
 }
