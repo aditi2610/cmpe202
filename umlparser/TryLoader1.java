@@ -20,7 +20,11 @@ public class TryLoader1 extends JavaParserBaseListener {
             extendingClasses.add(ctx.typeType().classOrInterfaceType().getText());
         }
         if (ctx.getText().contains("implements")) {
-            implementingClasses.add(ctx.typeList().typeType(0).classOrInterfaceType().getText());
+            JavaParser.TypeListContext typeList = ctx.typeList();
+            for (JavaParser.TypeTypeContext typeType : typeList.typeType()) {
+                implementingClasses.add(typeType.classOrInterfaceType().getText());
+            }
+
         }
         list = new ArrayList<String>();
         primitiveString = "";
