@@ -175,6 +175,14 @@ Output of Parser Tree:
 By end of this week, i was able to generate above String. the next step should be to convert the String into yuml understable format for all the classes so to generate the diagram. 
 
 
+I was working on Test 1 and Test 2 this week and was able to generate token understandable by YUML successfully. Now working on test 3. 
+
+Multiple Extended classes and implemented Interfaces can now be processed to generate required String
+
+Also, Antlr4 doesnt differentiate between interfaces and classes used by a class. This needs to be fixed seperately at the end.
+
+
+
 
 
 
