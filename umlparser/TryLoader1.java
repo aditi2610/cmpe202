@@ -10,6 +10,7 @@ public class TryLoader1 extends JavaParserBaseListener {
     String element = "";
     static List<String> extendingClasses;
     static List<String> implementingClasses;
+    static List<String> usesList;
 
     @Override
     public void enterClassDeclaration(JavaParser.ClassDeclarationContext ctx) {
@@ -25,6 +26,7 @@ public class TryLoader1 extends JavaParserBaseListener {
         System.out.println("ClassName: " + className);
         extendingClasses = new ArrayList<String>();
         implementingClasses = new ArrayList<String>();
+        usesList = new ArrayList<String>();
         if (ctx.getText().contains("extends")) {
             extendingClasses.add(ctx.typeType().classOrInterfaceType().getText());
         }
@@ -47,6 +49,9 @@ public class TryLoader1 extends JavaParserBaseListener {
         }
         for (String extendingClass : extendingClasses) {
             System.out.println("[" + extendingClass + "]^-[" + className + "]");
+        }
+        for (String useClasses : usesList) {
+            System.out.println("[" + className + "]uses -.->[" + useClasses + "]");
         }
         for (int i = 0; i < list.size(); i++) {
             if (i == 0) {
@@ -97,6 +102,13 @@ public class TryLoader1 extends JavaParserBaseListener {
             element += "1[" + ctx.getText() + "]";
             list.add(element);
         }
+
+    }
+
+    @Override
+    public void enterFormalParameterList(JavaParser.FormalParameterListContext ctx) {
+        // System.out.println(ctx.getText());
+        usesList.add(ctx.formalParameter(0).typeType().classOrInterfaceType().getText());
 
     }
 
