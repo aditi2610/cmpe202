@@ -182,6 +182,90 @@ Multiple Extended classes and implemented Interfaces can now be processed to gen
 Also, Antlr4 doesnt differentiate between interfaces and classes used by a class. This needs to be fixed seperately at the end.
 
 
+For Test 2 Antlr 4 generated this:
+
+(compilationUnit 
+	(typeDeclaration 
+		(classOrInterfaceModifier public) 
+		(classDeclaration class B1 extends 
+			(typeType 
+				(classOrInterfaceType P)
+			) implements 
+			(typeList 
+				(typeType 
+					(classOrInterfaceType A1)
+				)
+			) 
+			(classBody { })
+		)
+	) <EOF>
+)
+
+
+
+
+
+
+(compilationUnit 
+	(typeDeclaration 
+		(classOrInterfaceModifier public) 
+		(classDeclaration class B2 extends 
+			(typeType 
+				(classOrInterfaceType P)
+			) 
+			implements 
+			(typeList 
+				(typeType 
+					(classOrInterfaceType A1)
+				) , 
+				(typeType 
+					(classOrInterfaceType A2)
+				)
+			) 
+			(classBody { }
+			)
+		)
+	) <EOF>
+)
+
+
+(compilationUnit 
+	(typeDeclaration 
+		(classOrInterfaceModifier public) 
+		(classDeclaration class C1 
+			(classBody 
+				{ 
+					(classBodyDeclaration 
+						(modifier 
+							(classOrInterfaceModifier public)
+						) 
+						(memberDeclaration 
+							(methodDeclaration 
+								(typeTypeOrVoid void) test 
+								(formalParameters 
+									( 
+										(formalParameterList 
+											(formalParameter 
+												(typeType 
+													(classOrInterfaceType A1)
+												) 
+												(variableDeclaratorId a1)
+											)
+										) 
+									)
+								) 
+								(methodBody 
+									(block { })
+								)
+							)
+						)
+					)
+				}
+			)
+		)
+	) <EOF>
+)
+
 
 
 
