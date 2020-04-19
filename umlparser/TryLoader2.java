@@ -6,12 +6,12 @@ public class TryLoader2 extends JavaParserBaseListener {
         System.out.println("Context is:" + ctx.getText());
     }
 
-    void exitImportDeclaration(JavaParser.ImportDeclarationContext ctx) {
-        ctx.enterRule(listener).enterClassDeclaration();
-    }
+    // void exitImportDeclaration(JavaParser.ImportDeclarationContext ctx) {
+    // ctx.enterRule(listener).enterClassDeclaration();
+    // }
 
-    public void enterTypeDeclaration(JavaParser.TypeDeclarationContext ctx) {
+    // public void enterTypeDeclaration(JavaParser.TypeDeclarationContext ctx) {
 
-        ctx.getRuleIndex().ClassDeclarationContex;
-    }
+    // ctx.getRuleIndex().ClassDeclarationContex;
+    // }
 }
