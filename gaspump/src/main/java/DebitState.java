@@ -1,12 +1,13 @@
-public class Credit implements IState {
+
+public class DebitState implements IState {
     IScreen state;
 
-    public Credit(IScreen screen) {
+    public DebitState(IScreen screen) {
         state = screen;
     }
 
     public String message() {
-        return "Enter Credit Card Number";
+        return "Enter Debit Card Number";
     }
 
     public void key(String ch) {

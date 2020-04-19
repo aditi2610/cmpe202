@@ -1,16 +1,18 @@
-public class Credit implements IState {
+
+public class ThankYouState implements IState {
     IScreen state;
 
-    public Credit(IScreen screen) {
+    public ThankYouState(IScreen screen) {
         state = screen;
     }
 
     public String message() {
-        return "Enter Credit Card Number";
+        return "Thank You for Your Business \n Please Visit us again";
     }
 
     public void key(String ch) {
-        state.setState(3);
+        state.setState(7);
+
     }
 
     public String A() {

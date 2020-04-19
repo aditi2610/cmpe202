@@ -1,12 +1,13 @@
-public class Credit implements IState {
+
+public class PinCodeState implements IState {
     IScreen state;
 
-    public Credit(IScreen screen) {
+    public PinCodeState(IScreen screen) {
         state = screen;
     }
 
     public String message() {
-        return "Enter Credit Card Number";
+        return "Enter PassCode";
     }
 
     public void key(String ch) {

@@ -1,33 +1,74 @@
 
-public class GradeAndGasPump extends Screen {
-    private IUserInputHandler chain;
-    private IScreen appScreen;
+public class GradeAndGasPump implements IState {
+    IScreen state;
 
-    public GradeAndGasPump(IScreen s) {
-        super();
-        appScreen = s;
-
+    public GradeAndGasPump(IScreen screen) {
+        state = screen;
     }
 
     public String message() {
-        String name = "Select Grade and Pump Gas";
-        return name;
+        return "Select Grade and Pump Gas";
     }
 
-    // what to do next when someone touches something on this screen
-    public void key(String c) {
-        System.out.println("Inside grade and gas pump" + c);
-        appScreen.setCurrentScreen((CenterOrientationDecorator) chain);
-    }
-
-    @Override
-    public void setNext(IUserInputHandler userInput) {
-        this.chain = userInput;
+    public void key(String ch) {
+        state.setState(6);
 
     }
 
-    public String display() {
+    public String A() {
         return "";
+    }
+
+    public String B() {
+        return "";
+    }
+
+    public String C() {
+        return "";
+    };
+
+    public String D() {
+        return "";
+    };
+
+    public String E() {
+        return "";
+    };
+
+    public String F() {
+        return "";
+    };
+
+    public String G() {
+        return "";
+    };
+
+    public String H() {
+        return "";
+    };
+
+    public void doActionA() {
+    }
+
+    public void doActionB() {
+    }
+
+    public void doActionC() {
+    }
+
+    public void doActionD() {
+    }
+
+    public void doActionE() {
+    }
+
+    public void doActionF() {
+    }
+
+    public void doActionG() {
+    }
+
+    public void doActionH() {
     }
 
 }

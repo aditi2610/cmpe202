@@ -1,41 +1,77 @@
 
-public class PrintReceipt extends Screen {
-    private IUserInputHandler chain;
-    private IScreen appScreen;
+public class PrintReceipt implements IState {
+    IScreen state;
 
-    public PrintReceipt(IScreen s) {
-        super();
-        appScreen = s;
-
+    public PrintReceipt(IScreen screen) {
+        state = screen;
     }
 
     public String message() {
-        String name = "Print Receipt ?";
-        return name;
+        return "Print Receipt ?";
     }
 
-    // what to do next when someone touches something on this screen
-    public void key(String c) {
-        // System.out.println("inside key");
-        // if (c.contains("\n")) {
-        appScreen.setCurrentScreen((CenterOrientationDecorator) chain);
-        // } else {
-        // chain.key(c);
-        // }
+    public void key(String ch) {
+        state.setState(7);
     }
 
-    @Override
-    public void setNext(IUserInputHandler userInput) {
-        this.chain = userInput;
-
+    public String A() {
+        return "";
     }
 
-    public String display() {
-        String output = "";
+    public String B() {
+        return "";
+    }
 
-        output += "Yes Help\n";
-        output += "No Done\n";
-        return output;
+    public String C() {
+        return "Yes";
+    };
+
+    public String D() {
+        return "No";
+    };
+
+    public String E() {
+        return "";
+    };
+
+    public String F() {
+        return "";
+    };
+
+    public String G() {
+        return "Help";
+    };
+
+    public String H() {
+        return "Done";
+    };
+
+    public void doActionA() {
+    }
+
+    public void doActionB() {
+    }
+
+    public void doActionC() {
+        state.setState(7);
+    }
+
+    public void doActionD() {
+        state.setState(7);
+    }
+
+    public void doActionE() {
+    }
+
+    public void doActionF() {
+    }
+
+    public void doActionG() {
+        state.setState(7);
+    }
+
+    public void doActionH() {
+        state.setState(7);
     }
 
 }

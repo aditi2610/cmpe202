@@ -1,16 +1,17 @@
-public class Credit implements IState {
+
+public class CreditOrDebitState implements IState {
     IScreen state;
 
-    public Credit(IScreen screen) {
+    public CreditOrDebitState(IScreen screen) {
         state = screen;
     }
 
     public String message() {
-        return "Enter Credit Card Number";
+        return "Enter Credit Or Debit Card";
     }
 
     public void key(String ch) {
-        state.setState(3);
+
     }
 
     public String A() {
@@ -22,11 +23,11 @@ public class Credit implements IState {
     }
 
     public String C() {
-        return "";
+        return "Credit";
     };
 
     public String D() {
-        return "";
+        return "Debit";
     };
 
     public String E() {
@@ -52,9 +53,11 @@ public class Credit implements IState {
     }
 
     public void doActionC() {
+        state.setState(1);
     }
 
     public void doActionD() {
+        state.setState(2);
     }
 
     public void doActionE() {

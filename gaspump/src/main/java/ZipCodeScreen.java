@@ -1,16 +1,18 @@
-public class Credit implements IState {
+
+public class ZipCodeScreen implements IState {
     IScreen state;
 
-    public Credit(IScreen screen) {
+    public ZipCodeScreen(IScreen screen) {
         state = screen;
     }
 
     public String message() {
-        return "Enter Credit Card Number";
+        return "Enter ZipCode";
     }
 
     public void key(String ch) {
-        state.setState(3);
+        state.setState(5);
+
     }
 
     public String A() {
