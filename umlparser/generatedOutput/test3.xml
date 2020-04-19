@@ -1,0 +1,180 @@
+(compilationUnit 
+	(typeDeclaration 
+		(classDeclaration class ClassA 
+			(classBody 
+				{ 
+				(classBodyDeclaration 
+					(modifier 
+						(classOrInterfaceModifier private)
+					) 
+					(memberDeclaration 
+						(fieldDeclaration 
+							(typeType 
+								(classOrInterfaceType String)
+							) 
+							(variableDeclarators 
+								(variableDeclarator 
+									(variableDeclaratorId message)
+								)
+							) ;
+						)
+					)
+				) 
+				(classBodyDeclaration 
+					(modifier 
+						(classOrInterfaceModifier private)
+					) 
+					(memberDeclaration 
+						(fieldDeclaration 
+							(typeType 
+								(classOrInterfaceType String)
+							) 
+							(variableDeclarators 
+								(variableDeclarator 
+									(variableDeclaratorId bark)
+								)
+							) ;
+						)
+					)
+				) 
+				(classBodyDeclaration 
+					(modifier 
+						(classOrInterfaceModifier protected)
+					) 
+					(memberDeclaration 
+						(fieldDeclaration 
+							(typeType 
+								(classOrInterfaceType String)
+							) 
+							(variableDeclarators 
+								(variableDeclarator 
+									(variableDeclaratorId foo)
+								)
+							) ;
+						)
+					)
+				) 
+				(classBodyDeclaration 
+					(modifier 
+						(classOrInterfaceModifier protected)
+					) 
+					(memberDeclaration 
+						(fieldDeclaration 
+							(typeType 
+								(classOrInterfaceType String)
+							) 
+							(variableDeclarators 
+								(variableDeclarator 
+									(variableDeclaratorId bar)
+								)
+							) ;
+						)
+					)
+				) 
+				(classBodyDeclaration 
+					(memberDeclaration 
+						(fieldDeclaration 
+							(typeType 
+								(classOrInterfaceType String)
+							) 
+							(variableDeclarators 
+								(variableDeclarator 
+									(variableDeclaratorId test)
+								)
+							) ;
+						)
+					)
+				) 
+				(classBodyDeclaration 
+					(modifier 
+						(classOrInterfaceModifier public)
+					) 
+					(memberDeclaration 
+						(methodDeclaration 
+							(typeTypeOrVoid 
+								(typeType 
+									(classOrInterfaceType String)
+								)
+							) getMessage 
+							(formalParameters 
+								( )
+							) 
+							(methodBody 
+								(block 
+									{ (blockStatement 
+										(statement return 
+											(expression 
+												(expression 
+													(primary this)
+												) . message
+											) ;
+										)
+									) }
+								)
+							)
+						)
+					)
+				) 
+				(classBodyDeclaration 
+					(modifier 
+						(classOrInterfaceModifier public)
+					) 
+					(memberDeclaration 
+						(methodDeclaration 
+							(typeTypeOrVoid void) setMessage 
+							(formalParameters 
+								( 
+									(formalParameterList 
+										(formalParameter 
+											(typeType 
+												(classOrInterfaceType String)
+											) 
+											(variableDeclaratorId msg)
+										)
+									) 
+								)
+							) 
+							(methodBody 
+								(block 
+									{ (blockStatement 
+										(statement 
+											(expression 
+												(expression 
+													(expression 
+														(primary this)
+													) . message
+												) = 
+												(expression 
+													(primary msg)
+												)
+											) ;
+										)
+									) }
+								)
+							)
+						)
+					)
+				) 
+				(classBodyDeclaration 
+					(modifier 
+						(classOrInterfaceModifier public)
+					) 
+					(memberDeclaration 
+						(methodDeclaration 
+							(typeTypeOrVoid void) testMethod 
+								(formalParameters 
+									( )
+								) 
+								(methodBody 
+									(block 
+										{ }
+									)
+								)
+							)
+						)
+					) 
+				}
+			)
+		)
+	)<EOF>
+)
