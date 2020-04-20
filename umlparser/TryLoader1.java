@@ -9,12 +9,15 @@ public class TryLoader1 extends JavaParserBaseListener {
     int flagForCollection = 0;
     String element = "";
     String classVariables = "";
+    String methodVariables = "";
     static List<String> extendingClasses;
     static List<String> implementingClasses;
     static List<String> usesList;
     List<String> memberVariables;
     List<String> primitiveVariables;
     boolean countVariable = false;
+    boolean countMethod = false;
+    List<String> methodList;
 
     @Override
     public void enterClassDeclaration(JavaParser.ClassDeclarationContext ctx) {
@@ -37,6 +40,7 @@ public class TryLoader1 extends JavaParserBaseListener {
         extendingClasses = new ArrayList<String>();
         implementingClasses = new ArrayList<String>();
         primitiveVariables = new ArrayList<String>();
+        methodList = new ArrayList<String>();
         usesList = new ArrayList<String>();
         if (ctx.getText().contains("extends")) {
             extendingClasses.add(ctx.typeType().classOrInterfaceType().getText());
@@ -58,6 +62,8 @@ public class TryLoader1 extends JavaParserBaseListener {
         element = "";
         classVariables = "";
         countVariable = false;
+        countMethod = false;
+        methodVariables = "";
 
         // if (modifier.equals("private") || modifier.equals("public")) {
         // element = "-";
@@ -74,6 +80,11 @@ public class TryLoader1 extends JavaParserBaseListener {
         if (ctx.getText().equals("private") || (ctx.getText().equals("public"))) {
             if (ctx.getText().equals("private")) {
                 element = "-";
+            }
+            if (ctx.getText().equals("public")) {
+                methodVariables = "+";
+                countMethod = true;
+
             }
             countVariable = true;
         }
@@ -133,6 +144,55 @@ public class TryLoader1 extends JavaParserBaseListener {
     }
 
     @Override
+    public void enterMethodDeclaration(JavaParser.MethodDeclarationContext ctx) {
+        if (countMethod) {
+            // System.out.println("ctx method: " + ctx.getText());
+            String returnType = ctx.typeTypeOrVoid().getText();
+            // System.out.println("return Type: " + returnType);
+            String parameterType = "";
+            String parameterName = "";
+            String methodName = ctx.IDENTIFIER().getText() + "" + ctx.formalParameters().getText();
+
+            if (ctx.formalParameters() != null && ctx.formalParameters().formalParameterList() != null) {
+                parameterType = ctx.formalParameters().formalParameterList().formalParameter(0).typeType().getText();
+                parameterName = ctx.formalParameters().formalParameterList().formalParameter(0).variableDeclaratorId()
+                        .getText();
+                methodName = methodName
+                        .replace(ctx.formalParameters().formalParameterList().formalParameter(0).getText(), "");
+                // System.out.println("Mtexhbfsjbfdd " + methodName);
+                methodName = methodName.replace("()", "(" + parameterName + ":" + parameterType + ")");
+
+            }
+            // System.out.println(" Method is: " + ctx.formalParameters().getText());
+            // methodName = methodName.replace(returnType,
+            // "").replace(ctx.methodBody().block().getText(), "");
+            // System.out.println("Method Name: " + methodName);
+            methodVariables += methodName;
+            methodList.add(methodVariables + ":" + returnType + ";");
+        }
+
+    }
+
+    @Override
+    public void enterConstructorDeclaration(JavaParser.ConstructorDeclarationContext ctx) {
+        String parameterType = "";
+        String parameterName = "";
+        String methodName = ctx.IDENTIFIER().getText() + "" + ctx.formalParameters().getText();
+        if (ctx.formalParameters() != null && ctx.formalParameters().formalParameterList() != null) {
+            parameterType = ctx.formalParameters().formalParameterList().formalParameter(0).typeType().getText();
+            parameterName = ctx.formalParameters().formalParameterList().formalParameter(0).variableDeclaratorId()
+                    .getText();
+            methodName = methodName.replace(ctx.formalParameters().formalParameterList().formalParameter(0).getText(),
+                    "");
+
+            methodName = methodName.replace("()", "(" + parameterName + ":" + parameterType + ")");
+            methodVariables += methodName;
+            // System.out.println("Constructor is: " + methodName);
+            methodList.add(methodVariables + ";");
+        }
+    }
+
+    @Override
     public void exitClassDeclaration(JavaParser.ClassDeclarationContext ctx) {
         for (String implementingClass : implementingClasses) {
             System.out.println("[<<interface>>; " + implementingClass + "]^-.-[" + className + "]");
@@ -147,6 +207,12 @@ public class TryLoader1 extends JavaParserBaseListener {
         System.out.print("[" + className + "|");
         for (String primitive : primitiveVariables) {
             System.out.print(primitive);
+        }
+        if (methodList.size() > 0 && primitiveVariables.size() > 0) {
+            System.out.print("|");
+        }
+        for (String method : methodList) {
+            System.out.print(method);
         }
         System.out.print("]");
         for (int i = 0; i < classVariablelist.size(); i++) {
