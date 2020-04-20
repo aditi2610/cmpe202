@@ -14,3 +14,17 @@
 // test case #1 / http request 
 http://yuml.me/diagram/scruffy/class/[A%7C-x:int;-y:int(*)]1-0..*[B],[A]-1[C],[A]-*[D]
 
+
+
+[A|-x:int;-y:int(*)]1-0..*[B],
+[A]-1[C],
+[A]-*[D]
+
+[A|-x:int;-y:int(*)]1-0..*[B],
+[A]-[C],
+[A]1-0..*[D]
+
+[A |-x:int;-y:int(*);]1-0..*[B]
+[A]-[C]
+[A]-1-0..*[D]
+

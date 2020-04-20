@@ -8,36 +8,52 @@
  * Visit http://www.pragmaticprogrammer.com/titles/tpantlr2 for more book information.
 ***/
 // import ANTLR's runtime libraries
+import java.io.File;
+
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
 public class Test {
     public static void main(String[] args) throws Exception {
         // create a CharStream that reads from standard input
-        CharStream input = CharStreams.fromFileName("umlparser/uml-parser-test-2/B1.java");
-        // System.out.println("Input is: " + input);
+        File folder = new File("umlparser/test/");
+        File[] inputFiles = folder.listFiles();
+        // System.out.println("No. of files are: " + inputFiles.length);
+        for (File f : inputFiles) {
+            if (f.isFile() && f.getName().endsWith(".java")) {
+                System.out.println("----------------");
+                System.out.println();
+                System.out.println("File is: " + f);
+                CharStream input = CharStreams.fromFileName(f.toString());
+                // CharStream input = CharStreams.fromFileName(f);
+                // System.out.println("Input is: " + input);
 
-        // create a lexer that feeds off of input CharStream
-        JavaLexer lexer = new JavaLexer(input);
+                // create a lexer that feeds off of input CharStream
+                JavaLexer lexer = new JavaLexer(input);
 
-        // System.out.println("Lexer is: " + lexer);
+                // System.out.println("Lexer is: " + lexer);
 
-        // create a buffer of tokens pulled from the lexer
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-        // System.out.println("Tokens is: " + tokens);
+                // create a buffer of tokens pulled from the lexer
+                CommonTokenStream tokens = new CommonTokenStream(lexer);
+                // System.out.println("Tokens is: " + tokens);
 
-        // create a parser that feeds off the tokens buffer
-        JavaParser parser = new JavaParser(tokens);
-        // System.out.println("parser is: " + parser);
+                // create a parser that feeds off the tokens buffer
+                JavaParser parser = new JavaParser(tokens);
+                // System.out.println("parser is: " + parser);
 
-        ParseTree tree = parser.compilationUnit(); // begin parsing at init rule
-        System.out.println(tree.toStringTree(parser)); // print LISP-style tree
+                ParseTree tree = parser.compilationUnit(); // begin parsing at init rule
+                System.out.println(tree.toStringTree(parser)); // print LISP-style tree
 
-        ParseTreeWalker walker = new ParseTreeWalker();
-        // create listener then feed to walker PropertyFileLoader loader = new
-        // CustomeJavaParserLoader loader = new CustomeJavaParserLoader();
-        TryLoader1 loader = new TryLoader1();
-        walker.walk(loader, tree); // walk parse tree System.out.println(loader.props); // print results
-        // System.out.println(loader);
+                ParseTreeWalker walker = new ParseTreeWalker();
+                // create listener then feed to walker PropertyFileLoader loader = new
+                // CustomeJavaParserLoader loader = new CustomeJavaParserLoader();
+                TryLoader1 loader = new TryLoader1();
+                System.out.println();
+                walker.walk(loader, tree); // walk parse tree System.out.println(loader.props); // print results
+
+            }
+
+            // System.out.println(loader);
+        }
     }
 }
