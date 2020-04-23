@@ -19,6 +19,7 @@ public class TryLoader1 extends JavaParserBaseListener {
     boolean countVariable = false;
     boolean countMethod = false;
     List<String> methodList;
+    
 
     @Override
     public void enterClassDeclaration(JavaParser.ClassDeclarationContext ctx) {
@@ -26,18 +27,8 @@ public class TryLoader1 extends JavaParserBaseListener {
         className = "";
         // System.out.println("Implements: " + ctx.getText().split("implements")[0]);
         // System.out.println("Extends: " + ctx.getText().split("extends")[0]);
-        String classn = ctx.getText().split("implements")[0].split("extends")[0];
-        // System.out.println("final: " + classn);
-        for (int i = 5; i < classn.length(); i++) {
-            char c = classn.charAt(i);
-            if (!(Character.isDigit(c) || Character.isLetter(c))) {
-                break;
-            } else {
-                className += c;
-            }
-        }
-        // className = ctx.getText().charAt(5);
-        System.out.println("ClassName: " + className);
+        className = ctx.IDENTIFIER().getText();
+        // // System.out.println("final: " + classn);
         extendingClasses = new ArrayList<String>();
         implementingClasses = new ArrayList<String>();
         primitiveVariables = new ArrayList<String>();
@@ -170,9 +161,10 @@ public class TryLoader1 extends JavaParserBaseListener {
             parameterType = ctx.formalParameterList().formalParameter(0).typeType().getText();
 
             parameterName = ctx.formalParameterList().formalParameter(0).variableDeclaratorId().getText();
-            System.out.println(parameterType + "   " + parameterName + " method Name: " + methodName);
+            System.out.println("TYpe : "+ parameterType + " name  " + parameterName + " method Name: " +
+             methodName);
             methodName += "(" + parameterName + ":" + parameterType + ")";
-            System.out.println("  #########     " + methodName);
+            // System.out.println(" ######### " + methodName);
         } else {
             methodName += "()";
         }
@@ -211,7 +203,7 @@ public class TryLoader1 extends JavaParserBaseListener {
     @Override
     public void exitClassDeclaration(JavaParser.ClassDeclarationContext ctx) {
         for (String implementingClass : implementingClasses) {
-            System.out.println("[<<interface>>; " + implementingClass + "]^-.-[" + className + "]");
+            System.out.println("[<<interface>>;" + implementingClass + "]^-.-[" + className + "]");
         }
         for (String extendingClass : extendingClasses) {
             System.out.println("[" + extendingClass + "]^-[" + className + "]");
@@ -265,9 +257,9 @@ public class TryLoader1 extends JavaParserBaseListener {
 
     @Override
     public void exitInterfaceDeclaration(JavaParser.InterfaceDeclarationContext ctx) {
-        for (String useClasses : usesList) {
-            System.out.println("[" + className + "]uses -.->[" + useClasses + "]");
-        }
+        // for (String useClasses : usesList) {
+        //     System.out.println("[" + className + "]uses -.->[" + useClasses + "]");
+        // }
         System.out.print("[<<Interface>>" + className);
         for (int k = 0; k < abstractMethodsList.size(); k++) {
             if (k == 0) {
