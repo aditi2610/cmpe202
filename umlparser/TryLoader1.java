@@ -177,14 +177,16 @@ public class TryLoader1 extends JavaParserBaseListener {
         if(null != ctx.block()){
             if(null !=  ctx.block().blockStatement(0)){
                 if(null != ctx.block().blockStatement(0).localVariableDeclaration()){
-                String s = ctx.block().blockStatement(0).localVariableDeclaration().typeType().classOrInterfaceType()
-                    .getText();
-                usesList.add(s);
+                    if(null != ctx.block().blockStatement(0).localVariableDeclaration().typeType().classOrInterfaceType()){
+                        String s = ctx.block().blockStatement(0).localVariableDeclaration().typeType()
+                                .classOrInterfaceType().getText();
+                        usesList.add(s);
+                    }
+               
                 }
            
             }
         }
-      //System.out.println("Strinf "+s);
     }
 
     private String getParameterTypeAndId(JavaParser.FormalParametersContext ctx, String methodName) {
@@ -195,15 +197,10 @@ public class TryLoader1 extends JavaParserBaseListener {
 
             parameterName = ctx.formalParameterList().formalParameter(0).variableDeclaratorId().getText();
             if(parameterType.contains("[]")){
-                //System.out.println("I am inside");
-                //System.out.println("Index os: "+parameterType.indexOf("[]"));
                 parameterType = parameterType.replace("[]", "(*)");
             }
           
-            // System.out.println("TYpe : "+ parameterType + " name  " + parameterName + " method Name: " +
-            //  methodName);
             methodName += "(" + parameterName + ":" + parameterType + ")";
-            //System.out.println(" ######### " + methodName);
         } else {
             methodName += "()";
         }
