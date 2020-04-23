@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
+
 import java.util.HashSet;
 
 
@@ -167,6 +169,22 @@ public class TryLoader1 extends JavaParserBaseListener {
             methodList.add(methodVariables + ":" + returnType + ";");
         }
 
+    }
+    
+
+    @Override
+    public void enterMethodBody(JavaParser.MethodBodyContext ctx) {
+        if(null != ctx.block()){
+            if(null !=  ctx.block().blockStatement(0)){
+                if(null != ctx.block().blockStatement(0).localVariableDeclaration()){
+                String s = ctx.block().blockStatement(0).localVariableDeclaration().typeType().classOrInterfaceType()
+                    .getText();
+                usesList.add(s);
+                }
+           
+            }
+        }
+      //System.out.println("Strinf "+s);
     }
 
     private String getParameterTypeAndId(JavaParser.FormalParametersContext ctx, String methodName) {
