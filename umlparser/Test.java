@@ -54,7 +54,7 @@ public class Test {
 
     public static void main(String[] args) throws Exception {
         // create a CharStream that reads from standard input
-       //File folder = new File("umlparser/uml-parser-test-5/");
+    //    File folder = new File("umlparser/uml-parser-test-5/");
        File folder = new File("umlparser/test/starbucks/src/main/java/starbucks/");
         File[] inputFiles = folder.listFiles();
         Map<String, String> props = new HashMap<String, String>();
@@ -144,12 +144,11 @@ public class Test {
             yumlFileName = response.toString();
         }
 
-        yumlFileName = yumlFileName.replace(".svg", ".jpeg");
+        yumlFileName = yumlFileName.replace(".svg", ".png");
         System.out.println("yumlFileName: " + yumlFileName);
-        URL downloadUrl = new URL("https://yuml.me/diagram/scruffy/class/" + yumlFileName);
 
         try {
-            downloadFile("https://yuml.me/diagram/scruffy/class/" + yumlFileName, ".");
+            downloadFile("https://yuml.me/" + yumlFileName, ".");
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -191,8 +190,9 @@ public class Test {
                 // extracts file name from URL
                 fileName = fileURL.substring(fileURL.lastIndexOf("/") + 1, fileURL.length());
             }
-
-            fileName = fileName.replace(".svg", ".jpg");
+            System.out.println("File Name: "+ fileName);
+            //fileName = fileName.replace(".svg", ".jpeg");
+            System.out.println(" after File Name: " + fileName);
             System.out.println("Content-Type = " + contentType);
             System.out.println("Content-Disposition = " + disposition);
             System.out.println("Content-Length = " + contentLength);
