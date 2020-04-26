@@ -53,10 +53,12 @@ public class Test {
     private static final int BUFFER_SIZE = 4096;
 
     public static void main(String[] args) throws Exception {
-        // create a CharStream that reads from standard input
-    //    File folder = new File("umlparser/uml-parser-test-5/");
-       File folder = new File("umlparser/test/starbucks/src/main/java/starbucks/");
+        // create a CharStream that reads from standard inputFile folder = new
+       //File folder = new File("umlparser/testStarbucks/");
+        //    File folder = new File("umlparser/uml-parser-test-3/");
+      File folder = new File("umlparser/test/starbucks/src/main/java/starbucks/");
         File[] inputFiles = folder.listFiles();
+        //TODO check null pointer in case no file
         Map<String, String> props = new HashMap<String, String>();
         //PropertyFileVisitor visitor = new PropertyFileVisitor();
         TryLoader1 loader = new TryLoader1();
@@ -120,7 +122,7 @@ public class Test {
             +  sBuffer.toString()
             + "\"}"; 
 
-        System.out.println("payload: " + json_payload);
+        //System.out.println("payload: " + json_payload);
 
         URL url = new URL("https://yuml.me/diagram/scruffy/class/");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -145,7 +147,7 @@ public class Test {
         }
 
         yumlFileName = yumlFileName.replace(".svg", ".png");
-        System.out.println("yumlFileName: " + yumlFileName);
+        //System.out.println("yumlFileName: " + yumlFileName);
 
         try {
             downloadFile("https://yuml.me/" + yumlFileName, ".");
@@ -190,12 +192,12 @@ public class Test {
                 // extracts file name from URL
                 fileName = fileURL.substring(fileURL.lastIndexOf("/") + 1, fileURL.length());
             }
-            System.out.println("File Name: "+ fileName);
+            //System.out.println("File Name: "+ fileName);
             //fileName = fileName.replace(".svg", ".jpeg");
-            System.out.println(" after File Name: " + fileName);
-            System.out.println("Content-Type = " + contentType);
-            System.out.println("Content-Disposition = " + disposition);
-            System.out.println("Content-Length = " + contentLength);
+            // System.out.println(" after File Name: " + fileName);
+            // System.out.println("Content-Type = " + contentType);
+            // System.out.println("Content-Disposition = " + disposition);
+            // System.out.println("Content-Length = " + contentLength);
             System.out.println("fileName = " + fileName);
 
             // opens input stream from the HTTP connection

@@ -119,6 +119,9 @@ public class TryLoader1 extends JavaParserBaseListener {
                     primitiveVariables.add(element);
 
                 } else {
+                    if(classOrInterface.getText().contains("String") || classOrInterface.getText().contains("Double")){
+                        return;
+                    }
                     classVariables += "-[" + classOrInterface.getText() + "]";
                     classVariablelist.add(classVariables);
                 }
@@ -144,7 +147,8 @@ public class TryLoader1 extends JavaParserBaseListener {
     public void enterFormalParameterList(JavaParser.FormalParameterListContext ctx) {
         // this condition has to be matched for int as well
         if(null != ctx.formalParameter(0).typeType().classOrInterfaceType()){
-            if (!ctx.formalParameter(0).typeType().classOrInterfaceType().getText().equals("String")) {
+            String s = ctx.formalParameter(0).typeType().classOrInterfaceType().getText();
+            if (!s.contains("String") && !s.contains(("Double"))) {
             usesList.add(ctx.formalParameter(0).typeType().classOrInterfaceType().getText());
         }
         }
@@ -180,6 +184,9 @@ public class TryLoader1 extends JavaParserBaseListener {
                     if(null != ctx.block().blockStatement(0).localVariableDeclaration().typeType().classOrInterfaceType()){
                         String s = ctx.block().blockStatement(0).localVariableDeclaration().typeType()
                                 .classOrInterfaceType().getText();
+                                if(s.contains("String") || s.contains("Double")){
+                                    return;
+                                }
                         usesList.add(s);
                     }
                
