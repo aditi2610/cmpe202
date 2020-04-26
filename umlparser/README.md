@@ -268,7 +268,7 @@ For Test 2 Antlr 4 generated this:
 
 
 
-Was able to generate the SVG files from the yuml string. was able to generate the diagram for Starucks as well. trying to understand how to convert SVG to JPG file. 
+Was able to generate the SVG files from the yuml string. was able to generate the diagram for Starbucks as well. trying to understand how to convert SVG to JPG file. 
 
 
 
