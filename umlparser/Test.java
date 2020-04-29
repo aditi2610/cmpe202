@@ -9,6 +9,7 @@
 ***/
 // import ANTLR's runtime libraries
 import java.io.BufferedReader;
+import java.io.Console;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -53,14 +54,22 @@ public class Test {
     private static final int BUFFER_SIZE = 4096;
 
     public static void main(String[] args) throws Exception {
+        System.out.println("Argumnets are");
+        //String arg[]  = args[0].split("\t");
+       Console c = System.console();
+           System.out.print("Enter Folder path: ");
+           //String folder = c.readLine();
+           System.out.print("Enter Folder path: ");
+           String fileName = c.readLine();
+
+
         // create a CharStream that reads from standard inputFile folder = new
        //File folder = new File("umlparser/testStarbucks/");
-        //    File folder = new File("umlparser/uml-parser-test-3/");
-      File folder = new File("umlparser/test/starbucks/src/main/java/starbucks/");
+            File folder = new File("umlparser/uml-parser-test-3/");
+      //File folder = new File("umlparser/test/starbucks/src/main/java/starbucks/");
         File[] inputFiles = folder.listFiles();
         //TODO check null pointer in case no file
         Map<String, String> props = new HashMap<String, String>();
-        //PropertyFileVisitor visitor = new PropertyFileVisitor();
         TryLoader1 loader = new TryLoader1();
         for (File f : inputFiles) {
             if (f.isFile() && f.getName().endsWith(".java")) {
@@ -80,12 +89,6 @@ public class Test {
                 ParseTree tree = parser.compilationUnit(); // begin parsing at init rule
                 //System.out.println(tree.toStringTree(parser)); // print LISP-style tree
                 ParseTreeWalker walker = new ParseTreeWalker();
-                // create listener then feed to walker PropertyFileLoader loader = new
-                
-                //visitor.visit(tree);
-
-
-                //loader = new TryLoader1();
                 System.out.println();
                 walker.walk(loader, tree); // walk parse tree
 
@@ -94,15 +97,13 @@ public class Test {
            
         }
 
-        System.out.println("here : " +  loader.output.size());
         StringBuffer sBuffer = new StringBuffer();
 
-        for (String s : loader.output) {
-            //sBuffer.append(s);
-            // sBuffer.append(" ");
-            System.out.println(s);
-        }
-
+        // for (String s : loader.output) {
+          
+        //     System.out.println(s);
+        // }
+        //append space at the end to support YUML 
         Iterator<String> i = loader.output.iterator();
         while (i.hasNext()){
             sBuffer.append(i.next());
@@ -150,27 +151,14 @@ public class Test {
         //System.out.println("yumlFileName: " + yumlFileName);
 
         try {
-            downloadFile("https://yuml.me/" + yumlFileName, ".");
+            downloadFile("https://yuml.me/" + yumlFileName, ".", fileName);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
 
-        // URLConnection downloadCon = downloadUrl.openConnection();
-
-        // String redirect = downloadCon.getHeaderField("Location");
-        // if (redirect != null)
-        //     downloadCon = (HttpURLConnection) new URL(redirect).openConnection();
-
-        // BufferedImage bi = null;
-        // try {
-        //     bi = ImageIO.read(downloadCon.getInputStream());
-        //     ImageIO.write(bi, "jpeg", new File(yumlFileName));
-        // } catch (Exception e) {
-        //     System.out.println(e);
-        // }
     }
 
-    private static void downloadFile(String fileURL, String saveDir) throws IOException {
+    private static void downloadFile(String fileURL, String saveDir, String fileN) throws IOException {
         URL url = new URL(fileURL);
         HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
         int responseCode = httpConn.getResponseCode();
@@ -202,7 +190,7 @@ public class Test {
 
             // opens input stream from the HTTP connection
             InputStream inputStream = httpConn.getInputStream();
-            String saveFilePath = saveDir + File.separator + fileName;
+            String saveFilePath = saveDir + File.separator + fileN +".png";
 
             // opens an output stream to save into file
             FileOutputStream outputStream = new FileOutputStream(saveFilePath);
@@ -223,33 +211,5 @@ public class Test {
         httpConn.disconnect();
     }
 
-    // public static class PropertyFileVisitor extends JavaParserBaseVisitor<Void> {
-    //     List<String> list = new ArrayList<String>();
-    //     List<String> listInterfaces = new ArrayList<String>();
-    //     Map<String, List> props = new HashMap<String, List>();
 
-    //     // PropertyFileVisitor(Map<String, String> props1){
-    //     //     props = props1;
-
-    //     // }
-    //     @Override
-    //     public Void visitClassDeclaration(JavaParser.ClassDeclarationContext ctx) {
-    //         //System.out.println(" Hello  " + ctx.getText());
-    //         list.add(ctx.IDENTIFIER().getText());
-    //         props.put("Class", list);
-    //         return null;
-    //     }
-
-    //     @Override
-    //     public Void visitInterfaceDeclaration(JavaParser.InterfaceDeclarationContext ctx) {
-    //         //System.out.println(" Interface  " + ctx.getText());
-    //         listInterfaces.add(ctx.IDENTIFIER().getText());
-    //         props.put("Interface", listInterfaces);
-    //         return null;
-    //     }
-
-        
-
-    // }
-   
 }
