@@ -172,6 +172,7 @@ Output of Parser Tree:
 	) <EOF>
 )
 
+Week #2
 By end of this week, i was able to generate above String. the next step should be to convert the String into yuml understable format for all the classes so to generate the diagram. 
 
 
@@ -267,8 +268,22 @@ For Test 2 Antlr 4 generated this:
 )
 
 
-
+Week 3 #
 Was able to generate the SVG files from the yuml string. was able to generate the diagram for Starbucks as well. trying to understand how to convert SVG to JPG file. 
+
+Week 4#
+
+Fixed getter and setter functionality for test 5
+Was able to generate the PNG image from YUML 
+was able to generate PNG for a longer string like STarbucks
+was able to generate a jar file wherein user will input the parameters and image would be generated. 
+
+
+------ CODING complete
+
+Upcoming Week 5#
+
+Code is ready to be submitted. Will refine and test the code for final submission. 
 
 
 
