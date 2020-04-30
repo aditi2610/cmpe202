@@ -30,13 +30,6 @@ import java.awt.image.BufferedImage;
 //import org.json.simple.JSONObject;
 
 import javax.imageio.ImageIO;
-// import org.apache.http.HttpEntity;
-// import org.apache.http.HttpResponse;
-// import org.apache.http.client.HttpClient;
-// import org.apache.http.client.methods.HttpPost;
-// import org.apache.http.entity.StringEntity;
-// import org.apache.http.impl.client.HttpClientBuilder;
-// import org.apache.http.impl.client.CloseableHttpClient;
 
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
@@ -53,14 +46,12 @@ public class Test {
     private static final int BUFFER_SIZE = 4096;
 
     public static void main(String[] args) throws Exception {
-        System.out.println("Arguments are");
-        // String arg[] = args[0].split("\t");
-        Console c = System.console();
-        System.out.println("Enter Folder path: ");
-        String folderString = c.readLine();
-        System.out.println("Enter Output Image Name: ");
-        String fileName = c.readLine();
 
+        Console c = System.console();
+        String arg[] = c.readLine().split("\\s+");
+
+        String folderString = arg[0];
+        String fileName = arg[1];
         // create a CharStream that reads from standard inputFile folder = new
         File folder = new File(folderString);
         // File folder = new File("umlparser/uml-parser-test-3/");
@@ -76,17 +67,14 @@ public class Test {
 
                 // create a lexer that feeds off of input CharStream
                 JavaLexer lexer = new JavaLexer(input);
-
                 // create a buffer of tokens pulled from the lexer
                 CommonTokenStream tokens = new CommonTokenStream(lexer);
-
                 // create a parser that feeds off the tokens buffer
                 JavaParser parser = new JavaParser(tokens);
-
                 ParseTree tree = parser.compilationUnit(); // begin parsing at init rule
-                System.out.println(tree.toStringTree(parser)); // print LISP-style tree
+                // System.out.println(tree.toStringTree(parser)); // print LISP-style tree
                 ParseTreeWalker walker = new ParseTreeWalker();
-                System.out.println();
+                // System.out.println();
                 walker.walk(loader, tree); // walk parse tree
 
             }
@@ -95,16 +83,12 @@ public class Test {
 
         StringBuffer sBuffer = new StringBuffer();
 
-        // for (String s : loader.output) {
-
-        // System.out.println(s);
-        // }
         // append space at the end to support YUML
         Iterator<String> i = loader.output.iterator();
         while (i.hasNext()) {
             sBuffer.append(i.next());
             if (i.hasNext()) {
-                sBuffer.append(" ");
+                sBuffer.append(",");
             }
         }
 
@@ -116,8 +100,6 @@ public class Test {
 
         String json_payload = "{" + "  \"dsl_text\":\"" + sBuffer.toString() + "\"}";
 
-        // System.out.println("payload: " + json_payload);
-        System.out.println(sBuffer.toString());
         URL url = new URL("https://yuml.me/diagram/scruffy/class/");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("POST");
@@ -141,7 +123,6 @@ public class Test {
         }
 
         yumlFileName = yumlFileName.replace(".svg", ".png");
-        // System.out.println("yumlFileName: " + yumlFileName);
 
         try {
             downloadFile("https://yuml.me/" + yumlFileName, ".", fileName);
@@ -160,8 +141,6 @@ public class Test {
         if (responseCode == HttpURLConnection.HTTP_OK) {
             String fileName = "";
             String disposition = httpConn.getHeaderField("Content-Disposition");
-            String contentType = httpConn.getContentType();
-            int contentLength = httpConn.getContentLength();
 
             if (disposition != null) {
                 // extracts file name from header field
@@ -173,12 +152,6 @@ public class Test {
                 // extracts file name from URL
                 fileName = fileURL.substring(fileURL.lastIndexOf("/") + 1, fileURL.length());
             }
-            // System.out.println("File Name: "+ fileName);
-            // fileName = fileName.replace(".svg", ".jpeg");
-            // System.out.println(" after File Name: " + fileName);
-            // System.out.println("Content-Type = " + contentType);
-            // System.out.println("Content-Disposition = " + disposition);
-            // System.out.println("Content-Length = " + contentLength);
 
             // opens input stream from the HTTP connection
             InputStream inputStream = httpConn.getInputStream();

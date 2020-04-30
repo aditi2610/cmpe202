@@ -2,9 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-
 import java.util.HashSet;
-
 
 public class TryLoader1 extends JavaParserBaseListener {
 
@@ -24,15 +22,12 @@ public class TryLoader1 extends JavaParserBaseListener {
     boolean countVariable = false;
     boolean countMethod = false;
     List<String> methodList;
-    Set<String> output  = new HashSet<String>();
-    
+    Set<String> output = new HashSet<String>();
 
     @Override
     public void enterClassDeclaration(JavaParser.ClassDeclarationContext ctx) {
         // Get class Name by first splitting on implements and then on extends
         className = "";
-        // System.out.println("Implements: " + ctx.getText().split("implements")[0]);
-        // System.out.println("Extends: " + ctx.getText().split("extends")[0]);
         className = ctx.IDENTIFIER().getText();
         // // System.out.println("final: " + classn);
         extendingClasses = new ArrayList<String>();
@@ -51,16 +46,7 @@ public class TryLoader1 extends JavaParserBaseListener {
 
         }
         classVariablelist = new ArrayList<String>();
-        // primitiveString = "";
-
     }
-
-    // @Override
-    // public void enterInterfaceDeclaration(JavaParser.InterfaceDeclarationContext
-    // ctx) {
-    // abstractMethodsList = new ArrayList<String>();
-
-    // }
 
     @Override
     public void enterClassBodyDeclaration(JavaParser.ClassBodyDeclarationContext ctx) {
@@ -70,9 +56,6 @@ public class TryLoader1 extends JavaParserBaseListener {
         countMethod = false;
         methodVariables = "";
 
-        // if (modifier.equals("private") || modifier.equals("public")) {
-        // element = "-";
-        // }
     }
 
     @Override
@@ -101,14 +84,14 @@ public class TryLoader1 extends JavaParserBaseListener {
         if (countVariable) {
             JavaParser.ClassOrInterfaceTypeContext classOrInterface = ctx.typeType().classOrInterfaceType();
             if (null != classOrInterface) {
-                //System.out.println("Identifier is : " +classOrInterface.getText());
-                if (classOrInterface.getText().contains("Collection") || classOrInterface.getText()
-                        .contains("ArrayList")) {
+                // System.out.println("Identifier is : " +classOrInterface.getText());
+                if (classOrInterface.getText().contains("Collection")
+                        || classOrInterface.getText().contains("ArrayList")) {
                     classVariables += "1-0..*";
                     classVariables += "["
                             + classOrInterface.typeArguments().get(0).typeArgument().get(0).typeType().getText() + "]";
-                    //System.out.println("nhgfdf "+ classVariables);
-                            classVariablelist.add(classVariables);
+
+                    classVariablelist.add(classVariables);
 
                 } else if (classOrInterface.getText().contains("String")) {
                     element += ctx.variableDeclarators().variableDeclarator(0).variableDeclaratorId().getText();
@@ -119,13 +102,15 @@ public class TryLoader1 extends JavaParserBaseListener {
                     primitiveVariables.add(element);
 
                 } else {
-                    if(classOrInterface.getText().contains("String") || classOrInterface.getText().contains("Double")){
+                    if (classOrInterface.getText().contains("String")
+                            || classOrInterface.getText().contains("Double")) {
                         return;
                     }
+                    // System.out.println(" $$$$$$$$$$$ ClassVaribales: "+ classVariables + "
+                    // classORiNterface "+ classOrInterface.getText());
                     classVariables += "-[" + classOrInterface.getText() + "]";
                     classVariablelist.add(classVariables);
                 }
-                // System.out.println("Class Variable: " + classVariables);
 
             }
             if (ctx.typeType().primitiveType() != null) {
@@ -136,7 +121,6 @@ public class TryLoader1 extends JavaParserBaseListener {
                 if ((ctx.typeType().getText().charAt(ctx.typeType().getText().length() - 1)) == (']')) {
                     element += "(*)";
                 }
-                // System.out.println("Primitive type is: " + element);
                 primitiveVariables.add(element);
             }
         }
@@ -145,14 +129,13 @@ public class TryLoader1 extends JavaParserBaseListener {
 
     @Override
     public void enterFormalParameterList(JavaParser.FormalParameterListContext ctx) {
-        // this condition has to be matched for int as well
-        if(null != ctx.formalParameter(0).typeType().classOrInterfaceType()){
+        if (null != ctx.formalParameter(0).typeType().classOrInterfaceType()) {
             String s = ctx.formalParameter(0).typeType().classOrInterfaceType().getText();
             if (!s.contains("String") && !s.contains(("Double"))) {
-            usesList.add(ctx.formalParameter(0).typeType().classOrInterfaceType().getText());
+                usesList.add(ctx.formalParameter(0).typeType().classOrInterfaceType().getText());
+            }
         }
-        }
-       
+
     }
 
     @Override
@@ -167,44 +150,46 @@ public class TryLoader1 extends JavaParserBaseListener {
 
             String methodName = ctx.IDENTIFIER().getText();
             methodName = getParameterTypeAndId(ctx.formalParameters(), methodName);
-            if(methodName.startsWith("get") || methodName.startsWith("set")){
+            if (methodName.startsWith("get") || methodName.startsWith("set")) {
                 for (String variable : primitiveVariables) {
                     String variableName = variable.split(":")[0].substring(1);
-                    //System.out.println("Variable name:  " + variableName + " Method Name:  " + methodName.substring(3, methodName.indexOf("(")));
-                    if(methodName.substring(3, methodName.indexOf("(")).equalsIgnoreCase(variableName)){
-                        // System.out.println(" found!!! Method Name is: " + methodName + " variable is: " + variableName
-                        //         + " get" + variableName);
+                    // System.out.println("Variable name: " + variableName + " Method Name: " +
+                    // methodName.substring(3, methodName.indexOf("(")));
+                    if (methodName.substring(3, methodName.indexOf("(")).equalsIgnoreCase(variableName)) {
+                        // System.out.println(" found!!! Method Name is: " + methodName + " variable is:
+                        // " + variableName
+                        // + " get" + variableName);
                         primitiveVariables.remove(variable);
-                        String newVar = variable .replace("-", "+");
+                        String newVar = variable.replace("-", "+");
                         primitiveVariables.add(newVar);
                         return;
                     }
                 }
             }
-            
+
             methodVariables += methodName;
             methodList.add(methodVariables + ":" + returnType + ";");
         }
 
     }
-    
 
     @Override
     public void enterMethodBody(JavaParser.MethodBodyContext ctx) {
-        if(null != ctx.block()){
-            if(null !=  ctx.block().blockStatement(0)){
-                if(null != ctx.block().blockStatement(0).localVariableDeclaration()){
-                    if(null != ctx.block().blockStatement(0).localVariableDeclaration().typeType().classOrInterfaceType()){
+        if (null != ctx.block()) {
+            if (null != ctx.block().blockStatement(0)) {
+                if (null != ctx.block().blockStatement(0).localVariableDeclaration()) {
+                    if (null != ctx.block().blockStatement(0).localVariableDeclaration().typeType()
+                            .classOrInterfaceType()) {
                         String s = ctx.block().blockStatement(0).localVariableDeclaration().typeType()
                                 .classOrInterfaceType().getText();
-                                if(s.contains("String") || s.contains("Double")){
-                                    return;
-                                }
+                        if (s.contains("String") || s.contains("Double")) {
+                            return;
+                        }
                         usesList.add(s);
                     }
-               
+
                 }
-           
+
             }
         }
     }
@@ -216,10 +201,10 @@ public class TryLoader1 extends JavaParserBaseListener {
             parameterType = ctx.formalParameterList().formalParameter(0).typeType().getText();
 
             parameterName = ctx.formalParameterList().formalParameter(0).variableDeclaratorId().getText();
-            if(parameterType.contains("[]")){
+            if (parameterType.contains("[]")) {
                 parameterType = parameterType.replace("[]", "(*)");
             }
-          
+
             methodName += "(" + parameterName + ":" + parameterType + ")";
         } else {
             methodName += "()";
@@ -231,105 +216,93 @@ public class TryLoader1 extends JavaParserBaseListener {
     public void enterConstructorDeclaration(JavaParser.ConstructorDeclarationContext ctx) {
         String parameterType = "";
         String parameterName = "";
-        // String methodName = ctx.IDENTIFIER().getText() + "" +
-        // ctx.formalParameters().getText();
         String methodName = ctx.IDENTIFIER().getText();
-        // System.out.println("Method Name in Consturctor: " + methodName);
         methodName = getParameterTypeAndId(ctx.formalParameters(), methodName);
 
         methodVariables += methodName;
-        // System.out.println("Constructor is: " + methodName);
         methodList.add(methodVariables + ";");
     }
 
     @Override
     public void enterInterfaceMethodDeclaration(JavaParser.InterfaceMethodDeclarationContext ctx) {
 
-        //System.out.println("Inside Interface Method declaration "+ ctx.IDENTIFIER().getText());
         String returnType = ctx.typeTypeOrVoid().getText();
-        // System.out.println("Return type: " + returnType);
-        String methodName = ctx.IDENTIFIER().getText() ;
-        // System.out.println("Interface method: " +
-        // getParameterTypeAndId(ctx.formalParameters(), methodName));
+        String methodName = ctx.IDENTIFIER().getText();
         methodName = getParameterTypeAndId(ctx.formalParameters(), methodName);
-        //System.out.println("Method nmae: "+ methodName);
 
         methodVariables += methodName;
-        // System.out.println("Interface : " + methodVariables + ":" + returnType +
-        // ";");
-        abstractMethodsList.add("+" +methodVariables + ":" + returnType + ";");
-       
-
+        abstractMethodsList.add(methodVariables + ":" + returnType + ";");
     }
 
     @Override
     public void exitClassDeclaration(JavaParser.ClassDeclarationContext ctx) {
-        
+
         for (String implementingClass : implementingClasses) {
             String temp = "[<<interface>>;" + implementingClass + "]^-.-[" + className + "]";
             output.add(temp);
-            //System.out.println(temp);
         }
         for (String extendingClass : extendingClasses) {
             String temp = "[" + extendingClass + "]^-[" + className + "]";
-            //System.out.println(temp);
             output.add(temp);
         }
         for (String useClasses : usesList) {
-            String temp ="[" + className + "]uses -.->[" + useClasses + "]";
-            //System.out.println(temp);
+            String temp = "[" + className + "]uses -.->[" + useClasses + "]";
             output.add(temp);
         }
-        // System.out.println("primitives:" + primitiveVariables.size());
-        String firstString ="[" + className;
-        //System.out.print(firstString);
-        // for (String primitive : primitiveVariables) {
-        // System.out.print(primitive);
-        // }
+        String firstString = "[" + className;
 
         for (int k = 0; k < primitiveVariables.size(); k++) {
             if (k == 0) {
-                firstString +="|"; 
-                //System.out.print(firstString);
+                firstString += "|";
             }
             firstString += primitiveVariables.get(k);
-            //System.out.print(firstString);
             if (k != primitiveVariables.size() - 1) {
                 firstString += ";";
-                //System.out.print(firstString);
             }
         }
         if (methodList.size() > 0) {
             firstString += "|";
-            //System.out.print(firstString);
         }
         for (String method : methodList) {
             firstString += method;
-            //System.out.print(firstString);
         }
         firstString += "]";
-        if(classVariablelist.size() == 0){
+        if (classVariablelist.size() == 0) {
             output.add(firstString);
         }
-        //System.out.print(firstString);
         for (int i = 0; i < classVariablelist.size(); i++) {
             if (i == 0) {
+                String temp = classVariablelist.get(0).substring(classVariablelist.get(0).indexOf("[") + 1,
+                        classVariablelist.get(0).indexOf("]"));
+                // System.out.println("Class Name is: " +className + " classVariable " + temp);
+
                 firstString += classVariablelist.get(0);
-                //System.out.println(classVariablelist.get(0));
                 output.add(firstString);
 
             } else {
-                String nextt = "[" + className + "]" + classVariablelist.get(i);
-                //System.out.println(nextt);
+                String nextt = "";
+                int comp = sortString(className, classVariablelist.get(i));
+
+                // System.out.println("Compare " + comp);
+                if (comp > 0) {
+                    // System.out.println("If");
+                    nextt = "[" + className + "]" + classVariablelist.get(i);
+                } else {
+                    // System.out.println("Else");
+                    nextt = classVariablelist.get(i) + "[" + className + "]";
+                }
                 output.add(nextt);
             }
         }
 
     }
 
+    private int sortString(String str1, String str2) {
+        return str1.compareTo(str2);
+    }
+
     @Override
     public void enterInterfaceDeclaration(JavaParser.InterfaceDeclarationContext ctx) {
-        // System.out.println("Enter Interface: " + ctx.IDENTIFIER().getText());
         className = ctx.IDENTIFIER().getText();
         usesList = new ArrayList<String>();
         abstractMethodsList = new ArrayList<String>();
@@ -339,25 +312,21 @@ public class TryLoader1 extends JavaParserBaseListener {
     @Override
     public void exitInterfaceDeclaration(JavaParser.InterfaceDeclarationContext ctx) {
         // for (String useClasses : usesList) {
-        //     System.out.println("[" + className + "]uses -.->[" + useClasses + "]");
+        // System.out.println("[" + className + "]uses -.->[" + useClasses + "]");
         // }
         String temp = new String();
         temp = "[<<Interface>>" + className;
-        //System.out.print(temp);
+        // System.out.print(temp);
         for (int k = 0; k < abstractMethodsList.size(); k++) {
             if (k == 0) {
-                //System.out.print("|");
+                // System.out.print("|");
                 temp += "|";
             }
             temp += abstractMethodsList.get(k);
-            //System.out.print(abstractMethodsList.get(k));
-            // if (k != abstractMethodsList.size() - 1) {
-            //     System.out.print(";");
-            // }
         }
         temp += "]";
         output.add(temp);
-        //System.out.print("]");
+        // System.out.print("]");
     }
 
 }
