@@ -163,12 +163,25 @@ public class TryLoader1 extends JavaParserBaseListener {
     @Override
     public void enterMethodDeclaration(JavaParser.MethodDeclarationContext ctx) {
         if (countMethod) {
-            // System.out.println("ctx method: " + ctx.getText());
             String returnType = ctx.typeTypeOrVoid().getText();
-            // System.out.println("return Type: " + returnType);
 
             String methodName = ctx.IDENTIFIER().getText();
             methodName = getParameterTypeAndId(ctx.formalParameters(), methodName);
+            if(methodName.startsWith("get") || methodName.startsWith("set")){
+                for (String variable : primitiveVariables) {
+                    String variableName = variable.split(":")[0].substring(1);
+                    //System.out.println("Variable name:  " + variableName + " Method Name:  " + methodName.substring(3, methodName.indexOf("(")));
+                    if(methodName.substring(3, methodName.indexOf("(")).equalsIgnoreCase(variableName)){
+                        // System.out.println(" found!!! Method Name is: " + methodName + " variable is: " + variableName
+                        //         + " get" + variableName);
+                        primitiveVariables.remove(variable);
+                        String newVar = variable .replace("-", "+");
+                        primitiveVariables.add(newVar);
+                        return;
+                    }
+                }
+            }
+            
             methodVariables += methodName;
             methodList.add(methodVariables + ":" + returnType + ";");
         }
@@ -244,11 +257,8 @@ public class TryLoader1 extends JavaParserBaseListener {
         methodVariables += methodName;
         // System.out.println("Interface : " + methodVariables + ":" + returnType +
         // ";");
-        abstractMethodsList.add(methodVariables + ":" + returnType + ";");
-        // System.out.println("@@@@@");
-        // for(String s: abstractMethodsList){
-        //     System.out.println(" " +s);
-        // }
+        abstractMethodsList.add("+" +methodVariables + ":" + returnType + ";");
+       
 
     }
 

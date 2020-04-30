@@ -42,8 +42,7 @@ import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
 public class Test {
-    private class yUmlPayload
-    {
+    private class yUmlPayload {
         String dsl_text;
 
         yUmlPayload(String dsl_text) {
@@ -54,31 +53,29 @@ public class Test {
     private static final int BUFFER_SIZE = 4096;
 
     public static void main(String[] args) throws Exception {
-        System.out.println("Argumnets are");
-        //String arg[]  = args[0].split("\t");
-       Console c = System.console();
-           System.out.print("Enter Folder path: ");
-           //String folder = c.readLine();
-           System.out.print("Enter Folder path: ");
-           String fileName = c.readLine();
-
+        System.out.println("Arguments are");
+        // String arg[] = args[0].split("\t");
+        Console c = System.console();
+        System.out.println("Enter Folder path: ");
+        String folderString = c.readLine();
+        System.out.println("Enter Output Image Name: ");
+        String fileName = c.readLine();
 
         // create a CharStream that reads from standard inputFile folder = new
-       //File folder = new File("umlparser/testStarbucks/");
-            File folder = new File("umlparser/uml-parser-test-3/");
-      //File folder = new File("umlparser/test/starbucks/src/main/java/starbucks/");
+        File folder = new File(folderString);
+        // File folder = new File("umlparser/uml-parser-test-3/");
+        // File folder = new File("umlparser/test/starbucks/src/main/java/starbucks/");
         File[] inputFiles = folder.listFiles();
-        //TODO check null pointer in case no file
+        // TODO check null pointer in case no file
         Map<String, String> props = new HashMap<String, String>();
         TryLoader1 loader = new TryLoader1();
         for (File f : inputFiles) {
             if (f.isFile() && f.getName().endsWith(".java")) {
-                //System.out.println("File is: " + f);
+                // System.out.println("File is: " + f);
                 CharStream input = CharStreams.fromFileName(f.toString());
 
                 // create a lexer that feeds off of input CharStream
                 JavaLexer lexer = new JavaLexer(input);
-
 
                 // create a buffer of tokens pulled from the lexer
                 CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -87,44 +84,40 @@ public class Test {
                 JavaParser parser = new JavaParser(tokens);
 
                 ParseTree tree = parser.compilationUnit(); // begin parsing at init rule
-                //System.out.println(tree.toStringTree(parser)); // print LISP-style tree
+                System.out.println(tree.toStringTree(parser)); // print LISP-style tree
                 ParseTreeWalker walker = new ParseTreeWalker();
                 System.out.println();
                 walker.walk(loader, tree); // walk parse tree
 
-
             }
-           
+
         }
 
         StringBuffer sBuffer = new StringBuffer();
 
         // for (String s : loader.output) {
-          
-        //     System.out.println(s);
+
+        // System.out.println(s);
         // }
-        //append space at the end to support YUML 
+        // append space at the end to support YUML
         Iterator<String> i = loader.output.iterator();
-        while (i.hasNext()){
+        while (i.hasNext()) {
             sBuffer.append(i.next());
-            if(i.hasNext()){
+            if (i.hasNext()) {
                 sBuffer.append(" ");
             }
         }
 
-        /** 
-         * This code converts uml string to yuml understandable format and make REST POST call
+        /**
+         * This code converts uml string to yuml understandable format and make REST
+         * POST call
          * 
-        */
+         */
 
-         String json_payload =
-              "{" 
-            + "  \"dsl_text\":\""
-            +  sBuffer.toString()
-            + "\"}"; 
+        String json_payload = "{" + "  \"dsl_text\":\"" + sBuffer.toString() + "\"}";
 
-        //System.out.println("payload: " + json_payload);
-
+        // System.out.println("payload: " + json_payload);
+        System.out.println(sBuffer.toString());
         URL url = new URL("https://yuml.me/diagram/scruffy/class/");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("POST");
@@ -148,7 +141,7 @@ public class Test {
         }
 
         yumlFileName = yumlFileName.replace(".svg", ".png");
-        //System.out.println("yumlFileName: " + yumlFileName);
+        // System.out.println("yumlFileName: " + yumlFileName);
 
         try {
             downloadFile("https://yuml.me/" + yumlFileName, ".", fileName);
@@ -180,17 +173,20 @@ public class Test {
                 // extracts file name from URL
                 fileName = fileURL.substring(fileURL.lastIndexOf("/") + 1, fileURL.length());
             }
-            //System.out.println("File Name: "+ fileName);
-            //fileName = fileName.replace(".svg", ".jpeg");
+            // System.out.println("File Name: "+ fileName);
+            // fileName = fileName.replace(".svg", ".jpeg");
             // System.out.println(" after File Name: " + fileName);
             // System.out.println("Content-Type = " + contentType);
             // System.out.println("Content-Disposition = " + disposition);
             // System.out.println("Content-Length = " + contentLength);
-            System.out.println("fileName = " + fileName);
 
             // opens input stream from the HTTP connection
             InputStream inputStream = httpConn.getInputStream();
-            String saveFilePath = saveDir + File.separator + fileN +".png";
+            if (!fileN.contains(".")) {
+                fileN = fileN + ".png";
+            }
+            String saveFilePath = saveDir + File.separator + fileN;
+            System.out.println("fileName = " + fileN);
 
             // opens an output stream to save into file
             FileOutputStream outputStream = new FileOutputStream(saveFilePath);
@@ -210,6 +206,5 @@ public class Test {
         }
         httpConn.disconnect();
     }
-
 
 }
