@@ -72,7 +72,7 @@ public class Test {
                 // create a parser that feeds off the tokens buffer
                 JavaParser parser = new JavaParser(tokens);
                 ParseTree tree = parser.compilationUnit(); // begin parsing at init rule
-                // System.out.println(tree.toStringTree(parser)); // print LISP-style tree
+                System.out.println(tree.toStringTree(parser)); // print LISP-style tree
                 ParseTreeWalker walker = new ParseTreeWalker();
                 // System.out.println();
                 walker.walk(loader, tree); // walk parse tree

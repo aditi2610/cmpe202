@@ -56,6 +56,8 @@ public class TryLoader1 extends JavaParserBaseListener {
         countMethod = false;
         methodVariables = "";
 
+      
+
     }
 
     @Override
@@ -65,6 +67,8 @@ public class TryLoader1 extends JavaParserBaseListener {
 
     @Override
     public void enterClassOrInterfaceModifier(JavaParser.ClassOrInterfaceModifierContext ctx) {
+
+        System.out.println("enterClassOrInterfaceModifier "+ ctx.getText());
         if (ctx.getText().equals("private") || (ctx.getText().equals("public"))) {
             if (ctx.getText().equals("private")) {
                 element = "-";
@@ -80,7 +84,7 @@ public class TryLoader1 extends JavaParserBaseListener {
 
     @Override
     public void enterFieldDeclaration(JavaParser.FieldDeclarationContext ctx) {
-        // String element = "";
+       System.out.println("enterFieldDeclaration countVAribale is: "+ countVariable);
         if (countVariable) {
             JavaParser.ClassOrInterfaceTypeContext classOrInterface = ctx.typeType().classOrInterfaceType();
             if (null != classOrInterface) {
@@ -106,9 +110,10 @@ public class TryLoader1 extends JavaParserBaseListener {
                             || classOrInterface.getText().contains("Double")) {
                         return;
                     }
-                    // System.out.println(" $$$$$$$$$$$ ClassVaribales: "+ classVariables + "
-                    // classORiNterface "+ classOrInterface.getText());
+                     System.out.println(" $$$$$$$$$$$ ClassVaribales: "+ classVariables + " classORiNterface "+ classOrInterface.getText());
                     classVariables += "-[" + classOrInterface.getText() + "]";
+
+                    System.out.println("ClassVaribale getting added into list : "+ classVariables);
                     classVariablelist.add(classVariables);
                 }
 
@@ -153,12 +158,7 @@ public class TryLoader1 extends JavaParserBaseListener {
             if (methodName.startsWith("get") || methodName.startsWith("set")) {
                 for (String variable : primitiveVariables) {
                     String variableName = variable.split(":")[0].substring(1);
-                    // System.out.println("Variable name: " + variableName + " Method Name: " +
-                    // methodName.substring(3, methodName.indexOf("(")));
                     if (methodName.substring(3, methodName.indexOf("(")).equalsIgnoreCase(variableName)) {
-                        // System.out.println(" found!!! Method Name is: " + methodName + " variable is:
-                        // " + variableName
-                        // + " get" + variableName);
                         primitiveVariables.remove(variable);
                         String newVar = variable.replace("-", "+");
                         primitiveVariables.add(newVar);
@@ -166,7 +166,9 @@ public class TryLoader1 extends JavaParserBaseListener {
                     }
                 }
             }
-
+            // if(methodVariables != "-" || methodVariables != "+"){
+            //    return;
+            // }
             methodVariables += methodName;
             methodList.add(methodVariables + ":" + returnType + ";");
         }
@@ -229,7 +231,9 @@ public class TryLoader1 extends JavaParserBaseListener {
         String returnType = ctx.typeTypeOrVoid().getText();
         String methodName = ctx.IDENTIFIER().getText();
         methodName = getParameterTypeAndId(ctx.formalParameters(), methodName);
-
+        if (methodVariables != "-" || methodVariables != "+") {
+            return;
+        }
         methodVariables += methodName;
         abstractMethodsList.add(methodVariables + ":" + returnType + ";");
     }
@@ -267,6 +271,8 @@ public class TryLoader1 extends JavaParserBaseListener {
             firstString += method;
         }
         firstString += "]";
+
+        System.out.println(" classVariablelist.size" +classVariablelist.size());
         if (classVariablelist.size() == 0) {
             output.add(firstString);
         }
@@ -274,7 +280,7 @@ public class TryLoader1 extends JavaParserBaseListener {
             if (i == 0) {
                 String temp = classVariablelist.get(0).substring(classVariablelist.get(0).indexOf("[") + 1,
                         classVariablelist.get(0).indexOf("]"));
-                // System.out.println("Class Name is: " +className + " classVariable " + temp);
+                System.out.println("Class Name is: " +className + " classVariable " + temp);
 
                 firstString += classVariablelist.get(0);
                 output.add(firstString);
@@ -294,7 +300,9 @@ public class TryLoader1 extends JavaParserBaseListener {
                 output.add(nextt);
             }
         }
-
+            for(String s: output){
+                System.out.println(s);
+            }
     }
 
     private int sortString(String str1, String str2) {
