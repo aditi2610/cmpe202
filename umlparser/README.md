@@ -1,3 +1,28 @@
+
+Expected Test output location with starbucks code image:
+
+https://github.com/nguyensjsu/cmpe202-aditi2610/tree/master/umlparser/expectedOutput
+
+Jar location: https://github.com/nguyensjsu/cmpe202-aditi2610/tree/master/umlparser/jar 
+
+You can download the jar and run it with the below command :  
+
+# java -jar umlparser.jar <source folder> <output file name>
+
+You can also clone the code and run it on java 8 by the following commands:
+
+export CLASSPATH=".:/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH"
+ $ alias antlr4='java -Xmx500M -cp "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" org.antlr.v4.Tool'
+
+$ alias grun='java -Xmx500M -cp "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" org.antlr.v4.gui.TestRig'
+ antlr4 *.g4
+ javac *.java 
+ java Test <source folder> <output file name>
+	
+# The default image would be a png image, however you can give a required extension in the output file name to get the desired image. 
+
+eg. java Test test test.jpg
+
 # Kanban Link : https://github.com/nguyensjsu/cmpe202-aditi2610/projects
 # GitHub Link: https://github.com/nguyensjsu/cmpe202-aditi2610/tree/master/umlparser
 # ReadMe: https://github.com/nguyensjsu/cmpe202-aditi2610/edit/master/umlparser/README.md
