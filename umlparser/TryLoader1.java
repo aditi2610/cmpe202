@@ -1,21 +1,44 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
+import java.util.Stack;
 import java.util.HashSet;
 
 public class TryLoader1 extends JavaParserBaseListener {
 
-    static String className = "";
-    static List<String> classVariablelist;
+    private class StackElem {
+        String className = "";
+        List<String> classVariablelist;
+        // static String primitiveString;
+        int flagForCollection = 0;
+        String element = "";
+        String classVariables = "";
+        String methodVariables = "";
+        List<String> extendingClasses;
+        List<String> implementingClasses;
+        List<String> usesList;
+        List<String> memberVariables;
+        List<String> abstractMethodsList;
+        List<String> primitiveVariables;
+        boolean countVariable = false;
+        boolean countMethod = false;
+        List<String> methodList;
+        // Set<String> output = new HashSet<String>();
+    }
+
+    static Stack<StackElem> inProgress = new Stack<>();
+    static List<Set<String>> completed = new ArrayList<>();
+
+    String className = "";
+    List<String> classVariablelist;
     // static String primitiveString;
     int flagForCollection = 0;
     String element = "";
     String classVariables = "";
     String methodVariables = "";
-    static List<String> extendingClasses;
-    static List<String> implementingClasses;
-    static List<String> usesList;
+    List<String> extendingClasses;
+    List<String> implementingClasses;
+    List<String> usesList;
     List<String> memberVariables;
     List<String> abstractMethodsList;
     List<String> primitiveVariables;
@@ -24,10 +47,84 @@ public class TryLoader1 extends JavaParserBaseListener {
     List<String> methodList;
     Set<String> output = new HashSet<String>();
 
+    private void clearContext() {
+        this.className = "";
+        this.classVariablelist = new ArrayList<String>();
+        this.flagForCollection = 0;
+        this.element = "";
+        this.classVariables = "";
+        this.methodVariables = "";
+        this.extendingClasses = new ArrayList<String>();
+        this.implementingClasses = new ArrayList<String>();
+        this.usesList = new ArrayList<String>();
+        this.memberVariables = new ArrayList<String>();
+        this.abstractMethodsList = new ArrayList<String>();
+        this.primitiveVariables = new ArrayList<String>();
+        this.countVariable = false;
+        this.countMethod = false;
+        this.methodList = new ArrayList<String>();
+        // this.output = new HashSet<String>();
+    }
+
+    private StackElem returnContext() {
+        StackElem elem = new StackElem();
+        elem.className = this.className;
+        elem.classVariablelist = this.classVariablelist;
+        elem.flagForCollection = this.flagForCollection;
+        elem.element = this.element;
+        elem.classVariables = this.classVariables;
+        elem.methodVariables = this.methodVariables;
+        elem.extendingClasses = this.extendingClasses;
+        elem.implementingClasses = this.implementingClasses;
+        elem.usesList = this.usesList;
+        elem.memberVariables = this.memberVariables;
+        elem.abstractMethodsList = this.abstractMethodsList;
+        elem.primitiveVariables = this.primitiveVariables;
+        elem.countVariable = this.countVariable;
+        elem.countMethod = this.countMethod;
+        elem.methodList = this.methodList;
+        // elem.output = this.output;
+        return elem;
+    }
+
+    private void saveContext() {
+        StackElem elem = this.returnContext();
+        inProgress.push(elem);
+    }
+
+    private void loadLastContext() {
+        this.clearContext();
+        StackElem elem = inProgress.pop();
+        this.className = elem.className;
+        this.classVariablelist = elem.classVariablelist;
+        this.flagForCollection = elem.flagForCollection;
+        this.element = elem.element;
+        this.classVariables = elem.classVariables;
+        this.methodVariables = elem.methodVariables;
+        this.extendingClasses = elem.extendingClasses;
+        this.implementingClasses = elem.implementingClasses;
+        this.usesList = elem.usesList;
+        this.memberVariables = elem.memberVariables;
+        this.abstractMethodsList = elem.abstractMethodsList;
+        this.primitiveVariables = elem.primitiveVariables;
+        this.countVariable = elem.countVariable;
+        this.countMethod = elem.countMethod;
+        this.methodList = elem.methodList;
+        // this.output = elem.output;
+    }
+
     @Override
     public void enterClassDeclaration(JavaParser.ClassDeclarationContext ctx) {
         // Get class Name by first splitting on implements and then on extends
-        className = "";
+       // System.out.printf("NEW CLASS -> old: %s, new: %s\n", this.className, ctx.IDENTIFIER().getText());
+
+        if (this.className.length() != 0) {
+            this.saveContext();
+            this.clearContext();
+        }
+
+        // prepare for the new class
+
         className = ctx.IDENTIFIER().getText();
         // // System.out.println("final: " + classn);
         extendingClasses = new ArrayList<String>();
@@ -35,6 +132,7 @@ public class TryLoader1 extends JavaParserBaseListener {
         primitiveVariables = new ArrayList<String>();
         methodList = new ArrayList<String>();
         usesList = new ArrayList<String>();
+        classVariablelist = new ArrayList<String>();
         if (ctx.getText().contains("extends")) {
             extendingClasses.add(ctx.typeType().classOrInterfaceType().getText());
         }
@@ -45,7 +143,7 @@ public class TryLoader1 extends JavaParserBaseListener {
             }
 
         }
-        classVariablelist = new ArrayList<String>();
+       
     }
 
     @Override
@@ -55,9 +153,6 @@ public class TryLoader1 extends JavaParserBaseListener {
         countVariable = false;
         countMethod = false;
         methodVariables = "";
-
-      
-
     }
 
     @Override
@@ -68,7 +163,7 @@ public class TryLoader1 extends JavaParserBaseListener {
     @Override
     public void enterClassOrInterfaceModifier(JavaParser.ClassOrInterfaceModifierContext ctx) {
 
-        System.out.println("enterClassOrInterfaceModifier "+ ctx.getText());
+        //System.out.println("enterClassOrInterfaceModifier "+ ctx.getText());
         if (ctx.getText().equals("private") || (ctx.getText().equals("public"))) {
             if (ctx.getText().equals("private")) {
                 element = "-";
@@ -84,7 +179,7 @@ public class TryLoader1 extends JavaParserBaseListener {
 
     @Override
     public void enterFieldDeclaration(JavaParser.FieldDeclarationContext ctx) {
-       System.out.println("enterFieldDeclaration countVAribale is: "+ countVariable);
+       //System.out.println("enterFieldDeclaration countVAribale is: "+ countVariable);
         if (countVariable) {
             JavaParser.ClassOrInterfaceTypeContext classOrInterface = ctx.typeType().classOrInterfaceType();
             if (null != classOrInterface) {
@@ -110,10 +205,10 @@ public class TryLoader1 extends JavaParserBaseListener {
                             || classOrInterface.getText().contains("Double")) {
                         return;
                     }
-                     System.out.println(" $$$$$$$$$$$ ClassVaribales: "+ classVariables + " classORiNterface "+ classOrInterface.getText());
+                     //System.out.println(" $$$$$$$$$$$ ClassVaribales: "+ classVariables + " classORiNterface "+ classOrInterface.getText());
                     classVariables += "-[" + classOrInterface.getText() + "]";
 
-                    System.out.println("ClassVaribale getting added into list : "+ classVariables);
+                    //System.out.println("ClassVaribale getting added into list : "+ classVariables);
                     classVariablelist.add(classVariables);
                 }
 
@@ -231,11 +326,15 @@ public class TryLoader1 extends JavaParserBaseListener {
         String returnType = ctx.typeTypeOrVoid().getText();
         String methodName = ctx.IDENTIFIER().getText();
         methodName = getParameterTypeAndId(ctx.formalParameters(), methodName);
-        if (methodVariables != "-" || methodVariables != "+") {
+
+        //System.out.println("Method Name: " + methodName + " methodvariable: " + methodVariables);
+        if (methodVariables.contains("-") ||  methodVariables.contains("+")) {
+            methodVariables += methodName;
+            abstractMethodsList.add(methodVariables + ":" + returnType + ";");
+        }else{
             return;
         }
-        methodVariables += methodName;
-        abstractMethodsList.add(methodVariables + ":" + returnType + ";");
+      
     }
 
     @Override
@@ -272,7 +371,7 @@ public class TryLoader1 extends JavaParserBaseListener {
         }
         firstString += "]";
 
-        System.out.println(" classVariablelist.size" +classVariablelist.size());
+        //System.out.println(" classVariablelist.size" +classVariablelist.size());
         if (classVariablelist.size() == 0) {
             output.add(firstString);
         }
@@ -280,7 +379,7 @@ public class TryLoader1 extends JavaParserBaseListener {
             if (i == 0) {
                 String temp = classVariablelist.get(0).substring(classVariablelist.get(0).indexOf("[") + 1,
                         classVariablelist.get(0).indexOf("]"));
-                System.out.println("Class Name is: " +className + " classVariable " + temp);
+                //System.out.println("Class Name is: " +className + " classVariable " + temp);
 
                 firstString += classVariablelist.get(0);
                 output.add(firstString);
@@ -300,9 +399,17 @@ public class TryLoader1 extends JavaParserBaseListener {
                 output.add(nextt);
             }
         }
-            for(String s: output){
-                System.out.println(s);
+
+        // completed.add(output);
+
+        if (inProgress.isEmpty()) {
+            for (String s : output) {
+                // System.out.println(s);
             }
+        }
+        else {
+            this.loadLastContext();
+        }
     }
 
     private int sortString(String str1, String str2) {

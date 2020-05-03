@@ -46,18 +46,29 @@ public class Test {
     private static final int BUFFER_SIZE = 4096;
 
     public static void main(String[] args) throws Exception {
+        if (args.length != 2) {
+            System.out.println("umlparser invoked with incorrect arguments:");
+            System.out.println();
+            System.out.println("Usage:");
+            System.out.println("      java -jar umlparser.jar <source folder> <output file name>");
+            return;
+        }
 
-        Console c = System.console();
-        String arg[] = c.readLine().split("\\s+");
+        // Console c = System.console();
+        // String arg[] = c.readLine().split("\\s+");
 
-        String folderString = arg[0];
-        String fileName = arg[1];
+        String folderString = args[0];
+        String fileName = args[1];
         // create a CharStream that reads from standard inputFile folder = new
         File folder = new File(folderString);
+        if(!folder.exists()) {
+            System.out.println("Directory path is not correct!" );
+            return;
+        }
+
         // File folder = new File("umlparser/uml-parser-test-3/");
         // File folder = new File("umlparser/test/starbucks/src/main/java/starbucks/");
         File[] inputFiles = folder.listFiles();
-        // TODO check null pointer in case no file
         Map<String, String> props = new HashMap<String, String>();
         TryLoader1 loader = new TryLoader1();
         for (File f : inputFiles) {
@@ -72,11 +83,14 @@ public class Test {
                 // create a parser that feeds off the tokens buffer
                 JavaParser parser = new JavaParser(tokens);
                 ParseTree tree = parser.compilationUnit(); // begin parsing at init rule
-                System.out.println(tree.toStringTree(parser)); // print LISP-style tree
+                //System.out.println(tree.toStringTree(parser)); // print LISP-style tree
                 ParseTreeWalker walker = new ParseTreeWalker();
                 // System.out.println();
                 walker.walk(loader, tree); // walk parse tree
-
+            }
+            else {
+                System.out.println("File not found!!! ");
+                return;
             }
 
         }
@@ -118,7 +132,7 @@ public class Test {
             while ((responseLine = br.readLine()) != null) {
                 response.append(responseLine.trim());
             }
-            System.out.println(response.toString());
+            //System.out.println(response.toString());
             yumlFileName = response.toString();
         }
 
