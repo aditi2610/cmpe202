@@ -11,13 +11,13 @@ You can download the jar and run it with the below command :
 
 You can also clone the code and run it on java 8 by the following commands:
 
-export CLASSPATH=".:/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH"
- $ alias antlr4='java -Xmx500M -cp "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" org.antlr.v4.Tool'
+1. export CLASSPATH=".:/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH"
+2.  alias antlr4='java -Xmx500M -cp "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" org.antlr.v4.Tool'
 
-$ alias grun='java -Xmx500M -cp "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" org.antlr.v4.gui.TestRig'
- antlr4 *.g4
- javac *.java 
- java Test <source folder> <output file name>
+3. alias grun='java -Xmx500M -cp "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" org.antlr.v4.gui.TestRig'
+4.  antlr4 *.g4
+5. javac *.java 
+6. java Test <source folder> <output file name>
 	
 # The default image would be a png image, however you can give a required extension in the output file name to get the desired image. 
 
