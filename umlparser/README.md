@@ -7,8 +7,9 @@ Jar location: https://github.com/nguyensjsu/cmpe202-aditi2610/tree/master/umlpar
 
 You can download the jar and run it with the below command :  
 
-
+```
 java -jar umlparser.jar <source folder> <output file name>
+```
 
 You can also clone the code and run it on java 8 by the following commands:
 
