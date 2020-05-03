@@ -1,5 +1,5 @@
-
-Expected Test output location with starbucks code image:
+Final week Submission 
+# Expected Test output location with starbucks code image:
 
 https://github.com/nguyensjsu/cmpe202-aditi2610/tree/master/umlparser/expectedOutput
 
@@ -26,6 +26,9 @@ eg. java Test test test.jpg
 # Kanban Link : https://github.com/nguyensjsu/cmpe202-aditi2610/projects
 # GitHub Link: https://github.com/nguyensjsu/cmpe202-aditi2610/tree/master/umlparser
 # ReadMe: https://github.com/nguyensjsu/cmpe202-aditi2610/edit/master/umlparser/README.md
+
+
+ 				# JOURNAL
 
 # Uml Parser
 
