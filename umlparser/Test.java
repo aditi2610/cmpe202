@@ -88,11 +88,6 @@ public class Test {
                 // System.out.println();
                 walker.walk(loader, tree); // walk parse tree
             }
-            else {
-                System.out.println("File not found!!! ");
-                return;
-            }
-
         }
 
         StringBuffer sBuffer = new StringBuffer();
