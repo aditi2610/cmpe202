@@ -1,0 +1,11 @@
+{
+    "java.dependency.syncWithFolderExplorer": true,
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/Users/aditimangal/**/*.jar",
+        "antlr-4.7.1-complete.jar",
+        "gson-2.8.6.jar",
+        "httpcomponents-client-5.0/**/*.jar"
+    ],
+    "java.dependency.packagePresentation": "hierarchical"
+}
